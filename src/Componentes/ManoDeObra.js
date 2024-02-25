@@ -27,10 +27,10 @@ function ManoDeObra(props) {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>GASTO MANO DE OBRA</td>
-                                <td>{props.gastoManoDeObra} {props.codigoMoneda}/año</td>
-                                <td>{gastoManoDeObraMes} {props.codigoMoneda}/mes</td>
-                                <td>{gastoManoDeObraP}%</td>
+                                <td><b>GASTO MANO DE OBRA</b></td>
+                                <td><b>{props.gastoManoDeObra} {props.codigoMoneda}/año</b></td>
+                                <td><b>{gastoManoDeObraMes} {props.codigoMoneda}/mes</b></td>
+                                <td><b>{gastoManoDeObraP}%</b></td>
                             </tr>
                             <tr>
                                 <td>GASTO MEDIO POR OPERARIO</td>

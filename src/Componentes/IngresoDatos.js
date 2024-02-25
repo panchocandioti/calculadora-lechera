@@ -6,6 +6,7 @@ import divisas from './Divisas'
 import IngresosBrutos from './IngresosBrutos'
 import ManoDeObra from './ManoDeObra'
 import Reposicion from './Reposicion'
+import OtrosGastosDirectos from './OtrosGastosDirectos'
 
 function IngresoDatos() {
 
@@ -19,6 +20,7 @@ function IngresoDatos() {
     const [mostrarSeccion3, setMostrarSeccion3] = useState(false);
     const [mostrarSeccion4, setMostrarSeccion4] = useState(false);
     const [mostrarSeccion5, setMostrarSeccion5] = useState(false);
+    const [mostrarSeccion6, setMostrarSeccion6] = useState(false);
 
     const [currency, setCurrency] = useState("Peso argentino");
     const [codigoMoneda, setCodigoMoneda] = useState("ARS");
@@ -33,9 +35,10 @@ function IngresoDatos() {
     const [precioVaquillona, setPrecioVaquillona] = useState('');
     const [cantidadVaquillonas, setCantidadVaquillonas] = useState('');
 
-    const [edadPartoActual, setEdadPartoActual] = useState('');
-    const [hembrasPrimiparas, setHembrasPrimiparas] = useState('');
-    const [hembrasMultiparas, setHembrasMultiparas] = useState('');
+    const [gastoAlimentacionP, setGastoAlimentacionP] = useState('');
+    const [gastoSuministroP, setGastoSuministroP] = useState('');
+    const [gastosVeterinariaP, setGastosVeterinariaP] = useState('');
+    const [gastosTamboP, setGastosTamboP] = useState('');
     
     const [nombreCaso, setNombreCaso] = useState('');
 
@@ -64,6 +67,12 @@ function IngresoDatos() {
     const gastoReposicion = (parseFloat(precioVaquillona) * parseFloat(cantidadVaquillonas) * parseFloat(precioLeche)).toFixed(0);
     const gastoReposicionP = (parseFloat(gastoReposicion) / parseFloat(ingresoLeche) * 100).toFixed(1);
 
+    //Cálculos sección 5
+    const gastoAlimentacion = (parseFloat(gastoAlimentacionP) * parseFloat(ingresoBruto)).toFixed(0);
+    const gastoSuministro = (parseFloat(gastoSuministroP) * parseFloat(ingresoBruto)).toFixed(0);
+    const gastosVeterinaria = (parseFloat(gastosVeterinariaP) * parseFloat(ingresoBruto)).toFixed(0);
+    const gastosTambo = (parseFloat(gastosTamboP) * parseFloat(ingresoBruto)).toFixed(0);
+
     //Datos para validaciones
     let formatoEnteroPositivo = /^[1-9]\d*$/;
     let formatoPorcentaje = /^(100(\.0{1,2})?|[1-9]\d?(\.\d{1,2})?|0(\.[1-9]\d?)?|0)$/;
@@ -72,6 +81,7 @@ function IngresoDatos() {
     let validacion2 = true;
     let validacion3 = true;
     let validacion4 = true;
+    let validacion5 = true;
 
     //Validación 1
     if (!formatoEnteroPositivo.test(vacasOrdeno) || !formatoEnteroPositivo.test(vacasSecas) ||
@@ -87,13 +97,18 @@ function IngresoDatos() {
 
     //Validación 3
 
-    if (!formatoFloatPositivo.test(gastoManoDeObraP) || !formatoFloatPositivo.test(cantidadOperarios)) {
+    if (!formatoPorcentaje.test(gastoManoDeObraP) || !formatoFloatPositivo.test(cantidadOperarios)) {
         validacion3 = false;
     }
 
     //Validación 4
     if (!formatoEnteroPositivo.test(cantidadVaquillonas) || !formatoEnteroPositivo.test(precioVaquillona)) {
         validacion4 = false;
+    }
+
+    //Validacion 5
+    if (!formatoPorcentaje.test(gastoAlimentacionP) || !formatoPorcentaje.test(gastoSuministroP)) {
+        validacion5 = false;
     }
 
     //Sección 1 - Cálculo de indicadores físicos
@@ -164,17 +179,25 @@ function IngresoDatos() {
         setCantidadVaquillonas(e.target.value);
     };
 
-    const handleEdadPartoActualChange = (e) => {
-        setEdadPartoActual(e.target.value);
+    //Sección 6 - Otros gastos directos
+
+    const handleGastoAlimentacionChange = (e) => {
+        setGastoAlimentacionP(e.target.value);
     };
 
-    const handleHembrasPrimiparasChange = (e) => {
-        setHembrasPrimiparas(e.target.value);
+    const handleGastoSuministroChange = (e) => {
+        setGastoSuministroP(e.target.value);
     };
 
-    const handleHembrasMultiparasChange = (e) => {
-        setHembrasMultiparas(e.target.value);
+    const handleGastosVeterinariaChange = (e) => {
+        setGastosVeterinariaP(e.target.value);
     };
+
+    const handleGastosTamboChange = (e) => {
+        setGastosTamboP(e.target.value);
+    };
+
+
 
     const handleClick2 = () => {
         if (validacion2) {
@@ -189,8 +212,14 @@ function IngresoDatos() {
     };
 
     const handleClick4 = () => {
-        if (validacion3) {
+        if (validacion4) {
             setMostrarSeccion5(true);
+        }
+    };
+
+    const handleClick5 = () => {
+        if (validacion5) {
+            setMostrarSeccion6(true);
         }
     };
 
@@ -384,6 +413,68 @@ function IngresoDatos() {
                     <Reposicion validacion4={validacion4} porcentajeReposicion={porcentajeReposicion}
                     gastoReposicion={gastoReposicion} gastoReposicionP={gastoReposicionP}
                     codigoMoneda={codigoMoneda}/>
+                </div>
+                )}
+            </div>
+            )}
+
+            {mostrarSeccion5 && (<div className='seccion'>
+                <h3>Otros gastos directos:</h3>
+                <form>
+                    <div className='seccionFormulario'>
+                        <label id="gastoAlimentacion">Gasto de alimentación VO+VS (% IB leche):</label>
+                        <input type='number' step="0.1" value={gastoAlimentacionP} onChange={handleGastoAlimentacionChange} placeholder='Ingresar un porcentaje (0 - 100)'/>
+                        <Tooltip anchorSelect="#gastoAlimentacion" place="top">
+                            <p><b>Gasto de alimentación vacas ordeño y secas:</b></p>
+                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                            <p>No incluye categorías jóvenes</p>
+                            <p>- Admite un decimal -</p>
+                        </Tooltip>
+                    </div>
+                    <div className='seccionFormulario'>
+                        <label id="gastoSuministro">Gastos suministro y acarreos (% IB leche):</label>
+                        <input type='number' step="0.1" value={gastoSuministroP} onChange={handleGastoSuministroChange} placeholder='Ingresar un porcentaje (0 - 100)'/>
+                        <Tooltip anchorSelect="#gastoSuministro" place="top">
+                            <p><b>Gastos de suministro y acarreos:</b></p>
+                            <p>Gastos en combustible y mantenimiento de la</p>
+                            <p>maquinaria relacionada con la alimentación</p>
+                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                            <p>- Admite un decimal -</p>
+                        </Tooltip>
+                    </div>
+                    <div className='seccionFormulario'>
+                        <label id="gastosVeterinaria">Gastos veterinaria y rodeo (% IB leche):</label>
+                        <input type='number' step="0.1" value={gastosVeterinariaP} onChange={handleGastosVeterinariaChange} placeholder='Ingresar un porcentaje (0 - 100)'/>
+                        <Tooltip anchorSelect="#gastosVeterinaria" place="top">
+                            <p><b>Gastos veterinaria y rodeo:</b></p>
+                            <p>Veterinario, insumos veterinarios, sanidad oficial,</p>
+                            <p>semen, mantenimiento termo, insumos para reproducción,</p>
+                            <p>alquiler de vacas y cualquier otro gasto de rodeo</p>
+                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                            <p>- Admite un decimal -</p>
+                        </Tooltip>
+                    </div>
+                    <div className='seccionFormulario'>
+                        <label id="gastosTambo">Gastos de ordeño (% IB leche):</label>
+                        <input type='number' step="0.1" value={gastosTamboP} onChange={handleGastosTamboChange} placeholder='Ingresar un porcentaje (0 - 100)'/>
+                        <Tooltip anchorSelect="#gastosVeterinaria" place="top">
+                            <p><b>Gastos de ordeño:</b></p>
+                            <p>Productos de limpieza de equipos, reparaciones,</p>
+                            <p>repuestos, energía eléctrica y cualquier otro gasto</p>
+                            <p>relacionado con instalación y equipos de ordeño</p>
+                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                            <p>- Admite un decimal -</p>
+                        </Tooltip>
+                    </div>
+                </form>
+                {mostrarSeccion6 === false && (<div>
+                    <button onClick={handleClick5}>Calcular</button>
+                    <BotonReset />
+                </div>)}
+                {mostrarSeccion6 && (<div>
+                    <OtrosGastosDirectos validacion5={validacion5} gastoAlimentacion={gastoAlimentacion}
+                    gastoAlimentacionP={gastoAlimentacionP} gastoSuministro={gastoSuministro} gastoSuministroP={gastoSuministroP}
+                    gastosVeterinaria={gastosVeterinaria} gastosVeterinariaP={gastosVeterinariaP} gastosTambo={gastosTambo} gastosTamboP={gastosTamboP} codigoMoneda={codigoMoneda}/>
                 </div>
                 )}
             </div>
