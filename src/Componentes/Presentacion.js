@@ -109,11 +109,8 @@ function Presentacion() {
             <footer className='footer'>
                 <div>
                     <p><b>Desarrolladores:</b></p>
-                    <p><b><a href='https://www.linkedin.com/in/francisco-candioti-0b167834/' target="_blank" rel="noopener noreferrer">Ing. Agr. EPL Francisco Candioti</a></b> <a href='mailto:panchocandioti@gmail.com'>panchocandioti@gmail.com</a></p>
-                    <p><b><a href='https://ar.linkedin.com/in/javier-baudracco-b97aab15' target="_blank" rel="noopener noreferrer">Dr. Javier Baudracco</a></b> <a href='mailto:jbaudracco@yahoo.com'>jbaudracco@yahoo.com</a></p>
-                </div>
-                <div>
-                    <p><b>Con el apoyo de:</b></p>
+                    <p><b><a href='https://www.linkedin.com/in/francisco-candioti-0b167834/' target="_blank" rel="noopener noreferrer">Ing. Agr. EPL Francisco Candioti</a></b></p>
+                    <p><b><a href='https://ar.linkedin.com/in/javier-baudracco-b97aab15' target="_blank" rel="noopener noreferrer">Dr. Javier Baudracco</a></b></p>
                 </div>
                 <div className='containerLogos'>
                     <img src={LogoSaltoAgro} className='logo' alt='LogoSalto'></img>

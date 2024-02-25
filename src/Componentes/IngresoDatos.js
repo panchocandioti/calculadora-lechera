@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import BotonReset from './BotonReset'
 import { Tooltip } from 'react-tooltip'
 import IndicadoresFisicos from './IndicadoresFisicos'
+import divisas from './Divisas'
 
 function IngresoDatos() {
 
@@ -11,7 +12,12 @@ function IngresoDatos() {
     const [superficieVT, setSuperficieVT] = useState('');
     const [lecheVendida, setLecheVendida] = useState('');
     const [mostrarSeccion2, setMostrarSeccion2] = useState(false);
-    
+
+    const [currency, setCurrency] = useState("Peso argentino");
+    const [codigoMoneda, setCodigoMoneda] = useState("ARS");
+    const datosDropDown1 = divisas.map(item => item.currency);
+
+
     const [mortandadTerneros, setMortandadTerneros] = useState('');
     const [mortandadRecria, setMortandadRecria] = useState('');
     const [rechazoRecria, setrechazoRecria] = useState('');
@@ -68,7 +74,7 @@ function IngresoDatos() {
 
     //Validación 1
     if (!formatoEnteroPositivo.test(vacasOrdeno) || !formatoEnteroPositivo.test(vacasSecas) ||
-    !formatoFloatPositivo.test(superficieVT) || !formatoEnteroPositivo.test(lecheVendida)) {
+        !formatoFloatPositivo.test(superficieVT) || !formatoEnteroPositivo.test(lecheVendida)) {
         validacion1 = false;
     }
 
@@ -92,7 +98,7 @@ function IngresoDatos() {
         validacion2 = false;
     }
 
-    //Sección 1
+    //Sección 1 - Cálculo de indicadores físicos
 
     const handleNombreCasoChange = (e) => {
         setNombreCaso(e.target.value);
@@ -120,7 +126,19 @@ function IngresoDatos() {
         }
     };
 
-    //Sección 2
+    //Sección 2 - Cálculo de los ingresos anuales
+
+    const handleSelectChange = (event) => {
+        const selectedCurrency = event.target.value;
+        setCurrency(selectedCurrency);
+
+    };
+
+    useEffect(() => {
+        const elementoEncontrado = divisas.find(elemento => elemento.currency === currency);
+        setCodigoMoneda(prevstate => elementoEncontrado.code);
+    }, [currency]);
+
     const handleMortandadTernerosChange = (e) => {
         setMortandadTerneros(e.target.value);
     };
@@ -196,7 +214,7 @@ function IngresoDatos() {
                         <label id="vacasSecas">Vacas secas (cantidad): </label>
                         <input type='number' value={vacasSecas} onChange={handleVacasSecasChange} placeholder='Ingresar cantidad de vacas secas' />
                         <Tooltip anchorSelect="#vacasSecas" place="top">
-                        <p><b>Vacas secas:</b></p>
+                            <p><b>Vacas secas:</b></p>
                             <p>Número promedio anual de vacas secas</p>
                             <p>- No ingresar decimales - </p>
                         </Tooltip>
@@ -229,11 +247,23 @@ function IngresoDatos() {
                     <BotonReset />
                 </div>)}
                 {mostrarSeccion2 && (<div>
-                    <IndicadoresFisicos validacion1={validacion1} cargaAnimal={cargaAnimal} produccionIndividual={produccionIndividual} relacionVOVT={relacionVOVT} productividad={productividad}/>
+                    <IndicadoresFisicos validacion1={validacion1} cargaAnimal={cargaAnimal} produccionIndividual={produccionIndividual} relacionVOVT={relacionVOVT} productividad={productividad} />
                 </div>)}
             </div>
             {mostrarSeccion2 && (<div className='seccion'>
-                <h3>Cálculo de reposición anual efectiva:</h3>
+                <h3>Cálculo de ingresos brutos:</h3>
+                <div className='seccionFormulario'>
+                    <label htmlFor="opcionesDropdown">Seleccione la moneda de trabajo: </label>
+                    <select id="opcionesDropdown" value={currency} onChange={handleSelectChange}>
+                        <option value="currency">Selecciona una opción</option>
+                        {datosDropDown1.map((opcion) => (
+                            <option value={opcion}>
+                                {opcion}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <h5>Código de moneda: {codigoMoneda}</h5>
                 <form>
                     <div className='seccionFormulario'>
                         <label id="mortern">Tasa de mortandad de terneras (%): </label>
