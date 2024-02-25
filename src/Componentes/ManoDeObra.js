@@ -5,6 +5,7 @@ function ManoDeObra(props) {
 
     let gastoManoDeObraMes = (parseFloat(props.gastoManoDeObra)/12).toFixed(0);
     let gastoPorOperarioMes = (parseFloat(props.gastoPorOperario)/12).toFixed(0);
+    let gastoManoDeObraP = (parseFloat(props.gastoManoDeObraP)).toFixed(1);
 
 
     return (
@@ -29,7 +30,7 @@ function ManoDeObra(props) {
                                 <td>GASTO MANO DE OBRA</td>
                                 <td>{props.gastoManoDeObra} {props.codigoMoneda}/año</td>
                                 <td>{gastoManoDeObraMes} {props.codigoMoneda}/mes</td>
-                                <td>{props.gastoManoDeObraP}%</td>
+                                <td>{gastoManoDeObraP}%</td>
                             </tr>
                             <tr>
                                 <td>GASTO MEDIO POR OPERARIO</td>
