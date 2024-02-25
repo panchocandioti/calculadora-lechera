@@ -5,6 +5,7 @@ import IndicadoresFisicos from './IndicadoresFisicos'
 import divisas from './Divisas'
 import IngresosBrutos from './IngresosBrutos'
 import ManoDeObra from './ManoDeObra'
+import Reposicion from './Reposicion'
 
 function IngresoDatos() {
 
@@ -17,6 +18,7 @@ function IngresoDatos() {
     const [mostrarSeccion2, setMostrarSeccion2] = useState(false);
     const [mostrarSeccion3, setMostrarSeccion3] = useState(false);
     const [mostrarSeccion4, setMostrarSeccion4] = useState(false);
+    const [mostrarSeccion5, setMostrarSeccion5] = useState(false);
 
     const [currency, setCurrency] = useState("Peso argentino");
     const [codigoMoneda, setCodigoMoneda] = useState("ARS");
@@ -28,8 +30,9 @@ function IngresoDatos() {
     const [gastoManoDeObraP, setGastoManoDeObraP] = useState('');
     const [cantidadOperarios, setCantidadOperarios] = useState('');
 
-    const [abortos, setAbortos] = useState('');
-    const [edadPartoAnterior, setEdadPartoAnterior] = useState('');
+    const [precioVaquillona, setPrecioVaquillona] = useState('');
+    const [cantidadVaquillonas, setCantidadVaquillonas] = useState('');
+
     const [edadPartoActual, setEdadPartoActual] = useState('');
     const [hembrasPrimiparas, setHembrasPrimiparas] = useState('');
     const [hembrasMultiparas, setHembrasMultiparas] = useState('');
@@ -55,6 +58,12 @@ function IngresoDatos() {
     const gastoPorOperario = (parseFloat(gastoManoDeObra)/parseFloat(cantidadOperarios)).toFixed(0);
     const gastoPorOperarioP = (parseFloat(gastoManoDeObraP)/parseFloat(cantidadOperarios)).toFixed(1);
 
+    //Cálculos sección 4
+    const vacasTotales = (parseFloat(vacasOrdeno) + parseFloat(vacasSecas)).toFixed(0);
+    const porcentajeReposicion = (parseFloat(cantidadVaquillonas) / parseFloat(vacasTotales) * 100).toFixed(1);
+    const gastoReposicion = (parseFloat(precioVaquillona) * parseFloat(cantidadVaquillonas) * parseFloat(precioLeche)).toFixed(0);
+    const gastoReposicionP = (parseFloat(gastoReposicion) / parseFloat(ingresoLeche) * 100).toFixed(1);
+
     //Datos para validaciones
     let formatoEnteroPositivo = /^[1-9]\d*$/;
     let formatoPorcentaje = /^(100(\.0{1,2})?|[1-9]\d?(\.\d{1,2})?|0(\.[1-9]\d?)?|0)$/;
@@ -62,6 +71,7 @@ function IngresoDatos() {
     let validacion1 = true;
     let validacion2 = true;
     let validacion3 = true;
+    let validacion4 = true;
 
     //Validación 1
     if (!formatoEnteroPositivo.test(vacasOrdeno) || !formatoEnteroPositivo.test(vacasSecas) ||
@@ -79,6 +89,11 @@ function IngresoDatos() {
 
     if (!formatoFloatPositivo.test(gastoManoDeObraP) || !formatoFloatPositivo.test(cantidadOperarios)) {
         validacion3 = false;
+    }
+
+    //Validación 4
+    if (!formatoEnteroPositivo.test(cantidadVaquillonas) || !formatoEnteroPositivo.test(precioVaquillona)) {
+        validacion4 = false;
     }
 
     //Sección 1 - Cálculo de indicadores físicos
@@ -139,12 +154,14 @@ function IngresoDatos() {
         setCantidadOperarios(e.target.value);
     };
 
-    const handleAbortosChange = (e) => {
-        setAbortos(e.target.value);
+    //Sección 5 - Gasto de reposición
+
+    const handlePrecioVaquillonaChange = (e) => {
+        setPrecioVaquillona(e.target.value);
     };
 
-    const handleEdadPartoAnteriorChange = (e) => {
-        setEdadPartoAnterior(e.target.value);
+    const handleCantidadVaquillonasChange = (e) => {
+        setCantidadVaquillonas(e.target.value);
     };
 
     const handleEdadPartoActualChange = (e) => {
@@ -168,6 +185,12 @@ function IngresoDatos() {
     const handleClick3 = () => {
         if (validacion3) {
             setMostrarSeccion4(true);
+        }
+    };
+
+    const handleClick4 = () => {
+        if (validacion3) {
+            setMostrarSeccion5(true);
         }
     };
 
@@ -328,6 +351,44 @@ function IngresoDatos() {
                 )}
             </div>
             )}
+
+            {mostrarSeccion4 && (<div className='seccion'>
+                <h3>Gasto de reposición:</h3>
+                <form>
+                    <div className='seccionFormulario'>
+                        <label id="precioVaquillona">Valor de vaquillona al parir (litros leche):</label>
+                        <input type='number' value={precioVaquillona} onChange={handlePrecioVaquillonaChange} placeholder='Ingresar precio en litros de leche' />
+                        <Tooltip anchorSelect="#precioVaquillona" place="top">
+                            <p><b>Valor de vaquillona al parir:</b></p>
+                            <p>Valor de mercado de una vaquillona adelantada</p>
+                            <p>Expresado en litros de leche</p>
+                            <p>- No ingresar decimales -</p>
+                        </Tooltip>
+                    </div>
+                    <div className='seccionFormulario'>
+                        <label id="cantidadVaquillonas">Vaquillonas ingresadas por año (cantidad):</label>
+                        <input type='number' value={cantidadVaquillonas} onChange={handleCantidadVaquillonasChange} placeholder='Ingresar una cantidad' />
+                        <Tooltip anchorSelect="#cantidadVaquillonas" place="top">
+                            <p><b>Vaquillonas ingresadas por año:</b></p>
+                            <p>Cantidad de vaquillonas de reposición</p>
+                            <p>que ingresan por año al rodeo adulto</p>
+                            <p>- No ingresar decimales -</p>
+                        </Tooltip>
+                    </div>
+                </form>
+                {mostrarSeccion5 === false && (<div>
+                    <button onClick={handleClick4}>Calcular</button>
+                    <BotonReset />
+                </div>)}
+                {mostrarSeccion5 && (<div>
+                    <Reposicion validacion4={validacion4} porcentajeReposicion={porcentajeReposicion}
+                    gastoReposicion={gastoReposicion} gastoReposicionP={gastoReposicionP}
+                    codigoMoneda={codigoMoneda}/>
+                </div>
+                )}
+            </div>
+            )}
+
             {mostrarSeccion4 && (<div className='seccion'>
                 <h3>Resultados:</h3>
                 <p>RESULTADOS 2</p>
