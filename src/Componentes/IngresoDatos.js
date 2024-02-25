@@ -221,13 +221,13 @@ function IngresoDatos() {
                     </div>
                     <div className='seccionFormulario'>
                         <label id="superficieVT">Superficie vaca total (hectáreas): </label>
-                        <input type='float' value={superficieVT} onChange={handleSuperficieVTChange} placeholder='Ingresar cantidad de hectáreas' />
+                        <input type='number' step="0.01" value={superficieVT} onChange={handleSuperficieVTChange} placeholder='Ingresar cantidad de hectáreas' />
                         <Tooltip anchorSelect="#superficieVT" place="top">
                             <p><b>Superficie vaca total:</b></p>
                             <p>Hectáreas destinadas a vacas en ordeño y secas</p>
                             <p>No incluye superficie de categorías jóvenes</p>
                             <p>No incluye superficie de otras actividades</p>
-                            <p>- Admite decimales -</p>
+                            <p>- Admite hasta dos decimales -</p>
                         </Tooltip>
                     </div>
                     <div className='seccionFormulario'>
