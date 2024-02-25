@@ -15,7 +15,7 @@ function IngresoDatos() {
     const [vacasSecas, setVacasSecas] = useState('');
     const [superficieVT, setSuperficieVT] = useState('');
     const [lecheVendida, setLecheVendida] = useState('');
-    
+
     const [mostrarSeccion2, setMostrarSeccion2] = useState(false);
     const [mostrarSeccion3, setMostrarSeccion3] = useState(false);
     const [mostrarSeccion4, setMostrarSeccion4] = useState(false);
@@ -28,7 +28,7 @@ function IngresoDatos() {
 
     const [precioLeche, setPrecioLeche] = useState('');
     const [ingresoCarne, setIngresoCarne] = useState('');
-    
+
     const [gastoManoDeObraP, setGastoManoDeObraP] = useState('');
     const [cantidadOperarios, setCantidadOperarios] = useState('');
 
@@ -39,11 +39,11 @@ function IngresoDatos() {
     const [gastoSuministroP, setGastoSuministroP] = useState('');
     const [gastosVeterinariaP, setGastosVeterinariaP] = useState('');
     const [gastosTamboP, setGastosTamboP] = useState('');
-    
+
     const [nombreCaso, setNombreCaso] = useState('');
 
     //Cálculos sección 1
-    const lecheVendidaDia = (parseFloat(lecheVendida)/365).toFixed(0);
+    const lecheVendidaDia = (parseFloat(lecheVendida) / 365).toFixed(0);
     const cargaAnimal = ((parseFloat(vacasOrdeno) + parseFloat(vacasSecas)) / parseFloat(superficieVT)).toFixed(2);
     const produccionIndividual = ((parseFloat(lecheVendida) / 365) / parseFloat(vacasOrdeno)).toFixed(1);
     const relacionVOVT = ((parseFloat(vacasOrdeno) / (parseFloat(vacasOrdeno) + parseFloat(vacasSecas)) * 100)).toFixed(1);
@@ -57,9 +57,9 @@ function IngresoDatos() {
     const ingresoBrutoP = (100).toFixed(1);
 
     //Cálculos sección 3
-    const gastoManoDeObra = (parseFloat(gastoManoDeObraP)/100 * parseFloat(ingresoLeche)).toFixed(0);
-    const gastoPorOperario = (parseFloat(gastoManoDeObra)/parseFloat(cantidadOperarios)).toFixed(0);
-    const gastoPorOperarioP = (parseFloat(gastoManoDeObraP)/parseFloat(cantidadOperarios)).toFixed(1);
+    const gastoManoDeObra = (parseFloat(gastoManoDeObraP) / 100 * parseFloat(ingresoLeche)).toFixed(0);
+    const gastoPorOperario = (parseFloat(gastoManoDeObra) / parseFloat(cantidadOperarios)).toFixed(0);
+    const gastoPorOperarioP = (parseFloat(gastoManoDeObraP) / parseFloat(cantidadOperarios)).toFixed(1);
 
     //Cálculos sección 4
     const vacasTotales = (parseFloat(vacasOrdeno) + parseFloat(vacasSecas)).toFixed(0);
@@ -290,10 +290,11 @@ function IngresoDatos() {
                 </div>)}
                 {mostrarSeccion2 && (<div>
                     <IndicadoresFisicos validacion1={validacion1} cargaAnimal={cargaAnimal}
-                    produccionIndividual={produccionIndividual} relacionVOVT={relacionVOVT}
-                    productividad={productividad} lecheVendidaDia={lecheVendidaDia}/>
+                        produccionIndividual={produccionIndividual} relacionVOVT={relacionVOVT}
+                        productividad={productividad} lecheVendidaDia={lecheVendidaDia} />
                 </div>)}
             </div>
+
             {mostrarSeccion2 && (<div className='seccion'>
                 <h3>Cálculo de ingresos brutos:</h3>
                 <div className='seccionFormulario'>
@@ -337,12 +338,13 @@ function IngresoDatos() {
                 </div>)}
                 {mostrarSeccion3 && (<div>
                     <IngresosBrutos validacion2={validacion2} ingresoLeche={ingresoLeche} ingresoCarne={ingresoCarne}
-                    ingresoLecheP={ingresoLecheP} ingresoCarneP={ingresoCarneP} ingresoBruto={ingresoBruto}
-                    ingresoBrutoP={ingresoBrutoP} codigoMoneda={codigoMoneda}/>
+                        ingresoLecheP={ingresoLecheP} ingresoCarneP={ingresoCarneP} ingresoBruto={ingresoBruto}
+                        ingresoBrutoP={ingresoBrutoP} codigoMoneda={codigoMoneda} />
                 </div>
                 )}
             </div>
             )}
+
             {mostrarSeccion3 && (<div className='seccion'>
                 <h3>Gasto en mano de obra:</h3>
                 <form>
@@ -374,8 +376,8 @@ function IngresoDatos() {
                 </div>)}
                 {mostrarSeccion4 && (<div>
                     <ManoDeObra validacion3={validacion3} gastoManoDeObraP={gastoManoDeObraP}
-                    gastoManoDeObra={gastoManoDeObra} gastoPorOperarioP={gastoPorOperarioP}
-                    gastoPorOperario={gastoPorOperario} codigoMoneda={codigoMoneda}/>
+                        gastoManoDeObra={gastoManoDeObra} gastoPorOperarioP={gastoPorOperarioP}
+                        gastoPorOperario={gastoPorOperario} codigoMoneda={codigoMoneda} />
                 </div>
                 )}
             </div>
@@ -411,8 +413,8 @@ function IngresoDatos() {
                 </div>)}
                 {mostrarSeccion5 && (<div>
                     <Reposicion validacion4={validacion4} porcentajeReposicion={porcentajeReposicion}
-                    gastoReposicion={gastoReposicion} gastoReposicionP={gastoReposicionP}
-                    codigoMoneda={codigoMoneda}/>
+                        gastoReposicion={gastoReposicion} gastoReposicionP={gastoReposicionP}
+                        codigoMoneda={codigoMoneda} />
                 </div>
                 )}
             </div>
@@ -423,7 +425,7 @@ function IngresoDatos() {
                 <form>
                     <div className='seccionFormulario'>
                         <label id="gastoAlimentacion">Gasto de alimentación VO+VS (% IB leche):</label>
-                        <input type='number' step="0.1" value={gastoAlimentacionP} onChange={handleGastoAlimentacionChange} placeholder='Ingresar un porcentaje (0 - 100)'/>
+                        <input type='number' step="0.1" value={gastoAlimentacionP} onChange={handleGastoAlimentacionChange} placeholder='Ingresar un porcentaje (0 - 100)' />
                         <Tooltip anchorSelect="#gastoAlimentacion" place="top">
                             <p><b>Gasto de alimentación vacas ordeño y secas:</b></p>
                             <p>Expresado como porcentaje del ingreso por venta de leche</p>
@@ -433,7 +435,7 @@ function IngresoDatos() {
                     </div>
                     <div className='seccionFormulario'>
                         <label id="gastoSuministro">Gastos suministro y acarreos (% IB leche):</label>
-                        <input type='number' step="0.1" value={gastoSuministroP} onChange={handleGastoSuministroChange} placeholder='Ingresar un porcentaje (0 - 100)'/>
+                        <input type='number' step="0.1" value={gastoSuministroP} onChange={handleGastoSuministroChange} placeholder='Ingresar un porcentaje (0 - 100)' />
                         <Tooltip anchorSelect="#gastoSuministro" place="top">
                             <p><b>Gastos de suministro y acarreos:</b></p>
                             <p>Gastos en combustible y mantenimiento de la</p>
@@ -444,7 +446,7 @@ function IngresoDatos() {
                     </div>
                     <div className='seccionFormulario'>
                         <label id="gastosVeterinaria">Gastos veterinaria y rodeo (% IB leche):</label>
-                        <input type='number' step="0.1" value={gastosVeterinariaP} onChange={handleGastosVeterinariaChange} placeholder='Ingresar un porcentaje (0 - 100)'/>
+                        <input type='number' step="0.1" value={gastosVeterinariaP} onChange={handleGastosVeterinariaChange} placeholder='Ingresar un porcentaje (0 - 100)' />
                         <Tooltip anchorSelect="#gastosVeterinaria" place="top">
                             <p><b>Gastos veterinaria y rodeo:</b></p>
                             <p>Veterinario, insumos veterinarios, sanidad oficial,</p>
@@ -456,7 +458,7 @@ function IngresoDatos() {
                     </div>
                     <div className='seccionFormulario'>
                         <label id="gastosTambo">Gastos de ordeño (% IB leche):</label>
-                        <input type='number' step="0.1" value={gastosTamboP} onChange={handleGastosTamboChange} placeholder='Ingresar un porcentaje (0 - 100)'/>
+                        <input type='number' step="0.1" value={gastosTamboP} onChange={handleGastosTamboChange} placeholder='Ingresar un porcentaje (0 - 100)' />
                         <Tooltip anchorSelect="#gastosVeterinaria" place="top">
                             <p><b>Gastos de ordeño:</b></p>
                             <p>Productos de limpieza de equipos, reparaciones,</p>
@@ -473,8 +475,8 @@ function IngresoDatos() {
                 </div>)}
                 {mostrarSeccion6 && (<div>
                     <OtrosGastosDirectos validacion5={validacion5} gastoAlimentacion={gastoAlimentacion}
-                    gastoAlimentacionP={gastoAlimentacionP} gastoSuministro={gastoSuministro} gastoSuministroP={gastoSuministroP}
-                    gastosVeterinaria={gastosVeterinaria} gastosVeterinariaP={gastosVeterinariaP} gastosTambo={gastosTambo} gastosTamboP={gastosTamboP} codigoMoneda={codigoMoneda}/>
+                        gastoAlimentacionP={gastoAlimentacionP} gastoSuministro={gastoSuministro} gastoSuministroP={gastoSuministroP}
+                        gastosVeterinaria={gastosVeterinaria} gastosVeterinariaP={gastosVeterinariaP} gastosTambo={gastosTambo} gastosTamboP={gastosTamboP} codigoMoneda={codigoMoneda} />
                 </div>
                 )}
             </div>
