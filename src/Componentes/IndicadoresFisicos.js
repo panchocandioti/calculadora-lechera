@@ -14,6 +14,11 @@ function IndicadoresFisicos(props) {
                 <table className="table table-hover">
                     <tbody>
                         <tr>
+                            <td>ENTREGA DIARIA DE LECHE</td>
+                            <td>{props.lecheVendidaDia}</td>
+                            <td>litros/día</td>
+                        </tr>
+                        <tr>
                             <td>CARGA ANIMAL</td>
                             <td>{props.cargaAnimal}</td>
                             <td>VT/haVT</td>
