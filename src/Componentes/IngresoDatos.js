@@ -68,10 +68,10 @@ function IngresoDatos() {
     const gastoReposicionP = (parseFloat(gastoReposicion) / parseFloat(ingresoLeche) * 100).toFixed(1);
 
     //Cálculos sección 5
-    const gastoAlimentacion = (parseFloat(gastoAlimentacionP) * parseFloat(ingresoBruto)).toFixed(0);
-    const gastoSuministro = (parseFloat(gastoSuministroP) * parseFloat(ingresoBruto)).toFixed(0);
-    const gastosVeterinaria = (parseFloat(gastosVeterinariaP) * parseFloat(ingresoBruto)).toFixed(0);
-    const gastosTambo = (parseFloat(gastosTamboP) * parseFloat(ingresoBruto)).toFixed(0);
+    const gastoAlimentacion = (parseFloat(gastoAlimentacionP) * parseFloat(ingresoBruto) / 100).toFixed(0);
+    const gastoSuministro = (parseFloat(gastoSuministroP) * parseFloat(ingresoBruto) / 100).toFixed(0);
+    const gastosVeterinaria = (parseFloat(gastosVeterinariaP) * parseFloat(ingresoBruto) / 100).toFixed(0);
+    const gastosTambo = (parseFloat(gastosTamboP) * parseFloat(ingresoBruto) / 100).toFixed(0);
 
     //Datos para validaciones
     let formatoEnteroPositivo = /^[1-9]\d*$/;
