@@ -1,31 +1,31 @@
 .App {
   text-align: center;
+  background-color:rgb(65, 158, 65);
+  min-height: 100vh;
+  margin: 0;
 }
 
 .App-header {
-  background-color: rgb(35, 35, 104);
-  min-height: 3vh;
+  background-color: black;
+  min-height: 6vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   color: white;
-  padding-top: 0.5vh;
+  padding-top: 1vh;
 }
 
 body {
-  background-image: url('./Media/vacas_catie.jpg');
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
   min-width: 340px;
-  color:rgb(29, 29, 53);
+  color:black;
+  background-color: rgb(172, 105, 105);
 }
 
 .seccion, .grafico {
   margin: 10px;
   padding: 5px;
-  border: solid 2px rgb(35, 35, 104);
+  border: solid 2px black;
   background-color: rgba(255,255,255,0.75);
 }
 
@@ -96,9 +96,9 @@ input::placeholder {
 #MiLecheria {
   max-height: 65px;
   max-width: 85vw;
-  margin-bottom: -20px;
   margin-top:15px;
   margin-bottom: 3px;
+  width: 250px;
 }
 
 .subseccion {
@@ -126,16 +126,16 @@ input::placeholder {
 }
 
 footer {
-  margin-top: 5px;
+  margin-top: 10px;
   background-color: white;
-  color: rgb(35, 35, 104);
+  color: black;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-  border-top: rgb(117, 189, 213) solid 15px;
-  border-bottom:rgb(117, 189, 213) solid 15px;
+  border-top: black solid 20px;
+  border-bottom:black solid 20px;
 }
 
 .containerLogos {
@@ -145,10 +145,4 @@ footer {
   align-items: center;
   flex-wrap: wrap;
   padding-bottom: 10px;
-}
-
-#MiLecheria {
-  width: 250px;
-  margin-top:15px;
-  margin-bottom: 3px;
 }
