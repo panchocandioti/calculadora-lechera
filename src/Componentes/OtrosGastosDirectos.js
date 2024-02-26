@@ -19,7 +19,7 @@ function OtrosGastosDirectos(props) {
             </div>)}
             {props.validacion5 && (<div className='resultados'>
                 
-                <h4>Análisis de otros gastos directos</h4>
+                <h4>Resumen otros gastos directos</h4>
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <thead>

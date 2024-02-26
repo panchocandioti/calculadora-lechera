@@ -14,7 +14,7 @@ function ManoDeObra(props) {
                 <h3 style={{ color: "darkred", backgroundColor: "lightpink" }}>Revisar los valores ingresados</h3>
             </div>)}
             {props.validacion3 && (<div className='resultados'>
-                <h4>Análisis mano de obra</h4>
+                <h4>Resumen mano de obra</h4>
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <thead>

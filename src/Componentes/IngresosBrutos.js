@@ -13,7 +13,7 @@ function IngresosBrutos(props) {
                 <h3 style={{ color: "darkred", backgroundColor: "lightpink" }}>Revisar los valores ingresados</h3>
             </div>)}
             {props.validacion2 && (<div className='resultados'>
-                <h4>Análisis ingresos brutos</h4>
+                <h4>Resumen ingresos brutos</h4>
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <thead>

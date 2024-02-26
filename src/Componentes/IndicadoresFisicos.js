@@ -9,7 +9,7 @@ function IndicadoresFisicos(props) {
                 <h3 style={{color: "darkred", backgroundColor: "lightpink"}}>Revisar los valores ingresados</h3>
             </div>)}
             {props.validacion1 && (<div className='resultados'>
-            <h4>Indicadores físicos</h4>
+            <h4>Resumen indicadores físicos</h4>
             <div className='table-responsive'>
                 <table className="table table-hover">
                     <tbody>

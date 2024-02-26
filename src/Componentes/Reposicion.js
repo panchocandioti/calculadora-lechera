@@ -14,7 +14,7 @@ function Reposicion(props) {
             </div>)}
             {props.validacion4 && (<div className='resultados'>
                 
-                <h4>Análisis de la reposición</h4>
+                <h4>Resumen reposición</h4>
                 <hr></hr>
                 <h5>Porcentaje de reemplazo: {porcentajeReposicion}%</h5>
                 <div className='table-responsive'>

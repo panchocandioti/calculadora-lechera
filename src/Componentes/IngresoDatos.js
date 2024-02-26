@@ -7,10 +7,13 @@ import IngresosBrutos from './IngresosBrutos'
 import ManoDeObra from './ManoDeObra'
 import Reposicion from './Reposicion'
 import OtrosGastosDirectos from './OtrosGastosDirectos'
+import GastosEstructura from './GastosEstructura'
 
 function IngresoDatos() {
 
     //Datos que se ingresan
+    const [nombreCaso, setNombreCaso] = useState('');
+
     const [vacasOrdeno, setVacasOrdeno] = useState('');
     const [vacasSecas, setVacasSecas] = useState('');
     const [superficieVT, setSuperficieVT] = useState('');
@@ -21,6 +24,7 @@ function IngresoDatos() {
     const [mostrarSeccion4, setMostrarSeccion4] = useState(false);
     const [mostrarSeccion5, setMostrarSeccion5] = useState(false);
     const [mostrarSeccion6, setMostrarSeccion6] = useState(false);
+    const [mostrarSeccion7, setMostrarSeccion7] = useState(false);
 
     const [currency, setCurrency] = useState("Peso argentino");
     const [codigoMoneda, setCodigoMoneda] = useState("ARS");
@@ -40,7 +44,9 @@ function IngresoDatos() {
     const [gastosVeterinariaP, setGastosVeterinariaP] = useState('');
     const [gastosTamboP, setGastosTamboP] = useState('');
 
-    const [nombreCaso, setNombreCaso] = useState('');
+    const [gastosMantenimientoP, setGastosMantenimientoP] = useState('');
+    const [gastoArrendamientoP, setGastoArrendamientoP] = useState('');
+    const [gastosAdministracionP, setGastosAdministracionP] = useState('');
 
     //Cálculos sección 1
     const lecheVendidaDia = (parseFloat(lecheVendida) / 365).toFixed(0);
@@ -73,6 +79,11 @@ function IngresoDatos() {
     const gastosVeterinaria = (parseFloat(gastosVeterinariaP) * parseFloat(ingresoBruto) / 100).toFixed(0);
     const gastosTambo = (parseFloat(gastosTamboP) * parseFloat(ingresoBruto) / 100).toFixed(0);
 
+    //Cálculos sección 6
+    const gastosMantenimiento = (parseFloat(gastosMantenimientoP) * parseFloat(ingresoBruto) / 100).toFixed(0);
+    const gastoArrendamiento = (parseFloat(gastoArrendamientoP) * parseFloat(ingresoBruto) / 100).toFixed(0);
+    const gastosAdministracion = (parseFloat(gastosAdministracionP) * parseFloat(ingresoBruto) / 100).toFixed(0);
+
     //Datos para validaciones
     let formatoEnteroPositivo = /^[1-9]\d*$/;
     let formatoPorcentaje = /^(100(\.0{1,2})?|[1-9]\d?(\.\d{1,2})?|0(\.[1-9]\d?)?|0)$/;
@@ -82,6 +93,7 @@ function IngresoDatos() {
     let validacion3 = true;
     let validacion4 = true;
     let validacion5 = true;
+    let validacion6 = true;
 
     //Validación 1
     if (!formatoEnteroPositivo.test(vacasOrdeno) || !formatoEnteroPositivo.test(vacasSecas) ||
@@ -106,10 +118,18 @@ function IngresoDatos() {
         validacion4 = false;
     }
 
-    //Validacion 5
-    if (!formatoPorcentaje.test(gastoAlimentacionP) || !formatoPorcentaje.test(gastoSuministroP)) {
+    //Validación 5
+    if (!formatoPorcentaje.test(gastoAlimentacionP) || !formatoPorcentaje.test(gastoSuministroP) ||
+        !formatoPorcentaje.test(gastosVeterinariaP) || !formatoPorcentaje.test(gastosTamboP)) {
         validacion5 = false;
     }
+
+    //Validación 6
+    if (!formatoPorcentaje.test(gastosMantenimientoP) || !formatoPorcentaje.test(gastoArrendamientoP) ||
+        !formatoPorcentaje.test(gastosAdministracionP)) {
+        validacion6 = false;
+    }
+
 
     //Sección 1 - Cálculo de indicadores físicos
 
@@ -159,7 +179,7 @@ function IngresoDatos() {
         setIngresoCarne(e.target.value);
     };
 
-    //Sección 4 - Gasto en mano de obra
+    //Sección 3 - Gasto en mano de obra
 
     const handleGastoManoDeObraChange = (e) => {
         setGastoManoDeObraP(e.target.value);
@@ -169,7 +189,7 @@ function IngresoDatos() {
         setCantidadOperarios(e.target.value);
     };
 
-    //Sección 5 - Gasto de reposición
+    //Sección 4 - Gasto de reposición
 
     const handlePrecioVaquillonaChange = (e) => {
         setPrecioVaquillona(e.target.value);
@@ -179,7 +199,7 @@ function IngresoDatos() {
         setCantidadVaquillonas(e.target.value);
     };
 
-    //Sección 6 - Otros gastos directos
+    //Sección 5 - Otros gastos directos
 
     const handleGastoAlimentacionChange = (e) => {
         setGastoAlimentacionP(e.target.value);
@@ -197,7 +217,19 @@ function IngresoDatos() {
         setGastosTamboP(e.target.value);
     };
 
+    //Sección 6 - Gastos de Estructura
 
+    const handleGastosMantenimientoChange = (e) => {
+        setGastosMantenimientoP(e.target.value);
+    };
+
+    const handleGastoArrendamientoChange = (e) => {
+        setGastoArrendamientoP(e.target.value);
+    };
+
+    const handleGastosAdministracionChange = (e) => {
+        setGastosAdministracionP(e.target.value);
+    };
 
     const handleClick2 = () => {
         if (validacion2) {
@@ -223,6 +255,12 @@ function IngresoDatos() {
         }
     };
 
+    const handleClick6 = () => {
+        if (validacion5) {
+            setMostrarSeccion7(true);
+        }
+    };
+
     return (
         <div>
             <div className='seccion'>
@@ -241,7 +279,7 @@ function IngresoDatos() {
                 </form>
             </div>
             <div className='seccion'>
-                <h3>Cálculo de indicadores físicos:</h3>
+                <h3>Indicadores físicos:</h3>
                 <form>
                     <div className='seccionFormulario'>
                         <label id="vacasOrdeno">Vacas en ordeño (cantidad): </label>
@@ -296,7 +334,7 @@ function IngresoDatos() {
             </div>
 
             {mostrarSeccion2 && (<div className='seccion'>
-                <h3>Cálculo de ingresos brutos:</h3>
+                <h3>Ingresos brutos:</h3>
                 <div className='seccionFormulario'>
                     <label htmlFor="opcionesDropdown">Seleccione la moneda de trabajo: </label>
                     <select id="opcionesDropdown" value={currency} onChange={handleSelectChange}>
@@ -482,8 +520,59 @@ function IngresoDatos() {
             </div>
             )}
 
-            {mostrarSeccion4 && (<div className='seccion'>
-                <h3>Resultados:</h3>
+            {mostrarSeccion6 && (<div className='seccion'>
+                <h3>Gastos de estructura:</h3>
+                <form>
+                    <div className='seccionFormulario'>
+                        <label id="gastosMantenimiento">Gastos mantenimiento general (% IB leche):</label>
+                        <input type='number' step="0.1" value={gastosMantenimientoP} onChange={handleGastosMantenimientoChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                        <Tooltip anchorSelect="#gastosMantenimiento" place="top">
+                            <p><b>Gastos mantenimiento general:</b></p>
+                            <p>No incluyen los de instalaciones y equipos de ordeño</p>
+                            <p>No incluyen los de maquinaria de suministro y acarreos</p>
+                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                            <p>- Admite un decimal -</p>
+                        </Tooltip>
+                    </div>
+                    <div className='seccionFormulario'>
+                        <label id="gastoArrendamiento">Gasto de arrendamiento (% IB leche):</label>
+                        <input type='number' step="0.1" value={gastoArrendamientoP} onChange={handleGastoArrendamientoChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                        <Tooltip anchorSelect="#gastoArrendamiento" place="top">
+                            <p><b>Gasto de arrendamiento:</b></p>
+                            <p>Alquiler de tierra</p>
+                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                            <p>- Admite un decimal -</p>
+                        </Tooltip>
+                    </div>
+                    <div className='seccionFormulario'>
+                        <label id="gastosAdministracion">Gastos administración (% IB leche):</label>
+                        <input type='number' step="0.1" value={gastosAdministracionP} onChange={handleGastosAdministracionChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                        <Tooltip anchorSelect="#gastosAdministracion" place="top">
+                            <p><b>Gastos administración:</b></p>
+                            <p>Asesores, contador, gastos bancarios, servicios de deuda,</p>
+                            <p>impuestos, gastos de administración, seguros, telefonía,</p>
+                            <p>internet, y cualquier otro gasto de estructura no mencionado</p>
+                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                            <p>- Admite un decimal -</p>
+                        </Tooltip>
+                    </div>
+                </form>
+                {mostrarSeccion7 === false && (<div>
+                    <button onClick={handleClick6}>Calcular</button>
+                    <BotonReset />
+                </div>)}
+                {mostrarSeccion7 && (<div>
+                    <GastosEstructura validacion6={validacion6} gastosMantenimiento={gastosMantenimiento}
+                        gastosMantenimientoP={gastosMantenimientoP} gastoArrendamiento={gastoArrendamiento}
+                        gastoArrendamientoP={gastoArrendamientoP} gastosAdministracion={gastosAdministracion}
+                        gastosAdministracionP={gastosAdministracionP} codigoMoneda={codigoMoneda} />
+                </div>
+                )}
+            </div>
+            )}
+
+            {mostrarSeccion7 && (<div className='seccion'>
+                <h3>RESULTADOS ECONÓMICOS</h3>
                 <p>RESULTADOS 2</p>
                 <BotonReset />
             </div>)}
