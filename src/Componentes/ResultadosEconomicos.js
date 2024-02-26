@@ -9,7 +9,8 @@ function ResultadosEconomicos(props) {
                 <h3 style={{ color: "darkred", backgroundColor: "lightpink" }}>Revisar los valores ingresados</h3>
             </div>)}
             {props.validacion6 && (<div className='resultados'>
-                <h4>Análisis por litro:</h4>
+                <h4>Resultado operativo</h4>
+                <h6>(Análisis por litro)</h6>
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <tbody>
@@ -30,7 +31,8 @@ function ResultadosEconomicos(props) {
                         </tbody>
                     </table>
                 </div>
-                <h4>Análisis de totales anuales:</h4>
+                <h4>Resultado operativo</h4>
+                <h6>(Análisis montos absolutos anuales)</h6>
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <tbody>
@@ -53,7 +55,8 @@ function ResultadosEconomicos(props) {
                         </tbody>
                     </table>
                 </div>
-                <h4>Otras expresiones de Resultado Operativo:</h4>
+                <h4>Resultado Operativo</h4>
+                <h6>(Otras unidades)</h6>
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <thead>
