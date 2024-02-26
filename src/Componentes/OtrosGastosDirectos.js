@@ -32,28 +32,28 @@ function OtrosGastosDirectos(props) {
                         </thead>
                         <tbody>
                             <tr>
-                                <td><b>GASTO DE ALIMENTACIÓN</b></td>
-                                <td><b>{props.gastoAlimentacion} {props.codigoMoneda}/año</b></td>
-                                <td><b>{gastoAlimentacionMes} {props.codigoMoneda}/mes</b></td>
-                                <td><b>{gastoAlimentacionP}%</b></td>
+                                <td>GASTO DE ALIMENTACIÓN</td>
+                                <td>{props.gastoAlimentacion} {props.codigoMoneda}/año</td>
+                                <td>{gastoAlimentacionMes} {props.codigoMoneda}/mes</td>
+                                <td>{gastoAlimentacionP}%</td>
                             </tr>
                             <tr>
-                                <td><b>GASTOS DE SUMINISTRO</b></td>
-                                <td><b>{props.gastoSuministro} {props.codigoMoneda}/año</b></td>
-                                <td><b>{gastoSuministroMes} {props.codigoMoneda}/mes</b></td>
-                                <td><b>{gastoSuministroP}%</b></td>
+                                <td>GASTOS DE SUMINISTRO</td>
+                                <td>{props.gastoSuministro} {props.codigoMoneda}/año</td>
+                                <td>{gastoSuministroMes} {props.codigoMoneda}/mes</td>
+                                <td>{gastoSuministroP}%</td>
                             </tr>
                             <tr>
-                                <td><b>GASTOS VETERINARIA Y RODEO</b></td>
-                                <td><b>{props.gastosVeterinaria} {props.codigoMoneda}/año</b></td>
-                                <td><b>{gastosVeterinariaMes} {props.codigoMoneda}/mes</b></td>
-                                <td><b>{gastosVeterinariaP}%</b></td>
+                                <td>GASTOS VETERINARIA Y RODEO</td>
+                                <td>{props.gastosVeterinaria} {props.codigoMoneda}/año</td>
+                                <td>{gastosVeterinariaMes} {props.codigoMoneda}/mes</td>
+                                <td>{gastosVeterinariaP}%</td>
                             </tr>
                             <tr>
-                                <td><b>GASTOS DE ORDEÑO</b></td>
-                                <td><b>{props.gastosTambo} {props.codigoMoneda}/año</b></td>
-                                <td><b>{gastosTamboMes} {props.codigoMoneda}/mes</b></td>
-                                <td><b>{gastosTamboP}%</b></td>
+                                <td>GASTOS DE ORDEÑO</td>
+                                <td>{props.gastosTambo} {props.codigoMoneda}/año</td>
+                                <td>{gastosTamboMes} {props.codigoMoneda}/mes</td>
+                                <td>{gastosTamboP}%</td>
                             </tr>
                         </tbody>
                     </table>

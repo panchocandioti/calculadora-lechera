@@ -29,10 +29,10 @@ function Reposicion(props) {
                         </thead>
                         <tbody>
                             <tr>
-                                <td><b>GASTO DE REPOSICIÓN</b></td>
-                                <td><b>{props.gastoReposicion} {props.codigoMoneda}/año</b></td>
-                                <td><b>{gastoReposicionMes} {props.codigoMoneda}/mes</b></td>
-                                <td><b>{gastoReposicionP}%</b></td>
+                                <td>GASTO DE REPOSICIÓN</td>
+                                <td>{props.gastoReposicion} {props.codigoMoneda}/año</td>
+                                <td>{gastoReposicionMes} {props.codigoMoneda}/mes</td>
+                                <td>{gastoReposicionP}%</td>
                             </tr>
                         </tbody>
                     </table>

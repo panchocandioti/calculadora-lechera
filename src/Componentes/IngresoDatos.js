@@ -8,6 +8,7 @@ import ManoDeObra from './ManoDeObra'
 import Reposicion from './Reposicion'
 import OtrosGastosDirectos from './OtrosGastosDirectos'
 import GastosEstructura from './GastosEstructura'
+import ResultadosEconomicos from './ResultadosEconomicos'
 
 function IngresoDatos() {
 
@@ -74,15 +75,26 @@ function IngresoDatos() {
     const gastoReposicionP = (parseFloat(gastoReposicion) / parseFloat(ingresoLeche) * 100).toFixed(1);
 
     //Cálculos sección 5
-    const gastoAlimentacion = (parseFloat(gastoAlimentacionP) * parseFloat(ingresoBruto) / 100).toFixed(0);
-    const gastoSuministro = (parseFloat(gastoSuministroP) * parseFloat(ingresoBruto) / 100).toFixed(0);
-    const gastosVeterinaria = (parseFloat(gastosVeterinariaP) * parseFloat(ingresoBruto) / 100).toFixed(0);
-    const gastosTambo = (parseFloat(gastosTamboP) * parseFloat(ingresoBruto) / 100).toFixed(0);
+    const gastoAlimentacion = (parseFloat(gastoAlimentacionP) * parseFloat(ingresoLeche) / 100).toFixed(0);
+    const gastoSuministro = (parseFloat(gastoSuministroP) * parseFloat(ingresoLeche) / 100).toFixed(0);
+    const gastosVeterinaria = (parseFloat(gastosVeterinariaP) * parseFloat(ingresoLeche) / 100).toFixed(0);
+    const gastosTambo = (parseFloat(gastosTamboP) * parseFloat(ingresoLeche) / 100).toFixed(0);
 
     //Cálculos sección 6
-    const gastosMantenimiento = (parseFloat(gastosMantenimientoP) * parseFloat(ingresoBruto) / 100).toFixed(0);
-    const gastoArrendamiento = (parseFloat(gastoArrendamientoP) * parseFloat(ingresoBruto) / 100).toFixed(0);
-    const gastosAdministracion = (parseFloat(gastosAdministracionP) * parseFloat(ingresoBruto) / 100).toFixed(0);
+    const gastosMantenimiento = (parseFloat(gastosMantenimientoP) * parseFloat(ingresoLeche) / 100).toFixed(0);
+    const gastoArrendamiento = (parseFloat(gastoArrendamientoP) * parseFloat(ingresoLeche) / 100).toFixed(0);
+    const gastosAdministracion = (parseFloat(gastosAdministracionP) * parseFloat(ingresoLeche) / 100).toFixed(0);
+
+    //Cálculos sección 7
+    const gastosDirectos = (parseFloat(gastoManoDeObra) + parseFloat(gastoReposicion) + parseFloat(gastoAlimentacion)
+        + parseFloat(gastoSuministro) + parseFloat(gastosVeterinaria) + parseFloat(gastosTambo)).toFixed(0);
+    const gastosEstructura = (parseFloat(gastosMantenimiento) + parseFloat(gastoArrendamiento) + parseFloat(gastosAdministracion)).toFixed(0);
+    const resultadoOperativo = (parseFloat(ingresoBruto) - parseFloat(gastosDirectos) - parseFloat(gastosEstructura)).toFixed(0);
+    const costoLitroCP = ((parseFloat(gastosDirectos) + parseFloat(gastosEstructura) - parseFloat(ingresoCarne)) / parseFloat(lecheVendida)).toFixed(3);
+    const resultadoOpLitro = (parseFloat(resultadoOperativo) / parseFloat(lecheVendida)).toFixed(3);
+    const resultadoOpHa = (parseFloat(resultadoOperativo) / parseFloat(superficieVT)).toFixed(0);
+    const resultadoOpP = (parseFloat(resultadoOperativo) / parseFloat(ingresoBruto) * 100).toFixed(1);
+    const resultadoOpLeche = (parseFloat(resultadoOperativo)/parseFloat(precioLeche)/parseFloat(superficieVT)).toFixed(0);
 
     //Datos para validaciones
     let formatoEnteroPositivo = /^[1-9]\d*$/;
@@ -573,7 +585,11 @@ function IngresoDatos() {
 
             {mostrarSeccion7 && (<div className='seccion'>
                 <h3>RESULTADOS ECONÓMICOS</h3>
-                <p>RESULTADOS 2</p>
+                <ResultadosEconomicos validacion6={validacion6} codigoMoneda={codigoMoneda} gastosDirectos={gastosDirectos}
+                    gastosEstructura={gastosEstructura} precioLeche={precioLeche} costoLitroCP={costoLitroCP}
+                    resultadoOperativo={resultadoOperativo} resultadoOpHa={resultadoOpHa} resultadoOpLitro={resultadoOpLitro}
+                    resultadoOpP={resultadoOpP} resultadoOpLeche={resultadoOpLeche} ingresoBruto={ingresoBruto}
+                />
                 <BotonReset />
             </div>)}
         </div>

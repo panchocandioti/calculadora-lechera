@@ -30,22 +30,22 @@ function GastosEstructura(props) {
                         </thead>
                         <tbody>
                             <tr>
-                                <td><b>GASTOS DE MANTENIMIENTO</b></td>
-                                <td><b>{props.gastosMantenimiento} {props.codigoMoneda}/año</b></td>
-                                <td><b>{gastosMantenimientoMes} {props.codigoMoneda}/mes</b></td>
-                                <td><b>{gastosMantenimientoP}%</b></td>
+                                <td>GASTOS DE MANTENIMIENTO</td>
+                                <td>{props.gastosMantenimiento} {props.codigoMoneda}/año</td>
+                                <td>{gastosMantenimientoMes} {props.codigoMoneda}/mes</td>
+                                <td>{gastosMantenimientoP}%</td>
                             </tr>
                             <tr>
-                                <td><b>GASTO DE ARRENDAMIENTO</b></td>
-                                <td><b>{props.gastoArrendamiento} {props.codigoMoneda}/año</b></td>
-                                <td><b>{gastoArrendamientoMes} {props.codigoMoneda}/mes</b></td>
-                                <td><b>{gastoArrendamientoP}%</b></td>
+                                <td>GASTO DE ARRENDAMIENTO</td>
+                                <td>{props.gastoArrendamiento} {props.codigoMoneda}/año</td>
+                                <td>{gastoArrendamientoMes} {props.codigoMoneda}/mes</td>
+                                <td>{gastoArrendamientoP}%</td>
                             </tr>
                             <tr>
-                                <td><b>GASTOS DE ADMINISTRACIÓN</b></td>
-                                <td><b>{props.gastosAdministracion} {props.codigoMoneda}/año</b></td>
-                                <td><b>{gastosAdministracionMes} {props.codigoMoneda}/mes</b></td>
-                                <td><b>{gastosAdministracionP}%</b></td>
+                                <td>GASTOS DE ADMINISTRACIÓN</td>
+                                <td>{props.gastosAdministracion} {props.codigoMoneda}/año</td>
+                                <td>{gastosAdministracionMes} {props.codigoMoneda}/mes</td>
+                                <td>{gastosAdministracionP}%</td>
                             </tr>
                         </tbody>
                     </table>
