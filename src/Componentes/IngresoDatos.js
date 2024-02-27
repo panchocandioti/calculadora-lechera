@@ -9,6 +9,7 @@ import Reposicion from './Reposicion'
 import OtrosGastosDirectos from './OtrosGastosDirectos'
 import GastosEstructura from './GastosEstructura'
 import ResultadosEconomicos from './ResultadosEconomicos'
+import GraficoAplicacionIB from './GraficoAplicacionIB'
 
 function IngresoDatos() {
 
@@ -94,7 +95,7 @@ function IngresoDatos() {
     const resultadoOpLitro = (parseFloat(resultadoOperativo) / parseFloat(lecheVendida)).toFixed(3);
     const resultadoOpHa = (parseFloat(resultadoOperativo) / parseFloat(superficieVT)).toFixed(0);
     const resultadoOpP = (parseFloat(resultadoOperativo) / parseFloat(ingresoBruto) * 100).toFixed(1);
-    const resultadoOpLeche = (parseFloat(resultadoOperativo)/parseFloat(precioLeche)/parseFloat(superficieVT)).toFixed(0);
+    const resultadoOpLeche = (parseFloat(resultadoOperativo) / parseFloat(precioLeche) / parseFloat(superficieVT)).toFixed(0);
 
     //Datos para validaciones
     let formatoEnteroPositivo = /^[1-9]\d*$/;
@@ -106,6 +107,7 @@ function IngresoDatos() {
     let validacion4 = true;
     let validacion5 = true;
     let validacion6 = true;
+    let validacion7 = true;
 
     //Validación 1
     if (!formatoEnteroPositivo.test(vacasOrdeno) || !formatoEnteroPositivo.test(vacasSecas) ||
@@ -140,6 +142,11 @@ function IngresoDatos() {
     if (!formatoPorcentaje.test(gastosMantenimientoP) || !formatoPorcentaje.test(gastoArrendamientoP) ||
         !formatoPorcentaje.test(gastosAdministracionP)) {
         validacion6 = false;
+    }
+
+    //Validación 7
+    if (resultadoOperativo < 0) {
+        validacion7 = false;
     }
 
 
@@ -590,8 +597,17 @@ function IngresoDatos() {
                     resultadoOperativo={resultadoOperativo} resultadoOpHa={resultadoOpHa} resultadoOpLitro={resultadoOpLitro}
                     resultadoOpP={resultadoOpP} resultadoOpLeche={resultadoOpLeche} ingresoBruto={ingresoBruto}
                 />
+                {validacion7 && (<div>
+                    <GraficoAplicacionIB validacion6={validacion6} codigoMoneda={codigoMoneda} resultadoOperativo={resultadoOperativo}
+                        gastoManoDeObra={gastoManoDeObra} gastoReposicion={gastoReposicion} gastoAlimentacion={gastoAlimentacion}
+                        gastoSuministro={gastoSuministro} gastosVeterinaria={gastosVeterinaria} gastosTambo={gastosTambo}
+                        gastosMantenimiento={gastosMantenimiento} gastoArrendamiento={gastoArrendamiento} gastosAdministracion={gastosAdministracion}
+                    />
+                </div>)}
+
                 <BotonReset />
             </div>)}
+
         </div>
     )
 }
