@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/calculadora-lechera/static/css/main.979a65fc.css",
-    "main.js": "/calculadora-lechera/static/js/main.77bd80f8.js",
+    "main.js": "/calculadora-lechera/static/js/main.88c43213.js",
     "static/js/453.6b6da075.chunk.js": "/calculadora-lechera/static/js/453.6b6da075.chunk.js",
     "static/media/LogoSaltoAgro.png": "/calculadora-lechera/static/media/LogoSaltoAgro.566fa99ab4cc52c400a7.png",
     "static/media/LogoML1.png": "/calculadora-lechera/static/media/LogoML1.bdb832ca919f563f2742.png",
     "static/media/Imagotipo BLANCO.png": "/calculadora-lechera/static/media/Imagotipo BLANCO.03a905ce6f8dfede116b.png",
     "index.html": "/calculadora-lechera/index.html",
     "main.979a65fc.css.map": "/calculadora-lechera/static/css/main.979a65fc.css.map",
-    "main.77bd80f8.js.map": "/calculadora-lechera/static/js/main.77bd80f8.js.map",
+    "main.88c43213.js.map": "/calculadora-lechera/static/js/main.88c43213.js.map",
     "453.6b6da075.chunk.js.map": "/calculadora-lechera/static/js/453.6b6da075.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.979a65fc.css",
-    "static/js/main.77bd80f8.js"
+    "static/js/main.88c43213.js"
   ]
 }
