@@ -516,7 +516,7 @@ function IngresoDatos() {
                     <div className='seccionFormulario'>
                         <label id="gastosTambo">Gastos de ordeño (% IB leche):</label>
                         <input type='number' step="0.1" value={gastosTamboP} onChange={handleGastosTamboChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastosVeterinaria" place="top">
+                        <Tooltip anchorSelect="#gastosTambo" place="top">
                             <p><b>Gastos de ordeño:</b></p>
                             <p>Productos de limpieza de equipos, reparaciones,</p>
                             <p>repuestos, energía eléctrica y cualquier otro gasto</p>

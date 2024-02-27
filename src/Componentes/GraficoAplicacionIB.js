@@ -1,4 +1,5 @@
 import React from 'react';
+import { Tooltip as Comentario } from 'react-tooltip'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
@@ -42,7 +43,14 @@ function GraficoAplicacionIB(props) {
 
     return (
         <div className='resultados'>
-            <h4>Distribución del IB</h4>
+            <h4 id="aplicacionIB">Distribución del IB</h4>
+            <Comentario anchorSelect="#aplicacionIB" place="top" style={{ zIndex: 99 }}>
+                <p><b>Gráfico: Distribución del IB</b></p>
+                <p>La superficie total del círculo representa al total de ingresos (IB)</p>
+                <p>Las secciones con tonos de azul representan los Gastos Directos</p>
+                <p>Las secciones con tonos de rojo representan los Gastos de Estructura</p>
+                <p>Las sección verde indica lo que queda como RESULTADO OPERATIVO</p>
+            </Comentario>
             <hr></hr>
             <div id="leyenda">
                 <h6 style={{ color: "green" }}>Resultado Operativo</h6>
