@@ -288,7 +288,7 @@ function IngresoDatos() {
                     <div className='seccionFormulario'>
                         <label id="nombreCaso">Denominación del caso (opcional): </label>
                         <input type='text' value={nombreCaso} onChange={handleNombreCasoChange} placeholder='Ingresar nombre' />
-                        <Tooltip anchorSelect="#nombreCaso" place="top">
+                        <Tooltip anchorSelect="#nombreCaso" place="top" className='tooltip'>
                             <p><b>Nombre del caso de estudio:</b></p>
                             <p>Identificación de la simulación</p>
                             <p>(nombre de la empresa, establecimiento, propietario, etc.)</p>
@@ -299,11 +299,12 @@ function IngresoDatos() {
             </div>
             <div className='seccion'>
                 <h3>Indicadores físicos:</h3>
+                <p>(paso 1 de 6)</p>
                 <form>
                     <div className='seccionFormulario'>
                         <label id="vacasOrdeno">Vacas en ordeño (cantidad): </label>
                         <input type='number' value={vacasOrdeno} onChange={handleVacasOrdenoChange} placeholder='Ingresar cantidad de vacas en ordeño' />
-                        <Tooltip anchorSelect="#vacasOrdeno" place="top">
+                        <Tooltip anchorSelect="#vacasOrdeno" place="top" className='tooltip'>
                             <p><b>Vacas en ordeño:</b></p>
                             <p>Número promedio anual de vacas en ordeño</p>
                             <p>- No ingresar decimales - </p>
@@ -312,7 +313,7 @@ function IngresoDatos() {
                     <div className='seccionFormulario'>
                         <label id="vacasSecas">Vacas secas (cantidad): </label>
                         <input type='number' value={vacasSecas} onChange={handleVacasSecasChange} placeholder='Ingresar cantidad de vacas secas' />
-                        <Tooltip anchorSelect="#vacasSecas" place="top">
+                        <Tooltip anchorSelect="#vacasSecas" place="top" className='tooltip'>
                             <p><b>Vacas secas:</b></p>
                             <p>Número promedio anual de vacas secas</p>
                             <p>- No ingresar decimales - </p>
@@ -321,7 +322,7 @@ function IngresoDatos() {
                     <div className='seccionFormulario'>
                         <label id="superficieVT">Superficie vaca total (hectáreas): </label>
                         <input type='number' step="0.01" value={superficieVT} onChange={handleSuperficieVTChange} placeholder='Ingresar cantidad de hectáreas' />
-                        <Tooltip anchorSelect="#superficieVT" place="top">
+                        <Tooltip anchorSelect="#superficieVT" place="top" className='tooltip'>
                             <p><b>Superficie vaca total (hectáreas VT):</b></p>
                             <p>Hectáreas destinadas a vacas en ordeño y secas</p>
                             <p>No incluye superficie de categorías jóvenes</p>
@@ -332,7 +333,7 @@ function IngresoDatos() {
                     <div className='seccionFormulario'>
                         <label id="lecheVendida">Leche vendida (litros/año): </label>
                         <input type='number' value={lecheVendida} onChange={handleLecheVendidaChange} placeholder='Ingresar cantidad de litros/año' />
-                        <Tooltip anchorSelect="#lecheVendida" place="top">
+                        <Tooltip anchorSelect="#lecheVendida" place="top" className='tooltip'>
                             <p><b>Leche vendida:</b></p>
                             <p>Toda la leche producida con valor económico</p>
                             <p>No incluye leche de descarte</p>
@@ -342,7 +343,7 @@ function IngresoDatos() {
                     </div>
                 </form>
                 {mostrarSeccion2 === false && (<div>
-                    <button onClick={handleClick1}>Calcular</button>
+                    <button onClick={handleClick1} className='button'>Calcular</button>
                     <BotonReset />
                 </div>)}
                 {mostrarSeccion2 && (<div>
@@ -354,6 +355,7 @@ function IngresoDatos() {
 
             {mostrarSeccion2 && (<div className='seccion'>
                 <h3>Ingresos brutos:</h3>
+                <p>(paso 2 de 6)</p>
                 <div className='seccionFormulario'>
                     <label htmlFor="opcionesDropdown">Seleccione la moneda de trabajo: </label>
                     <select id="opcionesDropdown" value={currency} onChange={handleSelectChange}>
@@ -370,7 +372,7 @@ function IngresoDatos() {
                     <div className='seccionFormulario'>
                         <label id="precioLeche">Precio de la leche ({codigoMoneda}/litro): </label>
                         <input type='number' step="0.001" value={precioLeche} onChange={handlePrecioLecheChange} placeholder='Ingresar un precio por litro' />
-                        <Tooltip anchorSelect="#precioLeche" place="top">
+                        <Tooltip anchorSelect="#precioLeche" place="top" className='tooltip'>
                             <p><b>Precio de la leche:</b></p>
                             <p>Precio promedio anual por litro de leche</p>
                             <p>Moneda seleccionada: {currency}</p>
@@ -380,17 +382,18 @@ function IngresoDatos() {
                     <div className='seccionFormulario'>
                         <label id="ingresoCarne">Ingresos por venta de carne ({codigoMoneda}/año): </label>
                         <input type='number' value={ingresoCarne} onChange={handleIngresoCarneChange} placeholder='Ingresar un monto anual' />
-                        <Tooltip anchorSelect="#ingresoCarne" place="top">
+                        <Tooltip anchorSelect="#ingresoCarne" place="top" className='tooltip'>
                             <p><b>Ingresos por venta de carne:</b></p>
                             <p>Estimación de los ingresos anuales</p>
                             <p>por venta de carne derivada del rodeo lechero</p>
+                            <p>(vacas, toros, terneros, terneras, vaquillonas)</p>
                             <p>Moneda seleccionada: {currency}</p>
                             <p>- No ingresar decimales -</p>
                         </Tooltip>
                     </div>
                 </form>
                 {mostrarSeccion3 === false && (<div>
-                    <button onClick={handleClick2}>Calcular</button>
+                    <button onClick={handleClick2} className='button'>Calcular</button>
                     <BotonReset />
                 </div>)}
                 {mostrarSeccion3 && (<div>
@@ -404,11 +407,12 @@ function IngresoDatos() {
 
             {mostrarSeccion3 && (<div className='seccion'>
                 <h3>Gasto en mano de obra:</h3>
+                <p>(paso 3 de 6)</p>
                 <form>
                     <div className='seccionFormulario'>
                         <label id="gastoManoDeObra">Gasto en mano de obra (% IB leche):</label>
                         <input type='number' step="0.1" value={gastoManoDeObraP} onChange={handleGastoManoDeObraChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastoManoDeObra" place="top">
+                        <Tooltip anchorSelect="#gastoManoDeObra" place="top" className='tooltip'>
                             <p><b>Gasto en mano de obra:</b></p>
                             <p>Ingresar un porcentaje sobre el</p>
                             <p>ingreso por venta de leche</p>
@@ -418,7 +422,7 @@ function IngresoDatos() {
                     <div className='seccionFormulario'>
                         <label id="cantidadOperarios">Cantidad de operarios:</label>
                         <input type='number' step="0.1" value={cantidadOperarios} onChange={handleCantidadOperariosChange} placeholder='Ingresar una cantidad' />
-                        <Tooltip anchorSelect="#cantidadOperarios" place="top">
+                        <Tooltip anchorSelect="#cantidadOperarios" place="top" className='tooltip'>
                             <p><b>Cantidad de operarios:</b></p>
                             <p>Ingrese el número de personas afectadas</p>
                             <p>a las tareas de la producción de leche</p>
@@ -428,7 +432,7 @@ function IngresoDatos() {
                     </div>
                 </form>
                 {mostrarSeccion4 === false && (<div>
-                    <button onClick={handleClick3}>Calcular</button>
+                    <button onClick={handleClick3} className='button'>Calcular</button>
                     <BotonReset />
                 </div>)}
                 {mostrarSeccion4 && (<div>
@@ -442,22 +446,26 @@ function IngresoDatos() {
 
             {mostrarSeccion4 && (<div className='seccion'>
                 <h3>Gasto de reposición:</h3>
+                <p>(paso 4 de 6)</p>
                 <form>
                     <div className='seccionFormulario'>
                         <label id="precioVaquillona">Valor de vaquillona al parir (litros leche):</label>
                         <input type='number' value={precioVaquillona} onChange={handlePrecioVaquillonaChange} placeholder='Ingresar precio en litros de leche' />
-                        <Tooltip anchorSelect="#precioVaquillona" place="top">
+                        <Tooltip anchorSelect="#precioVaquillona" place="top" className='tooltip'>
                             <p><b>Valor de vaquillona al parir:</b></p>
-                            <p>Valor de mercado de una vaquillona adelantada</p>
+                            <p>Costo de una vaquillona adelantada</p>
+                            <p>Vaquillonas de recría propia: usar costo propio</p>
+                            <p>Vaquillonas compradas: usar valor de mercado</p>
+                            <p>Combinación de ambas: usar promedio ponderado</p>
                             <p>Expresado en litros de leche</p>
                             <p>- No ingresar decimales -</p>
                         </Tooltip>
                     </div>
                     <div className='seccionFormulario'>
-                        <label id="cantidadVaquillonas">Vaquillonas ingresadas por año (cantidad):</label>
+                        <label id="cantidadVaquillonas">Vaquillonas que paren por año (cantidad):</label>
                         <input type='number' value={cantidadVaquillonas} onChange={handleCantidadVaquillonasChange} placeholder='Ingresar una cantidad' />
-                        <Tooltip anchorSelect="#cantidadVaquillonas" place="top">
-                            <p><b>Vaquillonas ingresadas por año:</b></p>
+                        <Tooltip anchorSelect="#cantidadVaquillonas" place="top" className='tooltip'>
+                            <p><b>Vaquillonas que paren por año:</b></p>
                             <p>Cantidad de vaquillonas de reposición</p>
                             <p>que ingresan por año al rodeo adulto</p>
                             <p>- No ingresar decimales -</p>
@@ -465,7 +473,7 @@ function IngresoDatos() {
                     </div>
                 </form>
                 {mostrarSeccion5 === false && (<div>
-                    <button onClick={handleClick4}>Calcular</button>
+                    <button onClick={handleClick4} className='button'>Calcular</button>
                     <BotonReset />
                 </div>)}
                 {mostrarSeccion5 && (<div>
@@ -479,22 +487,26 @@ function IngresoDatos() {
 
             {mostrarSeccion5 && (<div className='seccion'>
                 <h3>Otros gastos directos:</h3>
+                <p>(paso 5 de 6)</p>
                 <form>
                     <div className='seccionFormulario'>
-                        <label id="gastoAlimentacion">Gasto de alimentación VO+VS (% IB leche):</label>
+                        <label id="gastoAlimentacion">Gasto de alimentación vacas (% IB leche):</label>
                         <input type='number' step="0.1" value={gastoAlimentacionP} onChange={handleGastoAlimentacionChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastoAlimentacion" place="top">
-                            <p><b>Gasto de alimentación vacas ordeño y secas:</b></p>
+                        <Tooltip anchorSelect="#gastoAlimentacion" place="top" className='tooltip'>
+                            <p><b>Gasto de alimentación vacas:</b></p>
+                            <p>Considera vacas en ordeño, preparto y vacas secas no adelantadas</p>
+                            <p>No considera categorías jóvenes</p>
+                            <p>Incluye pasturas, verdeos, reservas y concentrados</p>
+                            <p>No incluye el suministro</p>
                             <p>Expresado como porcentaje del ingreso por venta de leche</p>
-                            <p>No incluye categorías jóvenes</p>
                             <p>- Admite un decimal -</p>
                         </Tooltip>
                     </div>
                     <div className='seccionFormulario'>
-                        <label id="gastoSuministro">Gastos suministro y acarreos (% IB leche):</label>
+                        <label id="gastoSuministro">Gastos suministro de alimentos (% IB leche):</label>
                         <input type='number' step="0.1" value={gastoSuministroP} onChange={handleGastoSuministroChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastoSuministro" place="top">
-                            <p><b>Gastos de suministro y acarreos:</b></p>
+                        <Tooltip anchorSelect="#gastoSuministro" place="top" className='tooltip'>
+                            <p><b>Gastos suministro de alimentos:</b></p>
                             <p>Gastos en combustible y mantenimiento de la</p>
                             <p>maquinaria relacionada con la alimentación</p>
                             <p>Expresado como porcentaje del ingreso por venta de leche</p>
@@ -504,7 +516,7 @@ function IngresoDatos() {
                     <div className='seccionFormulario'>
                         <label id="gastosVeterinaria">Gastos veterinaria y rodeo (% IB leche):</label>
                         <input type='number' step="0.1" value={gastosVeterinariaP} onChange={handleGastosVeterinariaChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastosVeterinaria" place="top">
+                        <Tooltip anchorSelect="#gastosVeterinaria" place="top" className='tooltip'>
                             <p><b>Gastos veterinaria y rodeo:</b></p>
                             <p>Veterinario, insumos veterinarios, sanidad oficial,</p>
                             <p>semen, mantenimiento termo, insumos para reproducción,</p>
@@ -516,7 +528,7 @@ function IngresoDatos() {
                     <div className='seccionFormulario'>
                         <label id="gastosTambo">Gastos de ordeño (% IB leche):</label>
                         <input type='number' step="0.1" value={gastosTamboP} onChange={handleGastosTamboChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastosTambo" place="top">
+                        <Tooltip anchorSelect="#gastosTambo" place="top" className='tooltip'>
                             <p><b>Gastos de ordeño:</b></p>
                             <p>Productos de limpieza de equipos, reparaciones,</p>
                             <p>repuestos, energía eléctrica y cualquier otro gasto</p>
@@ -527,7 +539,7 @@ function IngresoDatos() {
                     </div>
                 </form>
                 {mostrarSeccion6 === false && (<div>
-                    <button onClick={handleClick5}>Calcular</button>
+                    <button onClick={handleClick5} className='button'>Calcular</button>
                     <BotonReset />
                 </div>)}
                 {mostrarSeccion6 && (<div>
@@ -541,22 +553,28 @@ function IngresoDatos() {
 
             {mostrarSeccion6 && (<div className='seccion'>
                 <h3>Gastos de estructura:</h3>
+                <p>(paso 6 de 6)</p>
                 <form>
                     <div className='seccionFormulario'>
-                        <label id="gastosMantenimiento">Gastos mantenimiento general (% IB leche):</label>
+                        <label id="gastosMantenimiento">Gastos mantenimiento (% IB leche):</label>
                         <input type='number' step="0.1" value={gastosMantenimientoP} onChange={handleGastosMantenimientoChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastosMantenimiento" place="top">
-                            <p><b>Gastos mantenimiento general:</b></p>
-                            <p>No incluyen los de instalaciones y equipos de ordeño</p>
-                            <p>No incluyen los de maquinaria de suministro y acarreos</p>
+                        <Tooltip anchorSelect="#gastosMantenimiento" place="top" className='tooltip'>
+                            <p><b>Gastos mantenimiento:</b></p>
+                            <p>Mantenimiento de otras mejoras y maquinarias</p>
+                            <p>(viviendas, molinos, aguadas, cercos, callejones,</p>
+                            <p>equipos de bombeo, equipos de riego, etc.)</p>
+                            <p>No considera instalaciones y equipos de ordeño</p>
+                            <p>(incluidos en gastos de ordeño)</p>
+                            <p>No considera maquinaria de suministro y acarreos</p>
+                            <p>(incluidos en gastos de suministro de alimentos)</p>
                             <p>Expresado como porcentaje del ingreso por venta de leche</p>
                             <p>- Admite un decimal -</p>
                         </Tooltip>
                     </div>
                     <div className='seccionFormulario'>
-                        <label id="gastoArrendamiento">Gasto de arrendamiento (% IB leche):</label>
+                        <label id="gastoArrendamiento">Arrendamiento de tierra (% IB leche):</label>
                         <input type='number' step="0.1" value={gastoArrendamientoP} onChange={handleGastoArrendamientoChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastoArrendamiento" place="top">
+                        <Tooltip anchorSelect="#gastoArrendamiento" place="top" className='tooltip'>
                             <p><b>Gasto de arrendamiento:</b></p>
                             <p>Alquiler de tierra</p>
                             <p>Expresado como porcentaje del ingreso por venta de leche</p>
@@ -566,18 +584,20 @@ function IngresoDatos() {
                     <div className='seccionFormulario'>
                         <label id="gastosAdministracion">Gastos administración (% IB leche):</label>
                         <input type='number' step="0.1" value={gastosAdministracionP} onChange={handleGastosAdministracionChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastosAdministracion" place="top">
+                        <Tooltip anchorSelect="#gastosAdministracion" place="top" className='tooltip'>
                             <p><b>Gastos administración:</b></p>
-                            <p>Asesores, contador, gastos bancarios, servicios de deuda,</p>
-                            <p>impuestos, gastos de administración, seguros, telefonía,</p>
-                            <p>internet, y cualquier otro gasto de estructura no mencionado</p>
+                            <p>Gerencia, asesores (contador, agrónomo, otros),</p>
+                            <p>gastos bancarios (mantenimiento de cuenta, servicios de deuda),</p>
+                            <p>impuestos (no incluye impuesto a las ganancias/renta), </p>
+                            <p>gastos de oficina, seguros, telefonía, internet</p>
+                            <p>y cualquier otro gasto de estructura no mencionado</p>
                             <p>Expresado como porcentaje del ingreso por venta de leche</p>
                             <p>- Admite un decimal -</p>
                         </Tooltip>
                     </div>
                 </form>
                 {mostrarSeccion7 === false && (<div>
-                    <button onClick={handleClick6}>Calcular</button>
+                    <button onClick={handleClick6} className='button'>Calcular</button>
                     <BotonReset />
                 </div>)}
                 {mostrarSeccion7 && (<div>

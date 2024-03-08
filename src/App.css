@@ -57,7 +57,7 @@ body {
   margin-bottom: 5px;
 }
 
-.mostrar:hover {
+.mostrar:hover, .button:hover {
   background-color: lightgray;
 }
 
@@ -114,13 +114,13 @@ input::placeholder {
 }
 
 #instrucciones {
-  text-align: left;
+  text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%;
 }
 
 .logo {
-  max-width: 135px;
+  max-width: 150px;
   max-height: 70px;
   margin: 5px;
 }
@@ -148,4 +148,22 @@ footer {
 
 #leyenda {
   background-color: rgba(255,255,255,0.5);
+}
+
+.contenido-instrucciones {
+  text-align: left;
+  max-width: 750px;
+  margin: auto;
+  background-color: rgba(255,255,255,0.25);
+  padding: 5px;
+}
+
+table {
+  text-align: left;
+  max-width: 850px;
+  margin: auto;
+}
+
+.tooltip {
+  text-align: left;
 }
