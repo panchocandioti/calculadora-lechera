@@ -38,8 +38,8 @@ function GraficoIBGDGE(props) {
 
     return (
         <div className='resultados'>
-            <h4 id="aplicacionIB">Distribución del IB</h4>
-            <Comentario anchorSelect="#aplicacionIB" place="top" style={{ zIndex: 99 }}>
+            <h4 id="aplicacionIB2">Distribución del IB</h4>
+            <Comentario anchorSelect="#aplicacionIB2" place="top" style={{ zIndex: 99 }}>
                 <p><b>Gráfico: Distribución del IB</b></p>
                 <p>La superficie total del círculo representa al total de ingresos (IB)</p>
                 <p>La sección azul representa los gastos directos (GD)</p>
