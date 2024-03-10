@@ -36,7 +36,7 @@ function IngresoDatos() {
     const [codigoMoneda2, setCodigoMoneda2] = useState("ARS");
     const [codigoMoneda, setCodigoMoneda] = useState("ARS");
     const datosDropDown1 = divisas.map(item => item.currency);
-    const [tipoCambio, setTipoCambio] = useState(1);
+    const [tipoCambio, setTipoCambio] = useState('');
     const [cambiarMoneda, setCambiarMoneda] = useState(true);
 
     const [precioLeche, setPrecioLeche] = useState('');
@@ -51,6 +51,8 @@ function IngresoDatos() {
     const [gastoAlimentacionP, setGastoAlimentacionP] = useState('');
     const [gastoSuministroP, setGastoSuministroP] = useState('');
     const [gastosVeterinariaP, setGastosVeterinariaP] = useState('');
+    const [gastosRodeoP, setGastosRodeoP] = useState('');
+    const [alquilerVacasP, setAlquilerVacasP] = useState('');
     const [gastosTamboP, setGastosTamboP] = useState('');
 
     const [gastosMantenimientoP, setGastosMantenimientoP] = useState('');
@@ -86,6 +88,8 @@ function IngresoDatos() {
     const gastoAlimentacion = (parseFloat(gastoAlimentacionP) * parseFloat(ingresoLeche) / 100).toFixed(0);
     const gastoSuministro = (parseFloat(gastoSuministroP) * parseFloat(ingresoLeche) / 100).toFixed(0);
     const gastosVeterinaria = (parseFloat(gastosVeterinariaP) * parseFloat(ingresoLeche) / 100).toFixed(0);
+    const gastosRodeo = (parseFloat(gastosRodeoP) * parseFloat(ingresoLeche) / 100).toFixed(0);
+    const alquilerVacas = (parseFloat(alquilerVacasP) * parseFloat(ingresoLeche) / 100).toFixed(0);
     const gastosTambo = (parseFloat(gastosTamboP) * parseFloat(ingresoLeche) / 100).toFixed(0);
 
     //Cálculos sección 6
@@ -95,7 +99,7 @@ function IngresoDatos() {
 
     //Cálculos sección 7
     const gastosDirectos = (parseFloat(gastoManoDeObra) + parseFloat(gastoReposicion) + parseFloat(gastoAlimentacion)
-        + parseFloat(gastoSuministro) + parseFloat(gastosVeterinaria) + parseFloat(gastosTambo)).toFixed(0);
+        + parseFloat(gastoSuministro) + parseFloat(gastosVeterinaria) + parseFloat(gastosRodeo) + parseFloat(alquilerVacas) + parseFloat(gastosTambo)).toFixed(0);
     const gastosEstructura = (parseFloat(gastosMantenimiento) + parseFloat(gastoArrendamiento) + parseFloat(gastosAdministracion)).toFixed(0);
     const resultadoOperativo = (parseFloat(ingresoBruto) - parseFloat(gastosDirectos) - parseFloat(gastosEstructura)).toFixed(0);
     const costoLitroCP = ((parseFloat(gastosDirectos) + parseFloat(gastosEstructura) - parseFloat(ingresoCarne)) / parseFloat(lecheVendida)).toFixed(3);
@@ -141,7 +145,8 @@ function IngresoDatos() {
 
     //Validación 5
     if (!formatoPorcentaje.test(gastoAlimentacionP) || !formatoPorcentaje.test(gastoSuministroP) ||
-        !formatoPorcentaje.test(gastosVeterinariaP) || !formatoPorcentaje.test(gastosTamboP)) {
+        !formatoPorcentaje.test(gastosVeterinariaP) || !formatoPorcentaje.test(gastosRodeoP) ||
+        !formatoPorcentaje.test(alquilerVacasP) || !formatoPorcentaje.test(gastosTamboP)) {
         validacion5 = false;
     }
 
@@ -211,8 +216,7 @@ function IngresoDatos() {
         setTipoCambio(e.target.value);
     }
 
-    const handleClickMonedaCambio = (e) => {
-        e.preventDefault();
+    const handleClickMonedaCambio = () => {
         if (currency1 !== currency2 && tipoCambio !== 0 && tipoCambio !== 1) {
             setCambiarMoneda(prevstate => !prevstate);
         }
@@ -227,16 +231,16 @@ function IngresoDatos() {
             setCurrency(currency2)
             setCodigoMoneda(codigoMoneda2)
         }
-    }, [cambiarMoneda, currency1, currency2]);
+    }, [cambiarMoneda]);
 
     useEffect(() => {
         if (cambiarMoneda === true) {
-            setPrecioLeche((precioLeche * tipoCambio).toFixed(3))
-            setIngresoCarne((ingresoCarne * tipoCambio).toFixed(0))
+            setPrecioLeche((parseFloat(precioLeche) * parseFloat(tipoCambio)).toFixed(3))
+            setIngresoCarne((parseFloat(ingresoCarne) * parseFloat(tipoCambio)).toFixed(0))
         }
         if (cambiarMoneda === false) {
-            setPrecioLeche((precioLeche/tipoCambio).toFixed(3));
-            setIngresoCarne((ingresoCarne/tipoCambio).toFixed(0));
+            setPrecioLeche((parseFloat(precioLeche) / parseFloat(tipoCambio)).toFixed(3));
+            setIngresoCarne((parseFloat(ingresoCarne) / parseFloat(tipoCambio)).toFixed(0));
         }
     }, [currency, codigoMoneda]);
 
@@ -280,6 +284,14 @@ function IngresoDatos() {
 
     const handleGastosVeterinariaChange = (e) => {
         setGastosVeterinariaP(e.target.value);
+    };
+
+    const handleGastosRodeoChange = (e) => {
+        setGastosRodeoP(e.target.value);
+    };
+
+    const handleAlquilerVacasChange = (e) => {
+        setAlquilerVacasP(e.target.value);
     };
 
     const handleGastosTamboChange = (e) => {
@@ -435,7 +447,6 @@ function IngresoDatos() {
                         </div>
                     </div>
                 </div>
-
                 <form>
                     <div className='seccionFormulario'>
                         <label id="tipoCambio">Tipo de cambio ({codigoMoneda1}/{codigoMoneda2}): </label>
@@ -448,9 +459,6 @@ function IngresoDatos() {
                             <p>- Admite hasta tres decimales -</p>
                         </Tooltip>
                     </div>
-                    {mostrarSeccion3 && (<button onClick={handleClickMonedaCambio} className='cambioMoneda'>
-                        <img src={ChangeCurrency} className='cambioMoneda' alt="Cambiar moneda resultados" title="Cambiar moneda resultados"></img>
-                    </button>)}
                     <div className='seccionFormulario'>
                         <label id="precioLeche">Precio de la leche ({codigoMoneda}/litro): </label>
                         <input type='number' step="0.001" value={precioLeche} onChange={handlePrecioLecheChange} placeholder='Ingresar un precio por litro' />
@@ -474,6 +482,9 @@ function IngresoDatos() {
                         </Tooltip>
                     </div>
                 </form>
+                {mostrarSeccion3 && (<button onClick={handleClickMonedaCambio} className='cambioMoneda'>
+                    <img src={ChangeCurrency} className='cambioMoneda' alt="Cambiar moneda resultados" title="Cambiar moneda resultados"></img>
+                </button>)}
                 {mostrarSeccion3 === false && (<div>
                     <button onClick={handleClick2} className='button'>Calcular</button>
                     <BotonReset />
@@ -596,13 +607,34 @@ function IngresoDatos() {
                         </Tooltip>
                     </div>
                     <div className='seccionFormulario'>
-                        <label id="gastosVeterinaria">Gastos veterinaria y rodeo (% IB leche):</label>
+                        <label id="gastosVeterinaria">Gastos sanidad animal (% IB leche):</label>
                         <input type='number' step="0.1" value={gastosVeterinariaP} onChange={handleGastosVeterinariaChange} placeholder='Ingresar un porcentaje (0 - 100)' />
                         <Tooltip anchorSelect="#gastosVeterinaria" place="top" className='tooltip'>
-                            <p><b>Gastos veterinaria y rodeo:</b></p>
-                            <p>Veterinario, insumos veterinarios, sanidad oficial,</p>
-                            <p>semen, mantenimiento termo, insumos para reproducción,</p>
-                            <p>alquiler de vacas y cualquier otro gasto de rodeo</p>
+                            <p><b>Gastos sanidad animal:</b></p>
+                            <p>Veterinario, insumos veterinarios, sanidad oficial, etc.</p>
+                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                            <p>- Admite un decimal -</p>
+                        </Tooltip>
+                    </div>
+                    <div className='seccionFormulario'>
+                        <label id="gastosRodeo">Gastos de rodeo (% IB leche):</label>
+                        <input type='number' step="0.1" value={gastosRodeoP} onChange={handleGastosRodeoChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                        <Tooltip anchorSelect="#gastosRodeo" place="top" className='tooltip'>
+                            <p><b>Gastos de rodeo:</b></p>
+                            <p>Identificación animal, control lechero, semen,</p>
+                            <p>mantenimiento termo, insumos para reproducción</p>
+                            <p>y cualquier otro gasto del rodeo</p>
+                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                            <p>- Admite un decimal -</p>
+                        </Tooltip>
+                    </div>
+                    <div className='seccionFormulario'>
+                        <label id="gastosRodeo">Alquiler/leasing vacas (% IB leche):</label>
+                        <input type='number' step="0.1" value={alquilerVacasP} onChange={handleAlquilerVacasChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                        <Tooltip anchorSelect="#alquilerVacas" place="top" className='tooltip'>
+                            <p><b>Alquiler/leasing vacas:</b></p>
+                            <p>En caso de corresponder, gastos originados</p>
+                            <p>por alquiler o leasing de vacas</p>
                             <p>Expresado como porcentaje del ingreso por venta de leche</p>
                             <p>- Admite un decimal -</p>
                         </Tooltip>
@@ -627,7 +659,10 @@ function IngresoDatos() {
                 {mostrarSeccion6 && (<div>
                     <OtrosGastosDirectos validacion5={validacion5} gastoAlimentacion={gastoAlimentacion}
                         gastoAlimentacionP={gastoAlimentacionP} gastoSuministro={gastoSuministro} gastoSuministroP={gastoSuministroP}
-                        gastosVeterinaria={gastosVeterinaria} gastosVeterinariaP={gastosVeterinariaP} gastosTambo={gastosTambo} gastosTamboP={gastosTamboP} codigoMoneda={codigoMoneda} />
+                        gastosVeterinaria={gastosVeterinaria} gastosVeterinariaP={gastosVeterinariaP}
+                        gastosRodeo={gastosRodeo} gastosRodeoP={gastosRodeoP}
+                        alquilerVacas={alquilerVacas} alquilerVacasP={alquilerVacasP}
+                        gastosTambo={gastosTambo} gastosTamboP={gastosTamboP} codigoMoneda={codigoMoneda} />
                 </div>
                 )}
             </div>
@@ -644,6 +679,7 @@ function IngresoDatos() {
                             <p><b>Gastos mantenimiento:</b></p>
                             <p>Mantenimiento de otras mejoras y maquinarias</p>
                             <p>(viviendas, molinos, aguadas, cercos, callejones,</p>
+                            <p>corrales, camas, alojamiento de vacas,</p>
                             <p>equipos de bombeo, equipos de riego, etc.)</p>
                             <p>No considera instalaciones y equipos de ordeño</p>
                             <p>(incluidos en gastos de ordeño)</p>
@@ -702,7 +738,7 @@ function IngresoDatos() {
                 {validacion7 && (<div>
                     <GraficoAplicacionIB validacion6={validacion6} codigoMoneda={codigoMoneda} resultadoOperativo={resultadoOperativo}
                         gastoManoDeObra={gastoManoDeObra} gastoReposicion={gastoReposicion} gastoAlimentacion={gastoAlimentacion}
-                        gastoSuministro={gastoSuministro} gastosVeterinaria={gastosVeterinaria} gastosTambo={gastosTambo}
+                        gastoSuministro={gastoSuministro} gastosVeterinaria={gastosVeterinaria} gastosRodeo={gastosRodeo} gastosTambo={gastosTambo}
                         gastosMantenimiento={gastosMantenimiento} gastoArrendamiento={gastoArrendamiento} gastosAdministracion={gastosAdministracion}
                     />
                 </div>)}

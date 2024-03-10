@@ -13,10 +13,10 @@ function GraficoAplicacionIB(props) {
         datasets: [{
             label: props.codigoMoneda,
             data: [props.resultadoOperativo, props.gastoManoDeObra, props.gastoReposicion, props.gastoAlimentacion,
-            props.gastoSuministro, props.gastosVeterinaria, props.gastosTambo, props.gastosMantenimiento,
+            props.gastoSuministro, props.gastosVeterinaria, props.gastosRodeo, props.gastosTambo, props.gastosMantenimiento,
             props.gastoArrendamiento, props.gastosAdministracion],
             backgroundColor: ["rgb(67, 138, 67)", "rgb(208, 208, 249)", "rgb(135, 135, 245)", "rgb(78, 78, 249)",
-                "rgb(38, 38, 248)", "rgb(4, 4, 137)", "rgb(2, 2, 57)", "rgb(242, 190, 190)", "rgb(243, 112, 112)",
+                "rgb(38, 38, 248)", "rgb(4, 4, 137)", "rgb(4,4,137)", "rgb(2, 2, 57)", "rgb(242, 190, 190)", "rgb(243, 112, 112)",
                 "rgb(184, 19, 19)"],
             borderColor: ["darkgreen", "darkblue", "darkblue", "darkblue", "darkblue", "darkblue", "darkblue", "darkred", "darkred", "darkred"],
             borderWidth: [7, 2, 2, 2, 2, 2, 2, 2, 2, 2],
