@@ -3,6 +3,10 @@
   background-color:rgb(65, 158, 65);
   min-height: 100vh;
   margin: 0;
+  background-image: url('./Media/vacas_cruza_pastoreando.jpeg');
+  background-size: cover;
+  background-position: center;
+  min-width: 340px;
 }
 
 .App-header {
