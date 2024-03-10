@@ -48,7 +48,7 @@ function Presentacion() {
         <div>
             <header className="App-header">
                 <img src={ImagotipoBlanco} id="MiLecheria" alt='LogoMiLecheria.ar'></img>
-                <h1>CALCULADORA LECHERA</h1>
+                <h1><b><i>Mi</i></b> CALCULADORA LECHERA</h1>
             </header>
             {mostrarInstrucciones && (<div className="seccion">
                 <h2>Instrucciones:</h2>

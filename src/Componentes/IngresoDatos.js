@@ -10,6 +10,7 @@ import OtrosGastosDirectos from './OtrosGastosDirectos'
 import GastosEstructura from './GastosEstructura'
 import ResultadosEconomicos from './ResultadosEconomicos'
 import GraficoAplicacionIB from './GraficoAplicacionIB'
+import ChangeCurrency from '../Media/kisspng-computer-icons-download-vector-changing.png';
 
 function IngresoDatos() {
 
@@ -28,9 +29,15 @@ function IngresoDatos() {
     const [mostrarSeccion6, setMostrarSeccion6] = useState(false);
     const [mostrarSeccion7, setMostrarSeccion7] = useState(false);
 
+    const [currency1, setCurrency1] = useState("Peso argentino");
+    const [currency2, setCurrency2] = useState("Peso argentino");
     const [currency, setCurrency] = useState("Peso argentino");
+    const [codigoMoneda1, setCodigoMoneda1] = useState("ARS");
+    const [codigoMoneda2, setCodigoMoneda2] = useState("ARS");
     const [codigoMoneda, setCodigoMoneda] = useState("ARS");
     const datosDropDown1 = divisas.map(item => item.currency);
+    const [tipoCambio, setTipoCambio] = useState(1);
+    const [cambiarMoneda, setCambiarMoneda] = useState(true);
 
     const [precioLeche, setPrecioLeche] = useState('');
     const [ingresoCarne, setIngresoCarne] = useState('');
@@ -117,7 +124,7 @@ function IngresoDatos() {
 
     //Validación 2
 
-    if (!formatoFloatPositivo.test(precioLeche) || !formatoEnteroPositivo.test(ingresoCarne) || codigoMoneda === '') {
+    if (!formatoFloatPositivo.test(precioLeche) || !formatoFloatPositivo.test(ingresoCarne) || codigoMoneda === '') {
         validacion2 = false;
     }
 
@@ -180,15 +187,58 @@ function IngresoDatos() {
 
     //Sección 2 - Cálculo de los ingresos anuales
 
-    const handleSelectChange = (event) => {
+    const handleSelect1Change = (event) => {
         const selectedCurrency = event.target.value;
-        setCurrency(selectedCurrency);
+        setCurrency1(selectedCurrency);
     };
 
     useEffect(() => {
-        const elementoEncontrado = divisas.find(elemento => elemento.currency === currency);
-        setCodigoMoneda(prevstate => elementoEncontrado.code);
-    }, [currency]);
+        const elementoEncontrado = divisas.find(elemento => elemento.currency === currency1);
+        setCodigoMoneda1(prevstate => elementoEncontrado.code);
+    }, [currency1]);
+
+    const handleSelect2Change = (event) => {
+        const selectedCurrency = event.target.value;
+        setCurrency2(selectedCurrency);
+    };
+
+    useEffect(() => {
+        const elementoEncontrado = divisas.find(elemento => elemento.currency === currency2);
+        setCodigoMoneda2(prevstate => elementoEncontrado.code);
+    }, [currency2]);
+
+    const handleTipoCambioChange = (e) => {
+        setTipoCambio(e.target.value);
+    }
+
+    const handleClickMonedaCambio = (e) => {
+        e.preventDefault();
+        if (currency1 !== currency2 && tipoCambio !== 0 && tipoCambio !== 1) {
+            setCambiarMoneda(prevstate => !prevstate);
+        }
+    }
+
+    useEffect(() => {
+        if (cambiarMoneda === true) {
+            setCurrency(currency1);
+            setCodigoMoneda(codigoMoneda1)
+        }
+        if (cambiarMoneda === false) {
+            setCurrency(currency2)
+            setCodigoMoneda(codigoMoneda2)
+        }
+    }, [cambiarMoneda, currency1, currency2]);
+
+    useEffect(() => {
+        if (cambiarMoneda === true) {
+            setPrecioLeche((precioLeche * tipoCambio).toFixed(3))
+            setIngresoCarne((ingresoCarne * tipoCambio).toFixed(0))
+        }
+        if (cambiarMoneda === false) {
+            setPrecioLeche((precioLeche/tipoCambio).toFixed(3));
+            setIngresoCarne((ingresoCarne/tipoCambio).toFixed(0));
+        }
+    }, [currency, codigoMoneda]);
 
     const handlePrecioLecheChange = (e) => {
         setPrecioLeche(e.target.value);
@@ -357,18 +407,50 @@ function IngresoDatos() {
                 <h3>Ingresos brutos:</h3>
                 <p>(paso 2 de 6)</p>
                 <div className='seccionFormulario'>
-                    <label htmlFor="opcionesDropdown">Seleccione la moneda de trabajo: </label>
-                    <select id="opcionesDropdown" value={currency} onChange={handleSelectChange}>
-                        <option value="currency" style={{ display: "none" }}>Selecciona una opción</option>
-                        {datosDropDown1.map((opcion) => (
-                            <option value={opcion}>
-                                {opcion}
-                            </option>
-                        ))}
-                    </select>
+                    <p>Seleccione las monedas de trabajo:</p>
+                    <div id="monedas-container">
+                        <div className='monedas'>
+                            <label htmlFor="opcionesDropdown1">Moneda principal: </label>
+                            <select id="opcionesDropdown1" value={currency1} onChange={handleSelect1Change}>
+                                <option value="currency" style={{ display: "none" }}>Selecciona una opción</option>
+                                {datosDropDown1.map((opcion) => (
+                                    <option value={opcion}>
+                                        {opcion}
+                                    </option>
+                                ))}
+                            </select>
+                            <h6>Código de moneda: {codigoMoneda1}</h6>
+                        </div>
+                        <div className='monedas'>
+                            <label htmlFor="opcionesDropdown2">Moneda secundaria: </label>
+                            <select id="opcionesDropdown2" value={currency2} onChange={handleSelect2Change}>
+                                <option value="currency" style={{ display: "none" }}>Selecciona una opción</option>
+                                {datosDropDown1.map((opcion) => (
+                                    <option value={opcion}>
+                                        {opcion}
+                                    </option>
+                                ))}
+                            </select>
+                            <h6>Código de moneda: {codigoMoneda2}</h6>
+                        </div>
+                    </div>
                 </div>
-                <h5>Código de moneda: {codigoMoneda}</h5>
+
                 <form>
+                    <div className='seccionFormulario'>
+                        <label id="tipoCambio">Tipo de cambio ({codigoMoneda1}/{codigoMoneda2}): </label>
+                        <input type='number' step="0.001" value={tipoCambio} onChange={handleTipoCambioChange} placeholder='Ingresar la relación de cambio' />
+                        <Tooltip anchorSelect="#tipoCambio" place="top" className='tooltip'>
+                            <p><b>Tipo de cambio:</b></p>
+                            <p>Ingrese la relación de cambio</p>
+                            <p>¿Cuántas unidades de {currency1}</p>
+                            <p>equivalen a una unidad de {currency2}?</p>
+                            <p>- Admite hasta tres decimales -</p>
+                        </Tooltip>
+                    </div>
+                    {mostrarSeccion3 && (<button onClick={handleClickMonedaCambio} className='cambioMoneda'>
+                        <img src={ChangeCurrency} className='cambioMoneda' alt="Cambiar moneda resultados" title="Cambiar moneda resultados"></img>
+                    </button>)}
                     <div className='seccionFormulario'>
                         <label id="precioLeche">Precio de la leche ({codigoMoneda}/litro): </label>
                         <input type='number' step="0.001" value={precioLeche} onChange={handlePrecioLecheChange} placeholder='Ingresar un precio por litro' />

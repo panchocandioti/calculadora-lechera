@@ -132,7 +132,7 @@ const divisas = [
         "code": "MAD"
        },
        {
-        "currency": "Dírham marroquí",
+        "currency": "Dirham marroquí",
         "code": "MAD"
        },
        {
@@ -206,10 +206,6 @@ const divisas = [
        {
         "currency": "Dólar estadounidense",
         "code": "USD"
-       },
-       {
-        "currency": "Dólar estadounidense (Next day)",
-        "code": "USN"
        },
        {
         "currency": "Dólar fiyiano",
@@ -608,10 +604,6 @@ const divisas = [
         "code": "PKR"
        },
        {
-        "currency": "SDR (Derecho Especial de Retiro)",
-        "code": "XDR"
-       },
-       {
         "currency": "Som",
         "code": "KGS"
        },
@@ -650,10 +642,6 @@ const divisas = [
        {
         "currency": "Unidad de Fomento",
         "code": "CLF"
-       },
-       {
-        "currency": "Unidad de Inversion Mexicana(UDI)",
-        "code": "MXV"
        },
        {
         "currency": "Unidad de valor real",
