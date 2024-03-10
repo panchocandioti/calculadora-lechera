@@ -47,7 +47,7 @@ function Presentacion() {
     return (
         <div>
             <header className="App-header">
-                <img src={ImagotipoBlanco} id="MiLecheria" alt='LogoMiLecheria.ar'></img>
+                <a href="https://milecheria.ar" target="_blank" rel="noreferrer"><img src={ImagotipoBlanco} id="MiLecheria" alt='LogoMiLecheria.ar'></img></a>
                 <h1><b><i>Mi</i></b> CALCULADORA LECHERA</h1>
             </header>
             {mostrarInstrucciones && (<div className="seccion">
@@ -91,7 +91,7 @@ function Presentacion() {
                         {mostrarRegistro === true ? "REGISTRARSE (opcional) ˄ " : "REGISTRARSE (opcional) ˅ "}
                     </button>
                     {mostrarRegistro && (<div className='contenido-instrucciones'>
-                        <p>Regístrese para recibir notificaciones de actualizaciones y novedades de <b>MiLecheria.ar</b> haciendo click en el enlace. El formulario de registro se abrirá en otra ventana. Luego de registrarse regrese a esta ventana para continuar. <a href='https://forms.gle/Q12JUazDxuxbRSP7A' target="_blank" rel="noopener noreferrer">Ir al formulario de registro.</a></p>
+                        <p>Regístrese para recibir notificaciones de actualizaciones y novedades de <a href="https://milecheria.ar" target="_blank" rel="noreferrer"><b>MiLecheria.ar</b></a> haciendo click en el enlace de abajo. El formulario de registro se abrirá en otra ventana. Luego de registrarse regrese a esta ventana para continuar. <a href='https://forms.gle/Q12JUazDxuxbRSP7A' target="_blank" rel="noopener noreferrer">Ir al formulario de registro.</a></p>
 
                     </div>)}
                 </div>
