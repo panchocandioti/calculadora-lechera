@@ -1,27 +1,7 @@
 const divisas = [
     {
-        "currency": "Afgani afgano",
-        "code": "AFN"
-       },
-       {
-        "currency": "Ariary malgache",
-        "code": "MGA"
-       },
-       {
-        "currency": "BAD UNIDAD DE CUENTAS",
-        "code": "XUA"
-       },
-       {
-        "currency": "Baht",
-        "code": "THB"
-       },
-       {
         "currency": "Balboa",
         "code": "PAB"
-       },
-       {
-        "currency": "Birr etíope",
-        "code": "ETB"
        },
        {
         "currency": "Bolívar",
@@ -30,6 +10,90 @@ const divisas = [
        {
         "currency": "Boliviano",
         "code": "BOB"
+       },
+       {
+        "currency": "Colón costarricense",
+        "code": "CRC"
+       },
+       {
+        "currency": "Córdoba oro",
+        "code": "NIO"
+       },
+       {
+        "currency": "Dólar estadounidense",
+        "code": "USD"
+       },
+       {
+        "currency": "Euro",
+        "code": "EUR"
+       },
+       {
+        "currency": "Guaraní",
+        "code": "PYG"
+       },
+       {
+        "currency": "Lempira",
+        "code": "HNL"
+       },
+       {
+        "currency": "Nuevo Sol",
+        "code": "PEN"
+       },
+       {
+        "currency": "Peso argentino",
+        "code": "ARS"
+       },
+       {
+        "currency": "Peso chileno",
+        "code": "CLP"
+       },
+       {
+        "currency": "Peso colombiano",
+        "code": "COP"
+       },
+       {
+        "currency": "Peso cubano",
+        "code": "CUP"
+       },
+       {
+        "currency": "Peso dominicano",
+        "code": "DOP"
+       },
+       {
+        "currency": "Peso mexicano",
+        "code": "MXN"
+       },
+       {
+        "currency": "Peso uruguayo",
+        "code": "UYU"
+       },
+       {
+        "currency": "Quetzal",
+        "code": "GTQ"
+       },
+       {
+        "currency": "Real brasileño",
+        "code": "BRL"
+       },
+       {
+        "currency": "Renminbi",
+        "code": "CNY"
+       },
+       {
+        "currency": "Afgani afgano",
+        "code": "AFN"
+       },
+       {
+        "currency": "Ariary malgache",
+        "code": "MGA"
+       },
+       {
+        "currency": "Baht",
+        "code": "THB"
+       },
+       {
+        "currency": "Birr etíope",
+        "code": "ETB"
        },
        {
         "currency": "Cedi",
@@ -50,18 +114,6 @@ const divisas = [
        {
         "currency": "Chelín ugandés",
         "code": "UGX"
-       },
-       {
-        "currency": "Colón",
-        "code": "SVC"
-       },
-       {
-        "currency": "Colón costarricense",
-        "code": "CRC"
-       },
-       {
-        "currency": "Córdoba oro",
-        "code": "NIO"
        },
        {
         "currency": "Corona danesa",
@@ -132,7 +184,7 @@ const divisas = [
         "code": "MAD"
        },
        {
-        "currency": "Dirham marroquí",
+        "currency": "Dírham marroquí",
         "code": "MAD"
        },
        {
@@ -204,10 +256,6 @@ const divisas = [
         "code": "XCD"
        },
        {
-        "currency": "Dólar estadounidense",
-        "code": "USD"
-       },
-       {
         "currency": "Dólar fiyiano",
         "code": "FJD"
        },
@@ -246,10 +294,6 @@ const divisas = [
        {
         "currency": "Escudo caboverdiano",
         "code": "CVE"
-       },
-       {
-        "currency": "Euro",
-        "code": "EUR"
        },
        {
         "currency": "Florín antillano neerlandés",
@@ -304,10 +348,6 @@ const divisas = [
         "code": "CHF"
        },
        {
-        "currency": "Franco WIR",
-        "code": "CHW"
-       },
-       {
         "currency": "Franco yibutiano",
         "code": "DJF"
        },
@@ -318,10 +358,6 @@ const divisas = [
        {
         "currency": "Grivnia",
         "code": "UAH"
-       },
-       {
-        "currency": "Guaraní",
-        "code": "PYG"
        },
        {
         "currency": "Kina",
@@ -358,10 +394,6 @@ const divisas = [
        {
         "currency": "Lek",
         "code": "ALL"
-       },
-       {
-        "currency": "Lempira",
-        "code": "HNL"
        },
        {
         "currency": "Leone",
@@ -444,10 +476,6 @@ const divisas = [
         "code": "MZN"
        },
        {
-        "currency": "Mvdol",
-        "code": "BOV"
-       },
-       {
         "currency": "Naira",
         "code": "NGN"
        },
@@ -468,10 +496,6 @@ const divisas = [
         "code": "ILS"
        },
        {
-        "currency": "Nuevo Sol",
-        "code": "PEN"
-       },
-       {
         "currency": "Pa’anga",
         "code": "TOP"
        },
@@ -480,60 +504,16 @@ const divisas = [
         "code": "MOP"
        },
        {
-        "currency": "Peso argentino",
-        "code": "ARS"
-       },
-       {
-        "currency": "Peso chileno",
-        "code": "CLP"
-       },
-       {
-        "currency": "Peso colombiano",
-        "code": "COP"
-       },
-       {
-        "currency": "Peso convertible",
-        "code": "CUC"
-       },
-       {
-        "currency": "Peso cubano",
-        "code": "CUP"
-       },
-       {
-        "currency": "Peso dominicano",
-        "code": "DOP"
-       },
-       {
         "currency": "Peso filipino",
         "code": "PHP"
-       },
-       {
-        "currency": "Peso mexicano",
-        "code": "MXN"
-       },
-       {
-        "currency": "Peso uruguayo",
-        "code": "UYU"
        },
        {
         "currency": "Pula",
         "code": "BWP"
        },
        {
-        "currency": "Quetzal",
-        "code": "GTQ"
-       },
-       {
         "currency": "Rand",
         "code": "ZAR"
-       },
-       {
-        "currency": "Real brasileño",
-        "code": "BRL"
-       },
-       {
-        "currency": "Renminbi",
-        "code": "CNY"
        },
        {
         "currency": "Rial iraní",
@@ -640,20 +620,8 @@ const divisas = [
         "code": "MRO"
        },
        {
-        "currency": "Unidad de Fomento",
-        "code": "CLF"
-       },
-       {
-        "currency": "Unidad de valor real",
-        "code": "COU"
-       },
-       {
         "currency": "Vatu",
         "code": "VUV"
-       },
-       {
-        "currency": "WIR Euro",
-        "code": "CHE"
        },
        {
         "currency": "Won",

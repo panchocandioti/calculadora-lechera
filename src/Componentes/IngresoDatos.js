@@ -105,8 +105,8 @@ function IngresoDatos() {
     //Cálculos sección 7
     const gastosDirectos = (parseFloat(gastoManoDeObra) + parseFloat(gastoReposicion) + parseFloat(gastoAlimentacion)
         + parseFloat(gastoSuministro) + parseFloat(gastosVeterinaria) + parseFloat(gastosRodeo) + parseFloat(alquilerVacas) + parseFloat(gastosTambo)).toFixed(0);
-    const gastosEstructura = (parseFloat(gastosMantenimiento) + parseFloat(gastoArrendamiento) + 
-    parseFloat(impuestos) + parseFloat(gerencia) + parseFloat(gastosAdministracion)).toFixed(0);
+    const gastosEstructura = (parseFloat(gastosMantenimiento) + parseFloat(gastoArrendamiento) +
+        parseFloat(impuestos) + parseFloat(gerencia) + parseFloat(gastosAdministracion)).toFixed(0);
     const resultadoOperativo = (parseFloat(ingresoBruto) - parseFloat(gastosDirectos) - parseFloat(gastosEstructura)).toFixed(0);
     const costoLitroCP = ((parseFloat(gastosDirectos) + parseFloat(gastosEstructura) - parseFloat(ingresoCarne)) / parseFloat(lecheVendida)).toFixed(3);
     const resultadoOpLitro = (parseFloat(resultadoOperativo) / parseFloat(lecheVendida)).toFixed(3);
@@ -158,7 +158,7 @@ function IngresoDatos() {
 
     //Validación 6
     if (!formatoPorcentaje.test(gastosMantenimientoP) || !formatoPorcentaje.test(gastoArrendamientoP) ||
-    !formatoPorcentaje.test(impuestosP) || !formatoPorcentaje.test(gerenciaP) ||
+        !formatoPorcentaje.test(impuestosP) || !formatoPorcentaje.test(gerenciaP) ||
         !formatoPorcentaje.test(gastosAdministracionP)) {
         validacion6 = false;
     }
@@ -238,7 +238,7 @@ function IngresoDatos() {
             setCurrency(currency2)
             setCodigoMoneda(codigoMoneda2)
         }
-    }, [cambiarMoneda]);
+    }, [cambiarMoneda, currency1, currency2, codigoMoneda1, codigoMoneda1, codigoMoneda2]);
 
     useEffect(() => {
         if (cambiarMoneda === true) {
@@ -440,8 +440,12 @@ function IngresoDatos() {
                             <label htmlFor="opcionesDropdown1">Moneda principal: </label>
                             <select id="opcionesDropdown1" value={currency1} onChange={handleSelect1Change}>
                                 <option value="currency" style={{ display: "none" }}>Selecciona una opción</option>
-                                {datosDropDown1.map((opcion) => (
-                                    <option value={opcion}>
+                                {datosDropDown1.map((opcion, index) => (
+                                    <option
+                                        key={opcion.id} // Utiliza el índice como clave única
+                                        value={opcion.id}
+                                        style={{ fontWeight: opcion.negrita ? 'bold' : 'normal' }}
+                                    >
                                         {opcion}
                                     </option>
                                 ))}
@@ -453,7 +457,9 @@ function IngresoDatos() {
                             <select id="opcionesDropdown2" value={currency2} onChange={handleSelect2Change}>
                                 <option value="currency" style={{ display: "none" }}>Selecciona una opción</option>
                                 {datosDropDown1.map((opcion) => (
-                                    <option value={opcion}>
+                                    <option value={opcion}
+                                        style={{ fontWeight: opcion.negrita ? 'bold' : 'normal' }}
+                                    >
                                         {opcion}
                                     </option>
                                 ))}
@@ -473,6 +479,7 @@ function IngresoDatos() {
                             <p>equivalen a una unidad de {currency2}?</p>
                             <p>- Admite hasta tres decimales -</p>
                         </Tooltip>
+                        <a href={`https://www.oanda.com/currency-converter/es/?from=${codigoMoneda2}&to=${codigoMoneda1}&amount=1`} target="_blank" rel="noreferrer">Consultar conversor de monedas</a>
                     </div>
                     <div className='seccionFormulario'>
                         <label id="precioLeche">Precio de la leche ({codigoMoneda}/litro): </label>
@@ -780,7 +787,7 @@ function IngresoDatos() {
                     />
                     <GraficoAplicacionIB validacion6={validacion6} codigoMoneda={codigoMoneda} resultadoOperativo={resultadoOperativo}
                         gastoManoDeObra={gastoManoDeObra} gastoReposicion={gastoReposicion} gastoAlimentacion={gastoAlimentacion}
-                        gastoSuministro={gastoSuministro} gastosVeterinaria={gastosVeterinaria} gastosRodeo={gastosRodeo} 
+                        gastoSuministro={gastoSuministro} gastosVeterinaria={gastosVeterinaria} gastosRodeo={gastosRodeo}
                         alquilerVacas={alquilerVacas} gastosTambo={gastosTambo}
                         gastosMantenimiento={gastosMantenimiento} gastoArrendamiento={gastoArrendamiento}
                         impuestos={impuestos} gerencia={gerencia} gastosAdministracion={gastosAdministracion}
