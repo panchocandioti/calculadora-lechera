@@ -780,8 +780,11 @@ function IngresoDatos() {
                     />
                     <GraficoAplicacionIB validacion6={validacion6} codigoMoneda={codigoMoneda} resultadoOperativo={resultadoOperativo}
                         gastoManoDeObra={gastoManoDeObra} gastoReposicion={gastoReposicion} gastoAlimentacion={gastoAlimentacion}
-                        gastoSuministro={gastoSuministro} gastosVeterinaria={gastosVeterinaria} gastosRodeo={gastosRodeo} gastosTambo={gastosTambo}
-                        gastosMantenimiento={gastosMantenimiento} gastoArrendamiento={gastoArrendamiento} gastosAdministracion={gastosAdministracion}
+                        gastoSuministro={gastoSuministro} gastosVeterinaria={gastosVeterinaria} gastosRodeo={gastosRodeo} 
+                        alquilerVacas={alquilerVacas} gastosTambo={gastosTambo}
+                        gastosMantenimiento={gastosMantenimiento} gastoArrendamiento={gastoArrendamiento}
+                        impuestos={impuestos} gerencia={gerencia} gastosAdministracion={gastosAdministracion}
+
                     />
                 </div>)}
 

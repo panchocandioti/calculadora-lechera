@@ -14,7 +14,7 @@ function GraficoIBGDGE(props) {
             data: [props.resultadoOperativo, props.gastosDirectos, props.gastosEstructura],
             backgroundColor: ["green", "blue", "red"],
             borderColor: ["darkgreen", "darkblue", "darkred"],
-            borderWidth: [7, 2, 2],
+            borderWidth: [8, 3, 3],
         }]
     }
 
