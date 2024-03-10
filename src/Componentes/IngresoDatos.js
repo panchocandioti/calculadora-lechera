@@ -112,6 +112,8 @@ function IngresoDatos() {
     const resultadoOpLitro = (parseFloat(resultadoOperativo) / parseFloat(lecheVendida)).toFixed(3);
     const resultadoOpHa = (parseFloat(resultadoOperativo) / parseFloat(superficieVT)).toFixed(0);
     const resultadoOpP = (parseFloat(resultadoOperativo) / parseFloat(ingresoBruto) * 100).toFixed(1);
+    const gastosDirectosP = (parseFloat(gastosDirectos) / parseFloat(ingresoBruto) * 100).toFixed(1);
+    const gastosEstructuraP = (parseFloat(gastosEstructura) / parseFloat(ingresoBruto) * 100).toFixed(1);
     const resultadoOpLeche = (parseFloat(resultadoOperativo) / parseFloat(precioLeche) / parseFloat(superficieVT)).toFixed(0);
 
     //Datos para validaciones
@@ -780,6 +782,7 @@ function IngresoDatos() {
                     gastosEstructura={gastosEstructura} precioLeche={precioLeche} costoLitroCP={costoLitroCP}
                     resultadoOperativo={resultadoOperativo} resultadoOpHa={resultadoOpHa} resultadoOpLitro={resultadoOpLitro}
                     resultadoOpP={resultadoOpP} resultadoOpLeche={resultadoOpLeche} ingresoBruto={ingresoBruto}
+                    gastosDirectosP={gastosDirectosP} gastosEstructuraP={gastosEstructuraP}
                 />
                 {validacion7 && (<div>
                     <GraficoIBGDGE resultadoOperativo={resultadoOperativo} gastosDirectos={gastosDirectos} gastosEstructura={gastosEstructura}

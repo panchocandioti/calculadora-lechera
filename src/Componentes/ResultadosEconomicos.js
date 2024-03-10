@@ -32,47 +32,54 @@ function ResultadosEconomicos(props) {
                     </table>
                 </div>
                 <h4>Resultado operativo</h4>
-                <h6>(Análisis montos absolutos anuales)</h6>
+                <h6>(Montos anuales y porcentual del IB)</h6>
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <tbody>
                             <tr>
+                                <th scope="col"></th>
+                                <th scope="col">{props.codigoMoneda}/año</th>
+                                <th scope="col">% sobre IB</th>
+                            </tr>
+                            <tr>
                                 <td>INGRESOS BRUTOS</td>
                                 <td>{props.ingresoBruto} {props.codigoMoneda}/año</td>
+                                <td>100%</td>
                             </tr>
                             <tr>
                                 <td>GASTOS DIRECTOS</td>
                                 <td>{props.gastosDirectos} {props.codigoMoneda}/año</td>
+                                <td>{props.gastosDirectosP}%</td>
                             </tr>
                             <tr>
                                 <td>GASTOS ESTRUCTURA</td>
                                 <td>{props.gastosEstructura} {props.codigoMoneda}/año</td>
+                                <td>{props.gastosEstructuraP}%</td>
                             </tr>
                             <tr>
                                 <td><b>RESULTADO OPERATIVO</b></td>
                                 <td><b>{props.resultadoOperativo} {props.codigoMoneda}/año</b></td>
+                                <td><b>{props.resultadoOpP}%</b></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <h4>Resultado Operativo</h4>
-                <h6>(Otras unidades)</h6>
+                <h6>(Otras unidades por hectárea VT)</h6>
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">{props.codigoMoneda}/haVT/año</th>
-                                <th scope="col">% sobre IB</th>
                                 <th scope="col">litros leche/haVT/año</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>{props.resultadoOpHa} {props.codigoMoneda}/haVT/año</td>
-                                <td>{props.resultadoOpP}%</td>
                                 <td>{props.resultadoOpLeche} litros leche/haVT/año</td>
                             </tr>
-                            
+
                         </tbody>
                     </table>
                 </div>

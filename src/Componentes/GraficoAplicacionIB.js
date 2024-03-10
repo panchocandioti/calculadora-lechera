@@ -13,7 +13,7 @@ function GraficoAplicacionIB(props) {
 
     const data = {
         labels: ["Resultado Operativo", "Mano de obra", "Reposición", "Alimentación+Suministro",
-            "Sanidad+Rodeo", "Ordeño", "Mantenimiento", "Alquileres (tierra+vacas)", "Otros gastos de estructura"],
+            "Sanidad+Rodeo", "Ordeño", "Mantenimiento", "Alquileres (tierra+vacas)", "Otros gastos estructura"],
         datasets: [{
             label: props.codigoMoneda,
             data: [props.resultadoOperativo, props.gastoManoDeObra, props.gastoReposicion,
