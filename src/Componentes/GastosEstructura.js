@@ -5,9 +5,13 @@ function GastosEstructura(props) {
 
     let gastosMantenimientoMes = (parseFloat(props.gastosMantenimiento) / 12).toFixed(0);
     let gastoArrendamientoMes = (parseFloat(props.gastoArrendamiento) / 12).toFixed(0);
+    let impuestosMes = (parseFloat(props.impuestos) / 12).toFixed(0);
+    let gerenciaMes = (parseFloat(props.gerencia) / 12).toFixed(0);
     let gastosAdministracionMes = (parseFloat(props.gastosAdministracion) / 12).toFixed(0);
     let gastosMantenimientoP = (parseFloat(props.gastosMantenimientoP)).toFixed(1);
     let gastoArrendamientoP = (parseFloat(props.gastoArrendamientoP)).toFixed(1);
+    let impuestosP = (parseFloat(props.impuestosP)).toFixed(1);
+    let gerenciaP = (parseFloat(props.gerenciaP)).toFixed(1);
     let gastosAdministracionP = (parseFloat(props.gastosAdministracionP)).toFixed(1);
 
     return (
@@ -40,6 +44,18 @@ function GastosEstructura(props) {
                                 <td>{props.gastoArrendamiento} {props.codigoMoneda}/año</td>
                                 <td>{gastoArrendamientoMes} {props.codigoMoneda}/mes</td>
                                 <td>{gastoArrendamientoP}%</td>
+                            </tr>
+                            <tr>
+                                <td>IMPUESTOS Y SERVICIOS</td>
+                                <td>{props.impuestos} {props.codigoMoneda}/año</td>
+                                <td>{impuestosMes} {props.codigoMoneda}/mes</td>
+                                <td>{impuestosP}%</td>
+                            </tr>
+                            <tr>
+                                <td>GERENCIAMIENTO</td>
+                                <td>{props.gerencia} {props.codigoMoneda}/año</td>
+                                <td>{gerenciaMes} {props.codigoMoneda}/mes</td>
+                                <td>{gerenciaP}%</td>
                             </tr>
                             <tr>
                                 <td>GASTOS DE ADMINISTRACIÓN</td>

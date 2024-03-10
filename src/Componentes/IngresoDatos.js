@@ -11,6 +11,7 @@ import GastosEstructura from './GastosEstructura'
 import ResultadosEconomicos from './ResultadosEconomicos'
 import GraficoAplicacionIB from './GraficoAplicacionIB'
 import ChangeCurrency from '../Media/kisspng-computer-icons-download-vector-changing.png';
+import GraficoIBGDGE from './GraficoIBGDGE'
 
 function IngresoDatos() {
 
@@ -57,6 +58,8 @@ function IngresoDatos() {
 
     const [gastosMantenimientoP, setGastosMantenimientoP] = useState('');
     const [gastoArrendamientoP, setGastoArrendamientoP] = useState('');
+    const [impuestosP, setImpuestosP] = useState('');
+    const [gerenciaP, setGerenciaP] = useState('');
     const [gastosAdministracionP, setGastosAdministracionP] = useState('');
 
     //Cálculos sección 1
@@ -95,12 +98,15 @@ function IngresoDatos() {
     //Cálculos sección 6
     const gastosMantenimiento = (parseFloat(gastosMantenimientoP) * parseFloat(ingresoLeche) / 100).toFixed(0);
     const gastoArrendamiento = (parseFloat(gastoArrendamientoP) * parseFloat(ingresoLeche) / 100).toFixed(0);
+    const impuestos = (parseFloat(impuestosP) * parseFloat(ingresoLeche) / 100).toFixed(0);
+    const gerencia = (parseFloat(gerenciaP) * parseFloat(ingresoLeche) / 100).toFixed(0);
     const gastosAdministracion = (parseFloat(gastosAdministracionP) * parseFloat(ingresoLeche) / 100).toFixed(0);
 
     //Cálculos sección 7
     const gastosDirectos = (parseFloat(gastoManoDeObra) + parseFloat(gastoReposicion) + parseFloat(gastoAlimentacion)
         + parseFloat(gastoSuministro) + parseFloat(gastosVeterinaria) + parseFloat(gastosRodeo) + parseFloat(alquilerVacas) + parseFloat(gastosTambo)).toFixed(0);
-    const gastosEstructura = (parseFloat(gastosMantenimiento) + parseFloat(gastoArrendamiento) + parseFloat(gastosAdministracion)).toFixed(0);
+    const gastosEstructura = (parseFloat(gastosMantenimiento) + parseFloat(gastoArrendamiento) + 
+    parseFloat(impuestos) + parseFloat(gerencia) + parseFloat(gastosAdministracion)).toFixed(0);
     const resultadoOperativo = (parseFloat(ingresoBruto) - parseFloat(gastosDirectos) - parseFloat(gastosEstructura)).toFixed(0);
     const costoLitroCP = ((parseFloat(gastosDirectos) + parseFloat(gastosEstructura) - parseFloat(ingresoCarne)) / parseFloat(lecheVendida)).toFixed(3);
     const resultadoOpLitro = (parseFloat(resultadoOperativo) / parseFloat(lecheVendida)).toFixed(3);
@@ -152,6 +158,7 @@ function IngresoDatos() {
 
     //Validación 6
     if (!formatoPorcentaje.test(gastosMantenimientoP) || !formatoPorcentaje.test(gastoArrendamientoP) ||
+    !formatoPorcentaje.test(impuestosP) || !formatoPorcentaje.test(gerenciaP) ||
         !formatoPorcentaje.test(gastosAdministracionP)) {
         validacion6 = false;
     }
@@ -306,6 +313,14 @@ function IngresoDatos() {
 
     const handleGastoArrendamientoChange = (e) => {
         setGastoArrendamientoP(e.target.value);
+    };
+
+    const handleImpuestosChange = (e) => {
+        setImpuestosP(e.target.value);
+    };
+
+    const handleGerenciaChange = (e) => {
+        setGerenciaP(e.target.value);
     };
 
     const handleGastosAdministracionChange = (e) => {
@@ -629,13 +644,14 @@ function IngresoDatos() {
                         </Tooltip>
                     </div>
                     <div className='seccionFormulario'>
-                        <label id="gastosRodeo">Alquiler/leasing vacas (% IB leche):</label>
+                        <label id="alquilerVacas">Alquiler/leasing vacas (% IB leche):</label>
                         <input type='number' step="0.1" value={alquilerVacasP} onChange={handleAlquilerVacasChange} placeholder='Ingresar un porcentaje (0 - 100)' />
                         <Tooltip anchorSelect="#alquilerVacas" place="top" className='tooltip'>
                             <p><b>Alquiler/leasing vacas:</b></p>
                             <p>En caso de corresponder, gastos originados</p>
                             <p>por alquiler o leasing de vacas</p>
                             <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                            <p>Si no corresponde, poner cero</p>
                             <p>- Admite un decimal -</p>
                         </Tooltip>
                     </div>
@@ -700,14 +716,36 @@ function IngresoDatos() {
                         </Tooltip>
                     </div>
                     <div className='seccionFormulario'>
+                        <label id="impuestos">Impuestos y servicios (% IB leche):</label>
+                        <input type='number' step="0.1" value={impuestosP} onChange={handleImpuestosChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                        <Tooltip anchorSelect="#impuestos" place="top" className='tooltip'>
+                            <p><b>Impuestos y servicios:</b></p>
+                            <p>Gastos bancarios (mantenimiento de cuenta, servicios de deuda),</p>
+                            <p>impuestos (no incluye impuesto a las ganancias/renta), </p>
+                            <p>seguros, telefonía, internet, electricidad viviendas, etc.</p>
+                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                            <p>- Admite un decimal -</p>
+                        </Tooltip>
+                    </div>
+                    <div className='seccionFormulario'>
+                        <label id="gerencia">Gastos de gerenciamiento (% IB leche):</label>
+                        <input type='number' step="0.1" value={gerenciaP} onChange={handleGerenciaChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                        <Tooltip anchorSelect="#gerencia" place="top" className='tooltip'>
+                            <p><b>Gastos de gerenciamiento:</b></p>
+                            <p>Retribución del equipo de gerencia y asesores</p>
+                            <p>(contador, ingeniero agrónomo, otros)</p>
+                            <p>No considera asesor veterinario (incluido en sanidad)</p>
+                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                            <p>- Admite un decimal -</p>
+                        </Tooltip>
+                    </div>
+                    <div className='seccionFormulario'>
                         <label id="gastosAdministracion">Gastos administración (% IB leche):</label>
                         <input type='number' step="0.1" value={gastosAdministracionP} onChange={handleGastosAdministracionChange} placeholder='Ingresar un porcentaje (0 - 100)' />
                         <Tooltip anchorSelect="#gastosAdministracion" place="top" className='tooltip'>
                             <p><b>Gastos administración:</b></p>
-                            <p>Gerencia, asesores (contador, agrónomo, otros),</p>
-                            <p>gastos bancarios (mantenimiento de cuenta, servicios de deuda),</p>
-                            <p>impuestos (no incluye impuesto a las ganancias/renta), </p>
-                            <p>gastos de oficina, seguros, telefonía, internet</p>
+                            <p>Gastos de oficina, personal administrativo,</p>
+                            <p>movilidad de personal y vehículos de la empresa</p>
                             <p>y cualquier otro gasto de estructura no mencionado</p>
                             <p>Expresado como porcentaje del ingreso por venta de leche</p>
                             <p>- Admite un decimal -</p>
@@ -721,7 +759,8 @@ function IngresoDatos() {
                 {mostrarSeccion7 && (<div>
                     <GastosEstructura validacion6={validacion6} gastosMantenimiento={gastosMantenimiento}
                         gastosMantenimientoP={gastosMantenimientoP} gastoArrendamiento={gastoArrendamiento}
-                        gastoArrendamientoP={gastoArrendamientoP} gastosAdministracion={gastosAdministracion}
+                        gastoArrendamientoP={gastoArrendamientoP} impuestos={impuestos} impuestosP={impuestosP}
+                        gerencia={gerencia} gerenciaP={gerenciaP} gastosAdministracion={gastosAdministracion}
                         gastosAdministracionP={gastosAdministracionP} codigoMoneda={codigoMoneda} />
                 </div>
                 )}
@@ -736,6 +775,9 @@ function IngresoDatos() {
                     resultadoOpP={resultadoOpP} resultadoOpLeche={resultadoOpLeche} ingresoBruto={ingresoBruto}
                 />
                 {validacion7 && (<div>
+                    <GraficoIBGDGE resultadoOperativo={resultadoOperativo} gastosDirectos={gastosDirectos} gastosEstructura={gastosEstructura}
+                        codigoMoneda={codigoMoneda} validacion6={validacion6}
+                    />
                     <GraficoAplicacionIB validacion6={validacion6} codigoMoneda={codigoMoneda} resultadoOperativo={resultadoOperativo}
                         gastoManoDeObra={gastoManoDeObra} gastoReposicion={gastoReposicion} gastoAlimentacion={gastoAlimentacion}
                         gastoSuministro={gastoSuministro} gastosVeterinaria={gastosVeterinaria} gastosRodeo={gastosRodeo} gastosTambo={gastosTambo}
