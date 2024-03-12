@@ -30,19 +30,48 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: '12',
     },
+    title3: {
+        textAlign: 'center',
+        marginTop: '25px',
+        fontWeight: 'bold',
+        fontSize: '12',
+    },
     footer: {
         textAlign: 'center',
         fontSize: '10',
+        marginTop: '2px'
     },
 });
 
 function ReportePDF(props) {
 
     const [nombreCaso, setNombreCaso] = useState(props.nombreCaso);
+    const [vacasOrdeno, setVacasOrdeno] = useState(props.vacasOrdeno);
+    const [vacasSecas, setVacasSecas] = useState(props.vacasSecas);
+    const [superficieVT, setSuperficieVT] = useState(props.superficieVT);
+    const [lecheVendida, setLecheVendida] = useState(props.lecheVendida);
 
     useEffect(() => {
         setNombreCaso((prevState) => props.nombreCaso)
     }, [props.nombreCaso]);
+
+    useEffect(() => {
+        setVacasOrdeno((prevState) => props.vacasOrdeno)
+    }, [props.vacasOrdeno]);
+
+    useEffect(() => {
+        setVacasSecas((prevState) => props.vacasSecas)
+    }, [props.vacasSecas]);
+
+    useEffect(() => {
+        setSuperficieVT((prevState) => props.superficieVT)
+    }, [props.superficieVT]);
+
+    useEffect(() => {
+        setLecheVendida((prevState) => props.lecheVendida)
+    }, [props.lecheVendida]);
+
+
 
     return (
         <Document>
@@ -50,23 +79,43 @@ function ReportePDF(props) {
                 <View>
                     <Text style={styles.title1}>{nombreCaso}</Text>
                     <Text style={styles.title2}>REPORTE - Mi Calculadora Lechera - FECHA</Text>
+                    <Text></Text>
+                    <Text style={styles.title3}>Indicadores físicos</Text>
+                    <Text></Text>
+                    <Text style={styles.title2}>Datos de entrada</Text>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
-                                <Text>INPUTS</Text>
+                                <Text>Vacas en ordeño</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>ESTADO 1</Text>
+                                <Text>Vacas secas</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>ESTADO 2</Text>
+                                <Text>Superficie VT</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>ESTADO 3</Text>
+                                <Text>Leche vendida en el año</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>{vacasOrdeno} cabezas</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{vacasSecas} cabezas</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{superficieVT} has VT</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{lecheVendida} litros/año</Text>
                             </View>
                         </View>
                     </View>
-                    <Text style={styles.footer}>Desarrollado por: Ing. Agr. EPL Francisco Candioti - MiLecheria.ar</Text>
+                    <Text style={styles.footer}>Desarrolladores:</Text>
+                    <Text style={styles.footer}>Ing. Agr. EPL Francisco Candioti</Text>
+                    <Text style={styles.footer}>Dr. Javier Baudracco</Text>
                 </View>
             </Page>
         </Document>
