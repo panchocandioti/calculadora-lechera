@@ -12,6 +12,8 @@ import ResultadosEconomicos from './ResultadosEconomicos'
 import GraficoAplicacionIB from './GraficoAplicacionIB'
 import ChangeCurrency from '../Media/kisspng-computer-icons-download-vector-changing.png';
 import GraficoIBGDGE from './GraficoIBGDGE'
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import ReportePDF from './ReportePDF'
 
 function IngresoDatos() {
 
@@ -794,10 +796,13 @@ function IngresoDatos() {
                         alquilerVacas={alquilerVacas} gastosTambo={gastosTambo}
                         gastosMantenimiento={gastosMantenimiento} gastoArrendamiento={gastoArrendamiento}
                         impuestos={impuestos} gerencia={gerencia} gastosAdministracion={gastosAdministracion}
-
                     />
-                </div>)}
 
+                </div>)}
+                <PDFDownloadLink document={<ReportePDF nombreCaso={nombreCaso}/>} fileName="reporte.pdf">
+                    {({ blob, url, loading, error }) => (loading ? 'Cargando documento...' : 'Descargar reporte PDF')}
+                </PDFDownloadLink>
+                <hr></hr>
                 <BotonReset />
             </div>)}
 
