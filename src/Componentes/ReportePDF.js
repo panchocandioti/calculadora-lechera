@@ -31,15 +31,15 @@ const styles = StyleSheet.create({
         fontSize: '12',
     },
     title3: {
-        textAlign: 'center',
-        marginTop: '25px',
-        fontWeight: 'bold',
-        fontSize: '12',
+        textAlign: 'left',
+        marginTop: '20px',
+        fontSize: '10',
+        marginLeft: '5%',
     },
     footer: {
         textAlign: 'center',
         fontSize: '10',
-        marginTop: '2px'
+        marginTop: '20px',
     },
 });
 
@@ -50,6 +50,18 @@ function ReportePDF(props) {
     const [vacasSecas, setVacasSecas] = useState(props.vacasSecas);
     const [superficieVT, setSuperficieVT] = useState(props.superficieVT);
     const [lecheVendida, setLecheVendida] = useState(props.lecheVendida);
+
+    const fecha = new Date();
+    const dia = fecha.getDate();
+    const mes = fecha.getMonth() + 1;
+    const ano = fecha.getFullYear();
+    const fechaString = dia + '/' + mes + '/' + ano;
+
+    let lecheVendidaDia = (parseFloat(lecheVendida) / 365).toFixed(0);
+    let cargaAnimal = ((parseFloat(vacasOrdeno) + parseFloat(vacasSecas)) / parseFloat(superficieVT)).toFixed(2);
+    let produccionIndividual = ((parseFloat(lecheVendida) / 365) / parseFloat(vacasOrdeno)).toFixed(1);
+    let relacionVOVT = ((parseFloat(vacasOrdeno) / (parseFloat(vacasOrdeno) + parseFloat(vacasSecas)) * 100)).toFixed(1);
+    let productividad = (parseFloat(lecheVendida) / parseFloat(superficieVT)).toFixed(0);
 
     useEffect(() => {
         setNombreCaso((prevState) => props.nombreCaso)
@@ -71,18 +83,13 @@ function ReportePDF(props) {
         setLecheVendida((prevState) => props.lecheVendida)
     }, [props.lecheVendida]);
 
-
-
     return (
         <Document>
             <Page size="A4">
                 <View>
                     <Text style={styles.title1}>{nombreCaso}</Text>
-                    <Text style={styles.title2}>REPORTE - Mi Calculadora Lechera - FECHA</Text>
-                    <Text></Text>
-                    <Text style={styles.title3}>Indicadores físicos</Text>
-                    <Text></Text>
-                    <Text style={styles.title2}>Datos de entrada</Text>
+                    <Text style={styles.title2}>REPORTE - Mi Calculadora Lechera - {fechaString}</Text>
+                    <Text style={styles.title3}>INDICADORES FÍSICOS:</Text>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
@@ -113,9 +120,58 @@ function ReportePDF(props) {
                             </View>
                         </View>
                     </View>
-                    <Text style={styles.footer}>Desarrolladores:</Text>
-                    <Text style={styles.footer}>Ing. Agr. EPL Francisco Candioti</Text>
-                    <Text style={styles.footer}>Dr. Javier Baudracco</Text>
+
+                    <View style={styles.table}>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Entrega diaria de leche</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{lecheVendidaDia} litros/día</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Carga animal</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{cargaAnimal} VT/haVT</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Producción individual</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{produccionIndividual} litros/VO/día</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Relación VO/VT</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{relacionVOVT} %</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Productividad</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{productividad} litros/haVT/año</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <Text style={styles.title3}>INGRESOS BRUTOS</Text>
+                    <Text style={styles.title3}>GASTOS DIRECTOS</Text>
+                    <Text style={styles.title3}>GASTOS DE ESTRUCTURA</Text>
+                    <Text style={styles.title3}>RESULTADO OPERATIVO</Text>
+                    <Text style={styles.title3}>Análisis por litro</Text>
+                    <Text style={styles.title3}>Montos anuales y porcentuales sobre el IB</Text>
+                    <Text style={styles.title3}>Otras unidades</Text>
+
+                    <Text style={styles.footer}>Mi Calculadora Lechera - Desarrolladores: Ing. Agr. EPL Francisco Candioti - Dr. Javier Baudracco</Text>
                 </View>
             </Page>
         </Document>
