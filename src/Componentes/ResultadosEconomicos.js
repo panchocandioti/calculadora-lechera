@@ -32,7 +32,7 @@ function ResultadosEconomicos(props) {
                     </table>
                 </div>
                 <h4>Resultado operativo</h4>
-                <h6>(Montos anuales y porcentual del IB)</h6>
+                <h6>(Montos anuales y porcentuales del IB)</h6>
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <tbody>

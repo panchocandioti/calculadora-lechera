@@ -50,6 +50,10 @@ function ReportePDF(props) {
     const [vacasSecas, setVacasSecas] = useState(props.vacasSecas);
     const [superficieVT, setSuperficieVT] = useState(props.superficieVT);
     const [lecheVendida, setLecheVendida] = useState(props.lecheVendida);
+    const [codigoMoneda, setCodigoMoneda] = useState(props.codigoMoneda);
+    const [ingresoLeche, setIngresoLeche] = useState(props.ingresoLeche);
+    const [ingresoCarne, setIngresoCarne] = useState(props.ingresoCarne);
+    const [ingresoBruto, setIngresoBruto] = useState(props.ingresoBruto);
 
     const fecha = new Date();
     const dia = fecha.getDate();
@@ -83,13 +87,29 @@ function ReportePDF(props) {
         setLecheVendida((prevState) => props.lecheVendida)
     }, [props.lecheVendida]);
 
+    useEffect(() => {
+        setCodigoMoneda((prevState) => props.codigoMoneda)
+    }, [props.codigoMoneda]);
+
+    useEffect(() => {
+        setIngresoLeche((prevState) => props.ingresoLeche)
+    }, [props.ingresoLeche]);
+
+    useEffect(() => {
+        setIngresoCarne((prevState) => props.ingresoCarne)
+    }, [props.ingresoCarne]);
+
+    useEffect(() => {
+        setIngresoBruto((prevState) => props.ingresoBruto)
+    }, [props.ingresoBruto]);
+
     return (
         <Document>
             <Page size="A4">
                 <View>
                     <Text style={styles.title1}>{nombreCaso}</Text>
                     <Text style={styles.title2}>REPORTE - Mi Calculadora Lechera - {fechaString}</Text>
-                    <Text style={styles.title3}>INDICADORES FÍSICOS:</Text>
+                    <Text style={styles.title3}>INDICADORES FÍSICOS</Text>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
@@ -102,7 +122,7 @@ function ReportePDF(props) {
                                 <Text>Superficie VT</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>Leche vendida en el año</Text>
+                                <Text>Leche vendida anual</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -164,6 +184,51 @@ function ReportePDF(props) {
                         </View>
                     </View>
                     <Text style={styles.title3}>INGRESOS BRUTOS</Text>
+                    <View style={styles.table}>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Venta de leche</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{ingresoLeche} {codigoMoneda}/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(ingresoLeche)/12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(ingresoLeche)/parseFloat(ingresoBruto)*100).toFixed(1)}% (sobre IB)</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Venta de carne</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{ingresoCarne} {codigoMoneda}/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(ingresoCarne)/12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(ingresoCarne)/parseFloat(ingresoBruto)*100).toFixed(1)}% (sobre IB)</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Ingreso Bruto Total</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{ingresoBruto} {codigoMoneda}/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(ingresoBruto)/12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>100% (sobre IB)</Text>
+                            </View>
+                        </View>
+                    </View>
+
                     <Text style={styles.title3}>GASTOS DIRECTOS</Text>
                     <Text style={styles.title3}>GASTOS DE ESTRUCTURA</Text>
                     <Text style={styles.title3}>RESULTADO OPERATIVO</Text>

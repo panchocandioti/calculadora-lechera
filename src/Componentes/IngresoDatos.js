@@ -800,7 +800,8 @@ function IngresoDatos() {
 
                 </div>)}
                 <PDFDownloadLink document={<ReportePDF nombreCaso={nombreCaso} vacasOrdeno={vacasOrdeno} vacasSecas={vacasSecas}
-                    superficieVT={superficieVT} lecheVendida={lecheVendida}
+                    superficieVT={superficieVT} lecheVendida={lecheVendida} codigoMoneda={codigoMoneda} ingresoLeche={ingresoLeche}
+                    ingresoCarne={ingresoCarne} ingresoBruto={ingresoBruto}
                 />} fileName="reporte.pdf">
                     {({ blob, url, loading, error }) => (loading ? 'Cargando documento...' : 'Descargar reporte PDF')}
                 </PDFDownloadLink>
