@@ -804,7 +804,11 @@ function IngresoDatos() {
                     ingresoCarne={ingresoCarne} ingresoBruto={ingresoBruto} gastoManoDeObra={gastoManoDeObra} gastoReposicion={gastoReposicion}
                     porcentajeReposicion={porcentajeReposicion} gastoAlimentacion={gastoAlimentacion} gastoSuministro={gastoSuministro}
                     gastosVeterinaria={gastosVeterinaria} gastosRodeo={gastosRodeo} alquilerVacas={alquilerVacas} gastosTambo={gastosTambo}
-                    gastoPorOperario={gastoPorOperario}
+                    gastoPorOperario={gastoPorOperario} gastosMantenimiento={gastosMantenimiento} gastoArrendamiento={gastoArrendamiento}
+                    impuestos={impuestos} gerencia={gerencia} gastosAdministracion={gastosAdministracion}
+                    precioLeche={precioLeche} costoLitroCP={costoLitroCP} resultadoOpLitro={resultadoOpLitro}
+                    gastosDirectos={gastosDirectos} gastosEstructura={gastosEstructura} resultadoOperativo={resultadoOperativo}
+                    resultadoOpHa={resultadoOpHa} resultadoOpLeche={resultadoOpLeche}
                 />} fileName="reporte.pdf">
                     {({ blob, url, loading, error }) => (loading ? 'Cargando documento...' : 'Descargar reporte PDF')}
                 </PDFDownloadLink>
