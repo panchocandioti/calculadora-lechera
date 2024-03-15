@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         margin: '5px 20px 5px',
         border: '1px solid #000',
         fontFamily: 'Helvetica',
-        fontSize: '10',
+        fontSize: '9',
     },
     tableRow: {
         flexDirection: 'row',
@@ -41,6 +41,12 @@ const styles = StyleSheet.create({
         fontSize: '10',
         marginTop: '20px',
     },
+    plaintext: {
+        textAlign: 'left',
+        fontSize: '9',
+        marginTop: '4px',
+        marginLeft: '5%',
+    }
 });
 
 function ReportePDF(props) {
@@ -54,6 +60,16 @@ function ReportePDF(props) {
     const [ingresoLeche, setIngresoLeche] = useState(props.ingresoLeche);
     const [ingresoCarne, setIngresoCarne] = useState(props.ingresoCarne);
     const [ingresoBruto, setIngresoBruto] = useState(props.ingresoBruto);
+    const [gastoManoDeObra, setGastoManoDeObra] = useState(props.gastoManoDeObra);
+    const [gastoPorOperario, setGastoPorOperario] = useState(props.gastoPorOperario);
+    const [gastoReposicion, setGastoReposicion] = useState(props.gastoReposicion);
+    const [porcentajeReposicion, setPorcentajeReposicion] = useState(props.porcentajeReposicion);
+    const [gastoAlimentacion, setGastoAlimentacion] = useState(props.gastoAlimentacion);
+    const [gastoSuministro, setGastoSuministro] = useState(props.gastoSuministro);
+    const [gastosVeterinaria, setGastosVeterinaria] = useState(props.gastosVeterinaria);
+    const [gastosRodeo, setGastosRodeo] = useState(props.gastosRodeo);
+    const [alquilerVacas, setAlquilerVacas] = useState(props.alquilerVacas);
+    const [gastosTambo, setGastosTambo] = useState(props.setGastosTambo);
 
     const fecha = new Date();
     const dia = fecha.getDate();
@@ -103,6 +119,46 @@ function ReportePDF(props) {
         setIngresoBruto((prevState) => props.ingresoBruto)
     }, [props.ingresoBruto]);
 
+    useEffect(() => {
+        setGastoManoDeObra((prevState) => props.gastoManoDeObra)
+    }, [props.gastoManoDeObra]);
+
+    useEffect(() => {
+        setGastoPorOperario((prevState) => props.gastoPorOperario)
+    }, [props.gastoPorOperario]);
+
+    useEffect(() => {
+        setGastoReposicion((prevState) => props.gastoReposicion)
+    }, [props.gastoReposicion]);
+
+    useEffect(() => {
+        setPorcentajeReposicion((prevState) => props.porcentajeReposicion)
+    }, [props.porcentajeReposicion]);
+
+    useEffect(() => {
+        setGastoAlimentacion((prevState) => props.gastoAlimentacion)
+    }, [props.gastoAlimentacion]);
+
+    useEffect(() => {
+        setGastoSuministro((prevState) => props.gastoSuministro)
+    }, [props.gastoSuministro]);
+
+    useEffect(() => {
+        setGastosVeterinaria((prevState) => props.gastosVeterinaria)
+    }, [props.gastosVeterinaria]);
+
+    useEffect(() => {
+        setGastosRodeo((prevState) => props.gastosRodeo)
+    }, [props.gastosRodeo]);
+
+    useEffect(() => {
+        setAlquilerVacas((prevState) => props.alquilerVacas)
+    }, [props.alquilerVacas]);
+
+    useEffect(() => {
+        setGastosTambo((prevState) => props.gastosTambo)
+    }, [props.gastosTambo]);
+
     return (
         <Document>
             <Page size="A4">
@@ -140,7 +196,6 @@ function ReportePDF(props) {
                             </View>
                         </View>
                     </View>
-
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
@@ -183,8 +238,22 @@ function ReportePDF(props) {
                             </View>
                         </View>
                     </View>
-                    <Text style={styles.title3}>INGRESOS BRUTOS</Text>
+                    <Text style={styles.title3}>INDICADORES ECONÓMICOS</Text>
                     <View style={styles.table}>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>INGRESOS BRUTOS</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>Anual</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>Mensual</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>% sobre IB</Text>
+                            </View>
+                        </View>
                         <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
                                 <Text>Venta de leche</Text>
@@ -193,10 +262,10 @@ function ReportePDF(props) {
                                 <Text>{ingresoLeche} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(ingresoLeche)/12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{(parseFloat(ingresoLeche) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(ingresoLeche)/parseFloat(ingresoBruto)*100).toFixed(1)}% (sobre IB)</Text>
+                                <Text>{(parseFloat(ingresoLeche) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -207,10 +276,10 @@ function ReportePDF(props) {
                                 <Text>{ingresoCarne} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(ingresoCarne)/12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{(parseFloat(ingresoCarne) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(ingresoCarne)/parseFloat(ingresoBruto)*100).toFixed(1)}% (sobre IB)</Text>
+                                <Text>{(parseFloat(ingresoCarne) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -221,23 +290,187 @@ function ReportePDF(props) {
                                 <Text>{ingresoBruto} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(ingresoBruto)/12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{(parseFloat(ingresoBruto) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>100% (sobre IB)</Text>
+                                <Text>100%</Text>
                             </View>
                         </View>
                     </View>
+                    <View style={styles.table}>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>GASTOS DIRECTOS</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>Anual</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>Mensual</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>% sobre IB leche</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>% sobre IB</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Mano de obra (1)</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{gastoManoDeObra} {codigoMoneda}/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastoManoDeObra) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastoManoDeObra) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastoManoDeObra) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Reposición (2)</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{gastoReposicion} {codigoMoneda}/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastoReposicion) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastoReposicion) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastoReposicion) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Alimentación vacas</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{gastoAlimentacion} {codigoMoneda}/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastoAlimentacion) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastoAlimentacion) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastoAlimentacion) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Suministro alimentos</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{gastoSuministro} {codigoMoneda}/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastoSuministro) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastoSuministro) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastoSuministro) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Sanidad animal</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{gastosVeterinaria} {codigoMoneda}/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastosVeterinaria) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastosVeterinaria) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastosVeterinaria) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Rodeo</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{gastosRodeo} {codigoMoneda}/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastosRodeo) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastosRodeo) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastosRodeo) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Alquiler/leasing vacas</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{alquilerVacas} {codigoMoneda}/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(alquilerVacas) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(alquilerVacas) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(alquilerVacas) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Ordeño</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{gastosTambo} {codigoMoneda}/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastosTambo) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastosTambo) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{(parseFloat(gastosTambo) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <Text style={styles.plaintext}>(1) Gasto medio por operario: {(parseFloat(gastoPorOperario) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                    <Text style={styles.plaintext}>(2) Porcentaje de reemplazo: {porcentajeReposicion}%</Text>
 
-                    <Text style={styles.title3}>GASTOS DIRECTOS</Text>
                     <Text style={styles.title3}>GASTOS DE ESTRUCTURA</Text>
-                    <Text style={styles.title3}>RESULTADO OPERATIVO</Text>
-                    <Text style={styles.title3}>Análisis por litro</Text>
-                    <Text style={styles.title3}>Montos anuales y porcentuales sobre el IB</Text>
-                    <Text style={styles.title3}>Otras unidades</Text>
+
+
+
+
 
                     <Text style={styles.footer}>Mi Calculadora Lechera - Desarrolladores: Ing. Agr. EPL Francisco Candioti - Dr. Javier Baudracco</Text>
                 </View>
+            </Page>
+            <Page size="A4">
+                <Text style={styles.title3}>RESULTADO OPERATIVO</Text>
+                <Text style={styles.title3}>Análisis por litro</Text>
+                <Text style={styles.title3}>Montos anuales y porcentuales sobre el IB</Text>
+                <Text style={styles.title3}>Otras unidades</Text>
+
+                <Text style={styles.footer}>Mi Calculadora Lechera - Desarrolladores: Ing. Agr. EPL Francisco Candioti - Dr. Javier Baudracco</Text>
             </Page>
         </Document>
     )

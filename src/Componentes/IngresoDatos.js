@@ -801,7 +801,10 @@ function IngresoDatos() {
                 </div>)}
                 <PDFDownloadLink document={<ReportePDF nombreCaso={nombreCaso} vacasOrdeno={vacasOrdeno} vacasSecas={vacasSecas}
                     superficieVT={superficieVT} lecheVendida={lecheVendida} codigoMoneda={codigoMoneda} ingresoLeche={ingresoLeche}
-                    ingresoCarne={ingresoCarne} ingresoBruto={ingresoBruto}
+                    ingresoCarne={ingresoCarne} ingresoBruto={ingresoBruto} gastoManoDeObra={gastoManoDeObra} gastoReposicion={gastoReposicion}
+                    porcentajeReposicion={porcentajeReposicion} gastoAlimentacion={gastoAlimentacion} gastoSuministro={gastoSuministro}
+                    gastosVeterinaria={gastosVeterinaria} gastosRodeo={gastosRodeo} alquilerVacas={alquilerVacas} gastosTambo={gastosTambo}
+                    gastoPorOperario={gastoPorOperario}
                 />} fileName="reporte.pdf">
                     {({ blob, url, loading, error }) => (loading ? 'Cargando documento...' : 'Descargar reporte PDF')}
                 </PDFDownloadLink>
