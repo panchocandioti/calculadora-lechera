@@ -779,7 +779,21 @@ function IngresoDatos() {
             )}
 
             {mostrarSeccion7 && (<div className='seccion'>
-                <h3>RESULTADOS ECONÓMICOS</h3>
+                <h3 id='resultadosEconomicos'>RESULTADOS ECONÓMICOS</h3>
+                <Tooltip anchorSelect="#resultadosEconomicos" place="top" className='tooltip'>
+                            <p><b>Definiciones:</b></p>
+                            <p>INGRESOS BRUTOS: son los ingresos totales por ventas</p>
+                            <p>(venta de leche + venta de carne derivada del rodeo lechero)</p>
+                            <p>GASTOS DIRECTOS: son los que están directamente</p>
+                            <p>relacionados con la producción (alimentación, ordeño,</p>
+                            <p>mano de obra, sanidad, etc.)</p>
+                            <p>GASTOS DE ESTRUCTURA: o indirectos, son aquellos gastos</p>
+                            <p>centrales que la empresa tiene que afrontar siempre,</p>
+                            <p>independientemente del nivel productivo (arrendamiento,</p>
+                            <p>administración, etc.)</p>
+                            <p>RESULTADO OPERATIVO: Es el saldo que queda luego de restar</p>
+                            <p>los gastos (directos y de estructura) del ingreso bruto</p>
+                        </Tooltip>
                 <ResultadosEconomicos validacion6={validacion6} codigoMoneda={codigoMoneda} gastosDirectos={gastosDirectos}
                     gastosEstructura={gastosEstructura} precioLeche={precioLeche} costoLitroCP={costoLitroCP}
                     resultadoOperativo={resultadoOperativo} resultadoOpHa={resultadoOpHa} resultadoOpLitro={resultadoOpLitro}

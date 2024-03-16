@@ -15,27 +15,27 @@ function IndicadoresFisicos(props) {
                     <tbody>
                         <tr>
                             <td>ENTREGA DIARIA DE LECHE</td>
-                            <td>{props.lecheVendidaDia}</td>
+                            <td>{new Intl.NumberFormat().format(props.lecheVendidaDia)}</td>
                             <td>litros/día</td>
                         </tr>
                         <tr>
                             <td>CARGA ANIMAL</td>
-                            <td>{props.cargaAnimal}</td>
+                            <td>{new Intl.NumberFormat().format(props.cargaAnimal)}</td>
                             <td>VT/haVT</td>
                         </tr>
                         <tr>
                             <td>PRODUCCIÓN INDIVIDUAL</td>
-                            <td>{props.produccionIndividual}</td>
+                            <td>{new Intl.NumberFormat().format(props.produccionIndividual)}</td>
                             <td>litros/VO/día</td>
                         </tr>
                         <tr>
                             <td>RELACIÓN VO/VT</td>
-                            <td>{props.relacionVOVT}</td>
+                            <td>{new Intl.NumberFormat().format(props.relacionVOVT)}</td>
                             <td>%</td>
                         </tr>
                         <tr>
                             <td>PRODUCTIVIDAD</td>
-                            <td>{props.productividad}</td>
+                            <td>{new Intl.NumberFormat().format(props.productividad)}</td>
                             <td>litros/haVT/año</td>
                         </tr>
                     </tbody>

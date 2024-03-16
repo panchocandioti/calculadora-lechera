@@ -272,16 +272,16 @@ function ReportePDF(props) {
                         </View>
                         <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
-                                <Text>{vacasOrdeno} cabezas</Text>
+                                <Text>{new Intl.NumberFormat().format(vacasOrdeno)} cabezas</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{vacasSecas} cabezas</Text>
+                                <Text>{new Intl.NumberFormat().format(vacasSecas)} cabezas</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{superficieVT} has VT</Text>
+                                <Text>{new Intl.NumberFormat().format(superficieVT)} has VT</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{lecheVendida} litros/año</Text>
+                                <Text>{new Intl.NumberFormat().format(lecheVendida)} litros/año</Text>
                             </View>
                         </View>
                     </View>
@@ -291,7 +291,7 @@ function ReportePDF(props) {
                                 <Text>Entrega diaria de leche</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{lecheVendidaDia} litros/día</Text>
+                                <Text>{new Intl.NumberFormat().format(lecheVendidaDia)} litros/día</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -299,7 +299,7 @@ function ReportePDF(props) {
                                 <Text>Carga animal</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{cargaAnimal} VT/haVT</Text>
+                                <Text>{new Intl.NumberFormat().format(cargaAnimal)} VT/haVT</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -307,7 +307,7 @@ function ReportePDF(props) {
                                 <Text>Producción individual</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{produccionIndividual} litros/VO/día</Text>
+                                <Text>{new Intl.NumberFormat().format(produccionIndividual)} litros/VO/día</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -315,7 +315,7 @@ function ReportePDF(props) {
                                 <Text>Relación VO/VT</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{relacionVOVT} %</Text>
+                                <Text>{new Intl.NumberFormat().format(relacionVOVT)} %</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -323,7 +323,7 @@ function ReportePDF(props) {
                                 <Text>Productividad</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{productividad} litros/haVT/año</Text>
+                                <Text>{new Intl.NumberFormat().format(productividad)} litros/haVT/año</Text>
                             </View>
                         </View>
                     </View>
@@ -348,13 +348,13 @@ function ReportePDF(props) {
                                 <Text>Venta de leche</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{ingresoLeche} {codigoMoneda}/año</Text>
+                                <Text>{new Intl.NumberFormat().format(ingresoLeche)} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(ingresoLeche) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(ingresoLeche) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(ingresoLeche) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(ingresoLeche) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -362,13 +362,13 @@ function ReportePDF(props) {
                                 <Text>Venta de carne</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{ingresoCarne} {codigoMoneda}/año</Text>
+                                <Text>{new Intl.NumberFormat().format(ingresoCarne)} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(ingresoCarne) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(ingresoCarne) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(ingresoCarne) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(ingresoCarne) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -376,10 +376,10 @@ function ReportePDF(props) {
                                 <Text>Ingreso Bruto Total</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{ingresoBruto} {codigoMoneda}/año</Text>
+                                <Text>{new Intl.NumberFormat().format(ingresoBruto)} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(ingresoBruto) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(ingresoBruto) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
                                 <Text>100%</Text>
@@ -409,16 +409,16 @@ function ReportePDF(props) {
                                 <Text>Mano de obra (1)</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{gastoManoDeObra} {codigoMoneda}/año</Text>
+                                <Text>{new Intl.NumberFormat().format(gastoManoDeObra)} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastoManoDeObra) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastoManoDeObra) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastoManoDeObra) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastoManoDeObra) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastoManoDeObra) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastoManoDeObra) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -426,16 +426,16 @@ function ReportePDF(props) {
                                 <Text>Reposición (2)</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{gastoReposicion} {codigoMoneda}/año</Text>
+                                <Text>{new Intl.NumberFormat().format(gastoReposicion)} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastoReposicion) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastoReposicion) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastoReposicion) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastoReposicion) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastoReposicion) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastoReposicion) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -443,16 +443,16 @@ function ReportePDF(props) {
                                 <Text>Alimentación vacas</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{gastoAlimentacion} {codigoMoneda}/año</Text>
+                                <Text>{new Intl.NumberFormat().format(gastoAlimentacion)} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastoAlimentacion) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastoAlimentacion) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastoAlimentacion) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastoAlimentacion) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastoAlimentacion) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastoAlimentacion) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -460,16 +460,16 @@ function ReportePDF(props) {
                                 <Text>Suministro alimentos</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{gastoSuministro} {codigoMoneda}/año</Text>
+                                <Text>{new Intl.NumberFormat().format(gastoSuministro)} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastoSuministro) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastoSuministro) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastoSuministro) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastoSuministro) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastoSuministro) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastoSuministro) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -477,16 +477,16 @@ function ReportePDF(props) {
                                 <Text>Sanidad animal</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{gastosVeterinaria} {codigoMoneda}/año</Text>
+                                <Text>{new Intl.NumberFormat().format(gastosVeterinaria)} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastosVeterinaria) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastosVeterinaria) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastosVeterinaria) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastosVeterinaria) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastosVeterinaria) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastosVeterinaria) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -494,16 +494,16 @@ function ReportePDF(props) {
                                 <Text>Rodeo</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{gastosRodeo} {codigoMoneda}/año</Text>
+                                <Text>{new Intl.NumberFormat().format(gastosRodeo)} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastosRodeo) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastosRodeo) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastosRodeo) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastosRodeo) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastosRodeo) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastosRodeo) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -511,16 +511,16 @@ function ReportePDF(props) {
                                 <Text>Alquiler/leasing vacas</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{alquilerVacas} {codigoMoneda}/año</Text>
+                                <Text>{new Intl.NumberFormat().format(alquilerVacas)} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(alquilerVacas) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(alquilerVacas) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(alquilerVacas) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(alquilerVacas) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(alquilerVacas) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(alquilerVacas) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -528,21 +528,21 @@ function ReportePDF(props) {
                                 <Text>Ordeño</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{gastosTambo} {codigoMoneda}/año</Text>
+                                <Text>{new Intl.NumberFormat().format(gastosTambo)} {codigoMoneda}/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastosTambo) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastosTambo) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastosTambo) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastosTambo) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{(parseFloat(gastosTambo) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(gastosTambo) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                             </View>
                         </View>
                     </View>
-                    <Text style={styles.plaintext}>(1) Gasto medio por operario: {(parseFloat(gastoPorOperario) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
-                    <Text style={styles.plaintext}>(2) Porcentaje de reemplazo: {porcentajeReposicion}%</Text>
+                    <Text style={styles.plaintext}>(1) Gasto medio por operario: {new Intl.NumberFormat().format((parseFloat(gastoPorOperario) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
+                    <Text style={styles.plaintext}>(2) Porcentaje de reemplazo: {new Intl.NumberFormat().format(porcentajeReposicion)}%</Text>
                 </View>
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
@@ -567,16 +567,16 @@ function ReportePDF(props) {
                             <Text>Mantenimiento</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{gastosMantenimiento} {codigoMoneda}/año</Text>
+                            <Text>{new Intl.NumberFormat().format(gastosMantenimiento)} {codigoMoneda}/año</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gastosMantenimiento) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gastosMantenimiento) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gastosMantenimiento) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gastosMantenimiento) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gastosMantenimiento) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gastosMantenimiento) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                         </View>
                     </View>
                     <View style={styles.tableRow}>
@@ -584,16 +584,16 @@ function ReportePDF(props) {
                             <Text>Alquiler tierra</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{gastoArrendamiento} {codigoMoneda}/año</Text>
+                            <Text>{new Intl.NumberFormat().format(gastoArrendamiento)} {codigoMoneda}/año</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gastoArrendamiento) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gastoArrendamiento) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gastoArrendamiento) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gastoArrendamiento) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gastoArrendamiento) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gastoArrendamiento) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                         </View>
                     </View>
                     <View style={styles.tableRow}>
@@ -601,16 +601,16 @@ function ReportePDF(props) {
                             <Text>Impuestos y servicios</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{impuestos} {codigoMoneda}/año</Text>
+                            <Text>{new Intl.NumberFormat().format(impuestos)} {codigoMoneda}/año</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(impuestos) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(impuestos) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(impuestos) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(impuestos) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(impuestos) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(impuestos) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                         </View>
                     </View>
                     <View style={styles.tableRow}>
@@ -618,16 +618,16 @@ function ReportePDF(props) {
                             <Text>Gerenciamiento</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{gerencia} {codigoMoneda}/año</Text>
+                            <Text>{new Intl.NumberFormat().format(gerencia)} {codigoMoneda}/año</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gerencia) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gerencia) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gerencia) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gerencia) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gerencia) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gerencia) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                         </View>
                     </View>
                     <View style={styles.tableRow}>
@@ -635,16 +635,16 @@ function ReportePDF(props) {
                             <Text>Administración</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{gastosAdministracion} {codigoMoneda}/año</Text>
+                            <Text>{new Intl.NumberFormat().format(gastosAdministracion)} {codigoMoneda}/año</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gastosAdministracion) / 12).toFixed(0)} {codigoMoneda}/mes</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gastosAdministracion) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gastosAdministracion) / parseFloat(ingresoLeche) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gastosAdministracion) / parseFloat(ingresoLeche) * 100).toFixed(1))}%</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gastosAdministracion) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gastosAdministracion) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                         </View>
                     </View>
                 </View>
@@ -682,7 +682,7 @@ function ReportePDF(props) {
                             <Text>Precio de la leche</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{precioLeche} {codigoMoneda}/litro</Text>
+                            <Text>{new Intl.NumberFormat().format(precioLeche)} {codigoMoneda}/litro</Text>
                         </View>
                     </View>
                     <View style={styles.tableRow}>
@@ -690,7 +690,7 @@ function ReportePDF(props) {
                             <Text>Costo de corto plazo</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{costoLitroCP} {codigoMoneda}/litro</Text>
+                            <Text>{new Intl.NumberFormat().format(costoLitroCP)} {codigoMoneda}/litro</Text>
                         </View>
                     </View>
                     <View style={styles.tableRow}>
@@ -698,7 +698,7 @@ function ReportePDF(props) {
                             <Text>Resultado operativo</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{resultadoOpLitro} {codigoMoneda}/litro</Text>
+                            <Text>{new Intl.NumberFormat().format(resultadoOpLitro)} {codigoMoneda}/litro</Text>
                         </View>
                     </View>
                 </View>
@@ -719,10 +719,10 @@ function ReportePDF(props) {
                             <Text>Ingresos Brutos</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{ingresoBruto} {codigoMoneda}/año</Text>
+                            <Text>{new Intl.NumberFormat().format(ingresoBruto)} {codigoMoneda}/año</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((100).toFixed(1))}%</Text>
                         </View>
                     </View>
                     <View style={styles.tableRow}>
@@ -730,10 +730,10 @@ function ReportePDF(props) {
                             <Text>Gastos Directos</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{gastosDirectos} {codigoMoneda}/año</Text>
+                            <Text>{new Intl.NumberFormat().format(gastosDirectos)} {codigoMoneda}/año</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gastosDirectos) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gastosDirectos) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                         </View>
                     </View>
                     <View style={styles.tableRow}>
@@ -741,10 +741,10 @@ function ReportePDF(props) {
                             <Text>Gastos Estructura</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{gastosEstructura} {codigoMoneda}/año</Text>
+                            <Text>{new Intl.NumberFormat().format(gastosEstructura)} {codigoMoneda}/año</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(gastosEstructura) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(gastosEstructura) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                         </View>
                     </View>
                     <View style={styles.tableRow}>
@@ -752,10 +752,10 @@ function ReportePDF(props) {
                             <Text>Resultado Operativo</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{resultadoOperativo} {codigoMoneda}/año</Text>
+                            <Text>{new Intl.NumberFormat().format(resultadoOperativo)} {codigoMoneda}/año</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{(parseFloat(resultadoOperativo) / parseFloat(ingresoBruto) * 100).toFixed(1)}%</Text>
+                            <Text>{new Intl.NumberFormat().format((parseFloat(resultadoOperativo) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                         </View>
                     </View>
                 </View>
@@ -767,10 +767,10 @@ function ReportePDF(props) {
                     </View>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCell}>
-                            <Text>{resultadoOpHa} {codigoMoneda}/haVT/año</Text>
+                            <Text>{new Intl.NumberFormat().format(resultadoOpHa)} {codigoMoneda}/haVT/año</Text>
                         </View>
                         <View style={styles.tableCell}>
-                            <Text>{resultadoOpLeche} litros leche/haVT/año</Text>
+                            <Text>{new Intl.NumberFormat().format(resultadoOpLeche)} litros leche/haVT/año</Text>
                         </View>
                     </View>
                 </View>

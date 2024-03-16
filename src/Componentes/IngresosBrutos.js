@@ -27,21 +27,21 @@ function IngresosBrutos(props) {
                         <tbody>
                             <tr>
                                 <td>INGRESOS POR VENTA DE LECHE</td>
-                                <td>{props.ingresoLeche} {props.codigoMoneda}/año</td>
-                                <td>{ingresoLecheMes} {props.codigoMoneda}/mes</td>
-                                <td>{props.ingresoLecheP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.ingresoLeche)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(ingresoLecheMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(props.ingresoLecheP)}%</td>
                             </tr>
                             <tr>
                                 <td>INGRESOS POR VENTA DE CARNE</td>
-                                <td>{props.ingresoCarne} {props.codigoMoneda}/año</td>
-                                <td>{ingresoCarneMes} {props.codigoMoneda}/mes</td>
-                                <td>{props.ingresoCarneP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.ingresoCarne)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(ingresoCarneMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(props.ingresoCarneP)}%</td>
                             </tr>
                             <tr>
                                 <td><b>INGRESOS BRUTOS</b></td>
-                                <td><b>{props.ingresoBruto} {props.codigoMoneda}/año</b></td>
-                                <td><b>{ingresoBrutoMes} {props.codigoMoneda}/mes</b></td>
-                                <td><b>{props.ingresoBrutoP}%</b></td>
+                                <td><b>{new Intl.NumberFormat().format(props.ingresoBruto)} {props.codigoMoneda}/año</b></td>
+                                <td><b>{new Intl.NumberFormat().format(ingresoBrutoMes)} {props.codigoMoneda}/mes</b></td>
+                                <td><b>{new Intl.NumberFormat().format(props.ingresoBrutoP)}%</b></td>
                             </tr>
                         </tbody>
                     </table>

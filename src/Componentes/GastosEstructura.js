@@ -35,33 +35,33 @@ function GastosEstructura(props) {
                         <tbody>
                             <tr>
                                 <td>GASTOS DE MANTENIMIENTO</td>
-                                <td>{props.gastosMantenimiento} {props.codigoMoneda}/año</td>
-                                <td>{gastosMantenimientoMes} {props.codigoMoneda}/mes</td>
-                                <td>{gastosMantenimientoP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastosMantenimiento)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(gastosMantenimientoMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(gastosMantenimientoP)}%</td>
                             </tr>
                             <tr>
                                 <td>GASTO DE ARRENDAMIENTO</td>
-                                <td>{props.gastoArrendamiento} {props.codigoMoneda}/año</td>
-                                <td>{gastoArrendamientoMes} {props.codigoMoneda}/mes</td>
-                                <td>{gastoArrendamientoP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastoArrendamiento)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(gastoArrendamientoMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(gastoArrendamientoP)}%</td>
                             </tr>
                             <tr>
                                 <td>IMPUESTOS Y SERVICIOS</td>
-                                <td>{props.impuestos} {props.codigoMoneda}/año</td>
-                                <td>{impuestosMes} {props.codigoMoneda}/mes</td>
-                                <td>{impuestosP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.impuestos)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(impuestosMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(impuestosP)}%</td>
                             </tr>
                             <tr>
                                 <td>GERENCIAMIENTO</td>
-                                <td>{props.gerencia} {props.codigoMoneda}/año</td>
-                                <td>{gerenciaMes} {props.codigoMoneda}/mes</td>
-                                <td>{gerenciaP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gerencia)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(gerenciaMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(gerenciaP)}%</td>
                             </tr>
                             <tr>
                                 <td>GASTOS DE ADMINISTRACIÓN</td>
-                                <td>{props.gastosAdministracion} {props.codigoMoneda}/año</td>
-                                <td>{gastosAdministracionMes} {props.codigoMoneda}/mes</td>
-                                <td>{gastosAdministracionP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastosAdministracion)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(gastosAdministracionMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(gastosAdministracionP)}%</td>
                             </tr>
                         </tbody>
                     </table>

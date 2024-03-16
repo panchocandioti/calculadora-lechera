@@ -37,39 +37,39 @@ function OtrosGastosDirectos(props) {
                         <tbody>
                             <tr>
                                 <td>GASTO DE ALIMENTACIÓN</td>
-                                <td>{props.gastoAlimentacion} {props.codigoMoneda}/año</td>
-                                <td>{gastoAlimentacionMes} {props.codigoMoneda}/mes</td>
-                                <td>{gastoAlimentacionP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastoAlimentacion)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(gastoAlimentacionMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(gastoAlimentacionP)}%</td>
                             </tr>
                             <tr>
                                 <td>GASTOS DE SUMINISTRO</td>
-                                <td>{props.gastoSuministro} {props.codigoMoneda}/año</td>
-                                <td>{gastoSuministroMes} {props.codigoMoneda}/mes</td>
-                                <td>{gastoSuministroP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastoSuministro)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(gastoSuministroMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(gastoSuministroP)}%</td>
                             </tr>
                             <tr>
                                 <td>GASTOS SANIDAD ANIMAL</td>
-                                <td>{props.gastosVeterinaria} {props.codigoMoneda}/año</td>
-                                <td>{gastosVeterinariaMes} {props.codigoMoneda}/mes</td>
-                                <td>{gastosVeterinariaP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastosVeterinaria)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(gastosVeterinariaMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(gastosVeterinariaP)}%</td>
                             </tr>
                             <tr>
                                 <td>GASTOS RODEO</td>
-                                <td>{props.gastosRodeo} {props.codigoMoneda}/año</td>
-                                <td>{gastosRodeoMes} {props.codigoMoneda}/mes</td>
-                                <td>{gastosRodeoP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastosRodeo)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(gastosRodeoMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(gastosRodeoP)}%</td>
                             </tr>
                             <tr>
                                 <td>ALQUILER VACAS</td>
-                                <td>{props.alquilerVacas} {props.codigoMoneda}/año</td>
-                                <td>{alquilerVacasMes} {props.codigoMoneda}/mes</td>
-                                <td>{alquilerVacasP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.alquilerVacas)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(alquilerVacasMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(alquilerVacasP)}%</td>
                             </tr>
                             <tr>
                                 <td>GASTOS DE ORDEÑO</td>
-                                <td>{props.gastosTambo} {props.codigoMoneda}/año</td>
-                                <td>{gastosTamboMes} {props.codigoMoneda}/mes</td>
-                                <td>{gastosTamboP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastosTambo)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(gastosTamboMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(gastosTamboP)}%</td>
                             </tr>
                         </tbody>
                     </table>

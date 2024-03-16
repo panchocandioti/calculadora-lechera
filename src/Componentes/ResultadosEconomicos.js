@@ -16,16 +16,16 @@ function ResultadosEconomicos(props) {
                         <tbody>
                             <tr>
                                 <td>PRECIO DE LA LECHE</td>
-                                <td>{props.precioLeche} {props.codigoMoneda}/litro</td>
+                                <td>{new Intl.NumberFormat().format(props.precioLeche)} {props.codigoMoneda}/litro</td>
                             </tr>
                             <tr>
                                 <td>COSTO DE CORTO PLAZO</td>
-                                <td>{props.costoLitroCP} {props.codigoMoneda}/litro</td>
+                                <td>{new Intl.NumberFormat().format(props.costoLitroCP)} {props.codigoMoneda}/litro</td>
                             </tr>
 
                             <tr>
                                 <td><b>RESULTADO OPERATIVO</b></td>
-                                <td><b>{props.resultadoOpLitro} {props.codigoMoneda}/litro</b></td>
+                                <td><b>{new Intl.NumberFormat().format(props.resultadoOpLitro)} {props.codigoMoneda}/litro</b></td>
                             </tr>
 
                         </tbody>
@@ -43,23 +43,23 @@ function ResultadosEconomicos(props) {
                             </tr>
                             <tr>
                                 <td>INGRESOS BRUTOS</td>
-                                <td>{props.ingresoBruto} {props.codigoMoneda}/año</td>
-                                <td>100%</td>
+                                <td>{new Intl.NumberFormat().format(props.ingresoBruto)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(100)}%</td>
                             </tr>
                             <tr>
                                 <td>GASTOS DIRECTOS</td>
-                                <td>{props.gastosDirectos} {props.codigoMoneda}/año</td>
-                                <td>{props.gastosDirectosP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastosDirectos)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(props.gastosDirectosP)}%</td>
                             </tr>
                             <tr>
                                 <td>GASTOS ESTRUCTURA</td>
-                                <td>{props.gastosEstructura} {props.codigoMoneda}/año</td>
-                                <td>{props.gastosEstructuraP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastosEstructura)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(props.gastosEstructuraP)}%</td>
                             </tr>
                             <tr>
                                 <td><b>RESULTADO OPERATIVO</b></td>
-                                <td><b>{props.resultadoOperativo} {props.codigoMoneda}/año</b></td>
-                                <td><b>{props.resultadoOpP}%</b></td>
+                                <td><b>{new Intl.NumberFormat().format(props.resultadoOperativo)} {props.codigoMoneda}/año</b></td>
+                                <td><b>{new Intl.NumberFormat().format(props.resultadoOpP)}%</b></td>
                             </tr>
                         </tbody>
                     </table>
@@ -76,10 +76,9 @@ function ResultadosEconomicos(props) {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{props.resultadoOpHa} {props.codigoMoneda}/haVT/año</td>
-                                <td>{props.resultadoOpLeche} litros leche/haVT/año</td>
+                                <td>{new Intl.NumberFormat().format(props.resultadoOpHa)} {props.codigoMoneda}/haVT/año</td>
+                                <td>{new Intl.NumberFormat().format(props.resultadoOpLeche)} litros leche/haVT/año</td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>

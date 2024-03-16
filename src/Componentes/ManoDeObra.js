@@ -28,15 +28,15 @@ function ManoDeObra(props) {
                         <tbody>
                             <tr>
                                 <td>GASTO MANO DE OBRA</td>
-                                <td>{props.gastoManoDeObra} {props.codigoMoneda}/año</td>
-                                <td>{gastoManoDeObraMes} {props.codigoMoneda}/mes</td>
-                                <td>{gastoManoDeObraP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastoManoDeObra)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(gastoManoDeObraMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(gastoManoDeObraP)}%</td>
                             </tr>
                             <tr>
                                 <td>GASTO MEDIO POR OPERARIO</td>
-                                <td>{props.gastoPorOperario} {props.codigoMoneda}/año</td>
-                                <td>{gastoPorOperarioMes} {props.codigoMoneda}/mes</td>
-                                <td>{props.gastoPorOperarioP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastoPorOperario)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(gastoPorOperarioMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(props.gastoPorOperarioP)}%</td>
                             </tr>
                         </tbody>
                     </table>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Tooltip as Comentario } from 'react-tooltip'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Chart as ChartJS, ArcElement, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Legend);
 
 function GraficoIBGDGE(props) {
 
@@ -14,7 +14,7 @@ function GraficoIBGDGE(props) {
             data: [props.resultadoOperativo, props.gastosDirectos, props.gastosEstructura],
             backgroundColor: ["green", "blue", "red"],
             borderColor: ["darkgreen", "darkblue", "darkred"],
-            borderWidth: [8, 3, 3],
+            borderWidth: [8, 3, 3]
         }]
     }
 
@@ -33,6 +33,7 @@ function GraficoIBGDGE(props) {
                     },
                 },
             },
+            
         },
     }
 

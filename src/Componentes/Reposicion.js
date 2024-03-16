@@ -30,9 +30,9 @@ function Reposicion(props) {
                         <tbody>
                             <tr>
                                 <td>GASTO DE REPOSICIÓN</td>
-                                <td>{props.gastoReposicion} {props.codigoMoneda}/año</td>
-                                <td>{gastoReposicionMes} {props.codigoMoneda}/mes</td>
-                                <td>{gastoReposicionP}%</td>
+                                <td>{new Intl.NumberFormat().format(props.gastoReposicion)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(gastoReposicionMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(gastoReposicionP)}%</td>
                             </tr>
                         </tbody>
                     </table>
