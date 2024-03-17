@@ -50,7 +50,7 @@ function GraficoAplicacionIB(props) {
             setGastosMantenimiento((parseFloat(props.gastosMantenimiento)/parseFloat(props.ingresoBruto)*100).toFixed(1));
             setUnidad('% sobre IB');
         }
-    }, [graficosEnMoneda, codigoMoneda]);
+    }, [graficosEnMoneda, codigoMoneda, props.resultadoOperativo]);
 
     const data = {
         labels: ["Resultado Operativo", "Mano de obra", "Reposición", "Alimentación+Suministro",

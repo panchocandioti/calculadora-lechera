@@ -32,7 +32,7 @@ function GraficoIBGDGE(props) {
             setGastosEstructura((parseFloat(props.gastosEstructura)/parseFloat(props.ingresoBruto)*100).toFixed(1));
             setUnidad('% sobre IB');
         }
-    }, [graficosEnMoneda, codigoMoneda])
+    }, [graficosEnMoneda, codigoMoneda, props.resultadoOperativo])
 
     const data = {
         labels: ["Resultado Operativo (RO)", "Gastos directos (GD)", "Gastos de estructura (GE)"],
