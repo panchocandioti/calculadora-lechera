@@ -11,13 +11,20 @@ function GraficoIBGDGE(props) {
     const [gastosDirectos, setGastosDirectos] = useState(props.gastosDirectos);
     const [gastosEstructura, setGastosEstructura] = useState(props.gastosEstructura);
     const [unidad, setUnidad] = useState(props.codigoMoneda);
+    const [graficosEnMoneda, setGraficosEnMoneda] = useState(props.graficosEnMoneda);
+    const [codigoMoneda, setCodigoMoneda] = useState(props.codigoMoneda);
+
+    useEffect(() => {
+        setGraficosEnMoneda(props.graficosEnMoneda);
+        setCodigoMoneda(props.codigoMoneda);
+    }, [props.graficosEnMoneda, props.codigoMoneda])
 
     useEffect (() => {
-        if (props.graficosEnMoneda === true) {
+        if (graficosEnMoneda === true) {
             setResultadoOperativo(props.resultadoOperativo);
             setGastosDirectos(props.gastosDirectos);
             setGastosEstructura(props.gastosEstructura);
-            setUnidad(props.codigoMoneda);
+            setUnidad(codigoMoneda);
         }
         if (props.graficosEnMoneda === false) {
             setResultadoOperativo((parseFloat(props.resultadoOperativo)/parseFloat(props.ingresoBruto)*100).toFixed(1));
@@ -25,7 +32,7 @@ function GraficoIBGDGE(props) {
             setGastosEstructura((parseFloat(props.gastosEstructura)/parseFloat(props.ingresoBruto)*100).toFixed(1));
             setUnidad('% sobre IB');
         }
-    }, [props.graficosEnMoneda, props.codigoMoneda])
+    }, [graficosEnMoneda, codigoMoneda])
 
     const data = {
         labels: ["Resultado Operativo (RO)", "Gastos directos (GD)", "Gastos de estructura (GE)"],

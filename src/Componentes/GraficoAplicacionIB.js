@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { Tooltip as Comentario } from 'react-tooltip'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
@@ -7,19 +7,60 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function GraficoAplicacionIB(props) {
 
-    let alimentacionSuministro = parseFloat(props.gastoAlimentacion) + parseFloat(props.gastoSuministro);
-    let veterinariaRodeo = parseFloat(props.gastosVeterinaria) + parseFloat(props.gastosRodeo);
-    let otrosGastosEstructura = parseFloat(props.gastosAdministracion) + parseFloat(props.impuestos) + parseFloat(props.gerencia);
+    const [resultadoOperativo, setResultadoOperativo] = useState(props.resultadoOperativo);
+    const [gastoManoDeObra, setGastoManoDeObra] = useState(props.gastoManoDeObra);
+    const [gastoReposicion, setGastoReposicion] = useState(props.gastoReposicion);
+    const [alimentacionSuministro, setAlimentacionSuministro] = useState(parseFloat(props.gastoAlimentacion) + parseFloat(props.gastoSuministro));
+    const [veterinariaRodeo, setVeterinariaRodeo] = useState(parseFloat(props.gastosVeterinaria) + parseFloat(props.gastosRodeo));
+    const [alquileres, setAlquileres] = useState(parseFloat(props.alquilerVacas) + parseFloat(props.gastoArrendamiento));
+    const [gastosTambo, setGastosTambo] = useState(props.gastosTambo);
+    const [gastosMantenimiento, setGastosMantenimiento] = useState(props.gastosMantenimiento);
+    const [otrosGastosEstructura, setOtrosGastosEstructura] = useState(parseFloat(props.impuestos) + parseFloat(props.gastosAdministracion) + parseFloat(props.gerencia))
+    const [unidad, setUnidad] = useState(props.codigoMoneda);
+    const [graficosEnMoneda, setGraficosEnMoneda] = useState(props.graficosEnMoneda);
+    const [codigoMoneda, setCodigoMoneda] = useState(props.codigoMoneda);
+
+    useEffect(() => {
+        setGraficosEnMoneda(props.graficosEnMoneda);
+        setCodigoMoneda(props.codigoMoneda);
+    }, [props.graficosEnMoneda, props.codigoMoneda])
+
+    useEffect (() => {
+        if (graficosEnMoneda === true) {
+            setResultadoOperativo(props.resultadoOperativo);
+            setGastoManoDeObra(props.gastoManoDeObra);
+            setGastoReposicion(props.gastoReposicion);
+            setAlimentacionSuministro(parseFloat(props.gastoAlimentacion) + parseFloat(props.gastoSuministro));
+            setVeterinariaRodeo(parseFloat(props.gastosVeterinaria) + parseFloat(props.gastosRodeo));
+            setAlquileres(parseFloat(props.alquilerVacas) + parseFloat(props.gastoArrendamiento));
+            setGastosTambo(props.gastosTambo);
+            setOtrosGastosEstructura(parseFloat(props.impuestos) + parseFloat(props.gastosAdministracion) + parseFloat(props.gerencia));
+            setGastosMantenimiento(props.gastosMantenimiento);
+            setUnidad(codigoMoneda);
+        }
+        if (graficosEnMoneda === false) {
+            setResultadoOperativo((parseFloat(props.resultadoOperativo)/parseFloat(props.ingresoBruto)*100).toFixed(1));
+            setGastoManoDeObra((parseFloat(props.gastoManoDeObra)/parseFloat(props.ingresoBruto)*100).toFixed(1));
+            setGastoReposicion((parseFloat(props.gastoReposicion)/parseFloat(props.ingresoBruto)*100).toFixed(1));
+            setAlimentacionSuministro(((parseFloat(props.gastoAlimentacion) + parseFloat(props.gastoSuministro))/parseFloat(props.ingresoBruto)*100).toFixed(1));
+            setVeterinariaRodeo(((parseFloat(props.gastosVeterinaria) + parseFloat(props.gastosRodeo))/parseFloat(props.ingresoBruto)*100).toFixed(1));
+            setAlquileres(((parseFloat(props.alquilerVacas) + parseFloat(props.gastoArrendamiento))/parseFloat(props.ingresoBruto)*100).toFixed(1));
+            setGastosTambo((parseFloat(props.gastosTambo)/parseFloat(props.ingresoBruto)*100).toFixed(1));
+            setOtrosGastosEstructura(((parseFloat(props.impuestos) + parseFloat(props.gastosAdministracion) + parseFloat(props.gerencia))/parseFloat(props.ingresoBruto)*100).toFixed(1));
+            setGastosMantenimiento((parseFloat(props.gastosMantenimiento)/parseFloat(props.ingresoBruto)*100).toFixed(1));
+            setUnidad('% sobre IB');
+        }
+    }, [graficosEnMoneda, codigoMoneda]);
 
     const data = {
         labels: ["Resultado Operativo", "Mano de obra", "Reposición", "Alimentación+Suministro",
             "Sanidad+Rodeo", "Ordeño", "Mantenimiento", "Alquileres (tierra+vacas)", "Otros gastos estructura"],
         datasets: [{
-            label: props.codigoMoneda,
-            data: [props.resultadoOperativo, props.gastoManoDeObra, props.gastoReposicion,
+            label: unidad,
+            data: [resultadoOperativo, gastoManoDeObra, gastoReposicion,
             alimentacionSuministro, veterinariaRodeo,
-            props.gastosTambo, props.gastosMantenimiento,
-            props.gastoArrendamiento, otrosGastosEstructura],
+            gastosTambo, gastosMantenimiento,
+            alquileres, otrosGastosEstructura],
             backgroundColor: ["rgb(67, 138, 67)", "rgb(208, 208, 249)", "rgb(135, 135, 245)", "rgb(78, 78, 249)",
                 "rgb(38, 38, 248)", "rgb(4, 4, 137)", "rgb(242, 190, 190)", "rgb(243, 112, 112)",
                 "rgb(184, 19, 19)"],

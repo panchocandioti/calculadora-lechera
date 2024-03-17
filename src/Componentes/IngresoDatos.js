@@ -815,11 +815,12 @@ function IngresoDatos() {
                         alquilerVacas={alquilerVacas} gastosTambo={gastosTambo}
                         gastosMantenimiento={gastosMantenimiento} gastoArrendamiento={gastoArrendamiento}
                         impuestos={impuestos} gerencia={gerencia} gastosAdministracion={gastosAdministracion}
-                        graficosEnMoneda={graficosEnMoneda}
+                        graficosEnMoneda={graficosEnMoneda} ingresoBruto={ingresoBruto}
                     />
                    <button onClick={handleClickGraficosCambio}>{graficosEnMoneda === true ? 'Mostrar porcentajes en gráficos' : `Mostrar ${codigoMoneda} en gráficos`}</button>
                 </div>)}
                 <hr></hr>
+                <div className='resultados'>
                 <PDFDownloadLink document={<ReportePDF nombreCaso={nombreCaso} vacasOrdeno={vacasOrdeno} vacasSecas={vacasSecas}
                     superficieVT={superficieVT} lecheVendida={lecheVendida} codigoMoneda={codigoMoneda} ingresoLeche={ingresoLeche}
                     ingresoCarne={ingresoCarne} ingresoBruto={ingresoBruto} gastoManoDeObra={gastoManoDeObra} gastoReposicion={gastoReposicion}
@@ -833,6 +834,8 @@ function IngresoDatos() {
                 />} fileName="reporte.pdf">
                     {({ blob, url, loading, error }) => (loading ? 'Cargando documento...' : 'Descargar reporte PDF')}
                 </PDFDownloadLink>
+                </div>
+                
                 <hr></hr>
                 <BotonReset />
             </div>)}
