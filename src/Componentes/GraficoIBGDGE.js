@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tooltip as Comentario } from 'react-tooltip'
 import { Chart as ChartJS, ArcElement, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
@@ -7,11 +7,31 @@ ChartJS.register(ArcElement, Legend);
 
 function GraficoIBGDGE(props) {
 
+    const [resultadoOperativo, setResultadoOperativo] = useState(props.resultadoOperativo);
+    const [gastosDirectos, setGastosDirectos] = useState(props.gastosDirectos);
+    const [gastosEstructura, setGastosEstructura] = useState(props.gastosEstructura);
+    const [unidad, setUnidad] = useState(props.codigoMoneda);
+
+    useEffect (() => {
+        if (props.graficosEnMoneda === true) {
+            setResultadoOperativo(props.resultadoOperativo);
+            setGastosDirectos(props.gastosDirectos);
+            setGastosEstructura(props.gastosEstructura);
+            setUnidad(props.codigoMoneda);
+        }
+        if (props.graficosEnMoneda === false) {
+            setResultadoOperativo((parseFloat(props.resultadoOperativo)/parseFloat(props.ingresoBruto)*100).toFixed(1));
+            setGastosDirectos((parseFloat(props.gastosDirectos)/parseFloat(props.ingresoBruto)*100).toFixed(1));
+            setGastosEstructura((parseFloat(props.gastosEstructura)/parseFloat(props.ingresoBruto)*100).toFixed(1));
+            setUnidad('% sobre IB');
+        }
+    }, [props.graficosEnMoneda, props.codigoMoneda])
+
     const data = {
         labels: ["Resultado Operativo (RO)", "Gastos directos (GD)", "Gastos de estructura (GE)"],
         datasets: [{
-            label: props.codigoMoneda,
-            data: [props.resultadoOperativo, props.gastosDirectos, props.gastosEstructura],
+            label: unidad,
+            data: [resultadoOperativo, gastosDirectos, gastosEstructura],
             backgroundColor: ["green", "blue", "red"],
             borderColor: ["darkgreen", "darkblue", "darkred"],
             borderWidth: [8, 3, 3]

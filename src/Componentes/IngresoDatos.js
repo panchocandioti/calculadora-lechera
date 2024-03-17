@@ -31,6 +31,7 @@ function IngresoDatos() {
     const [mostrarSeccion5, setMostrarSeccion5] = useState(false);
     const [mostrarSeccion6, setMostrarSeccion6] = useState(false);
     const [mostrarSeccion7, setMostrarSeccion7] = useState(false);
+    const [graficosEnMoneda, setGraficosEnMoneda] = useState(true);
 
     const [currency1, setCurrency1] = useState("Peso argentino");
     const [currency2, setCurrency2] = useState("Peso argentino");
@@ -360,6 +361,10 @@ function IngresoDatos() {
             setMostrarSeccion7(true);
         }
     };
+
+    const handleClickGraficosCambio = () => {
+        setGraficosEnMoneda(prevstate => !prevstate);
+    }
 
     return (
         <div>
@@ -802,7 +807,7 @@ function IngresoDatos() {
                 />
                 {validacion7 && (<div>
                     <GraficoIBGDGE resultadoOperativo={resultadoOperativo} gastosDirectos={gastosDirectos} gastosEstructura={gastosEstructura}
-                        codigoMoneda={codigoMoneda} validacion6={validacion6}
+                        ingresoBruto={ingresoBruto} codigoMoneda={codigoMoneda} validacion6={validacion6} graficosEnMoneda={graficosEnMoneda}
                     />
                     <GraficoAplicacionIB validacion6={validacion6} codigoMoneda={codigoMoneda} resultadoOperativo={resultadoOperativo}
                         gastoManoDeObra={gastoManoDeObra} gastoReposicion={gastoReposicion} gastoAlimentacion={gastoAlimentacion}
@@ -810,9 +815,11 @@ function IngresoDatos() {
                         alquilerVacas={alquilerVacas} gastosTambo={gastosTambo}
                         gastosMantenimiento={gastosMantenimiento} gastoArrendamiento={gastoArrendamiento}
                         impuestos={impuestos} gerencia={gerencia} gastosAdministracion={gastosAdministracion}
+                        graficosEnMoneda={graficosEnMoneda}
                     />
-
+                   <button onClick={handleClickGraficosCambio}>{graficosEnMoneda === true ? 'Mostrar porcentajes en gráficos' : `Mostrar ${codigoMoneda} en gráficos`}</button>
                 </div>)}
+                <hr></hr>
                 <PDFDownloadLink document={<ReportePDF nombreCaso={nombreCaso} vacasOrdeno={vacasOrdeno} vacasSecas={vacasSecas}
                     superficieVT={superficieVT} lecheVendida={lecheVendida} codigoMoneda={codigoMoneda} ingresoLeche={ingresoLeche}
                     ingresoCarne={ingresoCarne} ingresoBruto={ingresoBruto} gastoManoDeObra={gastoManoDeObra} gastoReposicion={gastoReposicion}
