@@ -16,7 +16,8 @@ function Reposicion(props) {
                 
                 <h4>Resumen reposición</h4>
                 <hr></hr>
-                <h5>Porcentaje de reemplazo: {porcentajeReposicion}%</h5>
+                <div className='titulo2'><h5>Porcentaje de reemplazo: {porcentajeReposicion}%</h5></div>
+                
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <thead>

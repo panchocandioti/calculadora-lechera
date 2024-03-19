@@ -179,7 +179,7 @@ footer {
   padding: 5px;
 }
 
-table {
+table, .titulo2 {
   text-align: left;
   max-width: 850px;
   margin: auto;
