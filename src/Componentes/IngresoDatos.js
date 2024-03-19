@@ -45,6 +45,7 @@ function IngresoDatos() {
 
     const [precioLeche, setPrecioLeche] = useState('');
     const [ingresoCarne, setIngresoCarne] = useState('');
+    const [ingresoVq, setIngresoVq] = useState('');
 
     const [gastoManoDeObraP, setGastoManoDeObraP] = useState('');
     const [cantidadOperarios, setCantidadOperarios] = useState('');
@@ -74,9 +75,10 @@ function IngresoDatos() {
 
     //Cálculos sección 2
     const ingresoLeche = (parseFloat(lecheVendida) * parseFloat(precioLeche)).toFixed(0);
-    const ingresoBruto = (parseFloat(ingresoLeche) + parseFloat(ingresoCarne)).toFixed(0);
+    const ingresoBruto = (parseFloat(ingresoLeche) + parseFloat(ingresoCarne) + parseFloat(ingresoVq)).toFixed(0);
     const ingresoLecheP = (parseFloat(ingresoLeche) / parseFloat(ingresoBruto) * 100).toFixed(1);
     const ingresoCarneP = (parseFloat(ingresoCarne) / parseFloat(ingresoBruto) * 100).toFixed(1);
+    const ingresoVqP = (parseFloat(ingresoVq) / parseFloat(ingresoBruto) * 100).toFixed(1);
     const ingresoBrutoP = (100).toFixed(1);
 
     //Cálculos sección 3
@@ -111,7 +113,7 @@ function IngresoDatos() {
     const gastosEstructura = (parseFloat(gastosMantenimiento) + parseFloat(gastoArrendamiento) +
         parseFloat(impuestos) + parseFloat(gerencia) + parseFloat(gastosAdministracion)).toFixed(0);
     const resultadoOperativo = (parseFloat(ingresoBruto) - parseFloat(gastosDirectos) - parseFloat(gastosEstructura)).toFixed(0);
-    const costoLitroCP = ((parseFloat(gastosDirectos) + parseFloat(gastosEstructura) - parseFloat(ingresoCarne)) / parseFloat(lecheVendida)).toFixed(3);
+    const costoLitroCP = ((parseFloat(gastosDirectos) + parseFloat(gastosEstructura) - parseFloat(ingresoCarne) - parseFloat(ingresoVq)) / parseFloat(lecheVendida)).toFixed(3);
     const resultadoOpLitro = (parseFloat(resultadoOperativo) / parseFloat(lecheVendida)).toFixed(3);
     const resultadoOpHa = (parseFloat(resultadoOperativo) / parseFloat(superficieVT)).toFixed(0);
     const resultadoOpP = (parseFloat(resultadoOperativo) / parseFloat(ingresoBruto) * 100).toFixed(1);
@@ -247,12 +249,14 @@ function IngresoDatos() {
 
     useEffect(() => {
         if (cambiarMoneda === true) {
-            setPrecioLeche((parseFloat(precioLeche) * parseFloat(tipoCambio)).toFixed(3))
-            setIngresoCarne((parseFloat(ingresoCarne) * parseFloat(tipoCambio)).toFixed(0))
+            setPrecioLeche((parseFloat(precioLeche) * parseFloat(tipoCambio)).toFixed(3));
+            setIngresoCarne((parseFloat(ingresoCarne) * parseFloat(tipoCambio)).toFixed(0));
+            setIngresoVq((parseFloat(ingresoVq) * parseFloat(tipoCambio)).toFixed(0));
         }
         if (cambiarMoneda === false) {
             setPrecioLeche((parseFloat(precioLeche) / parseFloat(tipoCambio)).toFixed(3));
             setIngresoCarne((parseFloat(ingresoCarne) / parseFloat(tipoCambio)).toFixed(0));
+            setIngresoVq((parseFloat(ingresoVq) / parseFloat(tipoCambio)).toFixed(0));
         }
     }, [currency, codigoMoneda]);
 
@@ -263,6 +267,10 @@ function IngresoDatos() {
     const handleIngresoCarneChange = (e) => {
         setIngresoCarne(e.target.value);
     };
+
+    const handleIngresoVqChange = (e) => {
+        setIngresoVq(e.target.value);
+    }
 
     //Sección 3 - Gasto en mano de obra
 
@@ -427,7 +435,20 @@ function IngresoDatos() {
                             <p>- No ingresar decimales -</p>
                         </Tooltip>
                     </div>
+                    {validacion3 && (<div>
+                        <h3 style={{ color: "darkred", backgroundColor: "lightpink" }} id='advertencia'>ADVERTENCIA: Si cambia los litros, revise los porcentajes de los rubros de gastos</h3>
+                        <Tooltip anchorSelect="#advertencia" place="top" className='tooltip'>
+                            <p><b>ADVERTENCIA:</b></p>
+                            <p>Todos los rubros de gastos se ingresaron como</p>
+                            <p>porcentajes del ingreso por venta de leche.</p>
+                            <p>Si se modifican los litros vendidos, cambiará el</p>
+                            <p>ingreso por venta de leche y, por lo tanto, también</p>
+                            <p>cambiarán en la misma proporción todos los gastos.</p>
+                            <p>Revise todos los gastos si decide cambiar los litros.</p>
+                        </Tooltip>
+                    </div>)}
                 </form>
+
                 {mostrarSeccion2 === false && (<div>
                     <button onClick={handleClick1} className='button'>Calcular</button>
                     <BotonReset />
@@ -500,6 +521,18 @@ function IngresoDatos() {
                             <p>- Admite hasta tres decimales -</p>
                         </Tooltip>
                     </div>
+                    {validacion3 && (<div>
+                        <h3 style={{ color: "darkred", backgroundColor: "lightpink" }} id="advertencia2">ADVERTENCIA: Si cambia el precio, revise los porcentajes de los rubros de gastos</h3>
+                        <Tooltip anchorSelect="#advertencia2" place="top" className='tooltip'>
+                            <p><b>ADVERTENCIA:</b></p>
+                            <p>Todos los rubros de gastos se ingresaron como</p>
+                            <p>porcentajes del ingreso por venta de leche.</p>
+                            <p>Si se modifica el precio de la leche, cambiará el</p>
+                            <p>ingreso por venta de leche y, por lo tanto, también</p>
+                            <p>cambiarán en la misma proporción todos los gastos.</p>
+                            <p>Revise todos los gastos si decide cambiar el precio.</p>
+                        </Tooltip>
+                    </div>)}
                     <div className='seccionFormulario'>
                         <label id="ingresoCarne">Ingresos por venta de carne ({codigoMoneda}/año): </label>
                         <input type='number' value={ingresoCarne} onChange={handleIngresoCarneChange} placeholder='Ingresar un monto anual' />
@@ -507,7 +540,18 @@ function IngresoDatos() {
                             <p><b>Ingresos por venta de carne:</b></p>
                             <p>Estimación de los ingresos anuales</p>
                             <p>por venta de carne derivada del rodeo lechero</p>
-                            <p>(vacas, toros, terneros, terneras, vaquillonas)</p>
+                            <p>(vacas y toros de descarte más terneros machos)</p>
+                            <p>Moneda seleccionada: {currency}</p>
+                            <p>- No ingresar decimales -</p>
+                        </Tooltip>
+                    </div>
+                    <div className='seccionFormulario'>
+                        <label id="ingresoVq">Ingresos por venta de vaquillonas ({codigoMoneda}/año): </label>
+                        <input type='number' value={ingresoVq} onChange={handleIngresoVqChange} placeholder='Ingresar un monto anual' />
+                        <Tooltip anchorSelect="#ingresoVq" place="top" className='tooltip'>
+                            <p><b>Ingresos por venta de vaquillonas:</b></p>
+                            <p>Estimación de los ingresos anuales</p>
+                            <p>por venta de vaquillonas excedentes</p>
                             <p>Moneda seleccionada: {currency}</p>
                             <p>- No ingresar decimales -</p>
                         </Tooltip>
@@ -522,8 +566,8 @@ function IngresoDatos() {
                 </div>)}
                 {mostrarSeccion3 && (<div>
                     <IngresosBrutos validacion2={validacion2} ingresoLeche={ingresoLeche} ingresoCarne={ingresoCarne}
-                        ingresoLecheP={ingresoLecheP} ingresoCarneP={ingresoCarneP} ingresoBruto={ingresoBruto}
-                        ingresoBrutoP={ingresoBrutoP} codigoMoneda={codigoMoneda} />
+                        ingresoLecheP={ingresoLecheP} ingresoCarneP={ingresoCarneP} ingresoVq={ingresoVq} ingresoVqP={ingresoVqP}
+                        ingresoBruto={ingresoBruto} ingresoBrutoP={ingresoBrutoP} codigoMoneda={codigoMoneda} />
                 </div>
                 )}
             </div>
@@ -786,19 +830,19 @@ function IngresoDatos() {
             {mostrarSeccion7 && (<div className='seccion'>
                 <h3 id='resultadosEconomicos'>RESULTADOS ECONÓMICOS</h3>
                 <Tooltip anchorSelect="#resultadosEconomicos" place="top" className='tooltip'>
-                            <p><b>Definiciones:</b></p>
-                            <p>INGRESOS BRUTOS: son los ingresos totales por ventas</p>
-                            <p>(venta de leche + venta de carne derivada del rodeo lechero)</p>
-                            <p>GASTOS DIRECTOS: son los que están directamente</p>
-                            <p>relacionados con la producción (alimentación, ordeño,</p>
-                            <p>mano de obra, sanidad, etc.)</p>
-                            <p>GASTOS DE ESTRUCTURA: o indirectos, son aquellos gastos</p>
-                            <p>centrales que la empresa tiene que afrontar siempre,</p>
-                            <p>independientemente del nivel productivo (arrendamiento,</p>
-                            <p>administración, etc.)</p>
-                            <p>RESULTADO OPERATIVO: Es el saldo que queda luego de restar</p>
-                            <p>los gastos (directos y de estructura) del ingreso bruto</p>
-                        </Tooltip>
+                    <p><b>Definiciones:</b></p>
+                    <p>INGRESOS BRUTOS: son los ingresos totales por ventas</p>
+                    <p>(venta de leche + venta de carne derivada del rodeo lechero)</p>
+                    <p>GASTOS DIRECTOS: son los que están directamente</p>
+                    <p>relacionados con la producción (alimentación, ordeño,</p>
+                    <p>mano de obra, sanidad, etc.)</p>
+                    <p>GASTOS DE ESTRUCTURA: o indirectos, son aquellos gastos</p>
+                    <p>centrales que la empresa tiene que afrontar siempre,</p>
+                    <p>independientemente del nivel productivo (arrendamiento,</p>
+                    <p>administración, etc.)</p>
+                    <p>RESULTADO OPERATIVO: Es el saldo que queda luego de restar</p>
+                    <p>los gastos (directos y de estructura) del ingreso bruto</p>
+                </Tooltip>
                 <ResultadosEconomicos validacion6={validacion6} codigoMoneda={codigoMoneda} gastosDirectos={gastosDirectos}
                     gastosEstructura={gastosEstructura} precioLeche={precioLeche} costoLitroCP={costoLitroCP}
                     resultadoOperativo={resultadoOperativo} resultadoOpHa={resultadoOpHa} resultadoOpLitro={resultadoOpLitro}
@@ -817,25 +861,25 @@ function IngresoDatos() {
                         impuestos={impuestos} gerencia={gerencia} gastosAdministracion={gastosAdministracion}
                         graficosEnMoneda={graficosEnMoneda} ingresoBruto={ingresoBruto}
                     />
-                   <button onClick={handleClickGraficosCambio}>{graficosEnMoneda === true ? 'Mostrar porcentajes en gráficos' : `Mostrar ${codigoMoneda} en gráficos`}</button>
+                    <button onClick={handleClickGraficosCambio}>{graficosEnMoneda === true ? 'Mostrar porcentajes en gráficos' : `Mostrar ${codigoMoneda} en gráficos`}</button>
                 </div>)}
                 <hr></hr>
                 <div className='resultados'>
-                <PDFDownloadLink document={<ReportePDF nombreCaso={nombreCaso} vacasOrdeno={vacasOrdeno} vacasSecas={vacasSecas}
-                    superficieVT={superficieVT} lecheVendida={lecheVendida} codigoMoneda={codigoMoneda} ingresoLeche={ingresoLeche}
-                    ingresoCarne={ingresoCarne} ingresoBruto={ingresoBruto} gastoManoDeObra={gastoManoDeObra} gastoReposicion={gastoReposicion}
-                    porcentajeReposicion={porcentajeReposicion} gastoAlimentacion={gastoAlimentacion} gastoSuministro={gastoSuministro}
-                    gastosVeterinaria={gastosVeterinaria} gastosRodeo={gastosRodeo} alquilerVacas={alquilerVacas} gastosTambo={gastosTambo}
-                    gastoPorOperario={gastoPorOperario} gastosMantenimiento={gastosMantenimiento} gastoArrendamiento={gastoArrendamiento}
-                    impuestos={impuestos} gerencia={gerencia} gastosAdministracion={gastosAdministracion}
-                    precioLeche={precioLeche} costoLitroCP={costoLitroCP} resultadoOpLitro={resultadoOpLitro}
-                    gastosDirectos={gastosDirectos} gastosEstructura={gastosEstructura} resultadoOperativo={resultadoOperativo}
-                    resultadoOpHa={resultadoOpHa} resultadoOpLeche={resultadoOpLeche}
-                />} fileName="reporte.pdf">
-                    {({ blob, url, loading, error }) => (loading ? 'Cargando documento...' : 'Descargar reporte PDF')}
-                </PDFDownloadLink>
+                    <PDFDownloadLink document={<ReportePDF nombreCaso={nombreCaso} vacasOrdeno={vacasOrdeno} vacasSecas={vacasSecas}
+                        superficieVT={superficieVT} lecheVendida={lecheVendida} codigoMoneda={codigoMoneda} ingresoLeche={ingresoLeche}
+                        ingresoCarne={ingresoCarne} ingresoVq={ingresoVq} ingresoBruto={ingresoBruto} gastoManoDeObra={gastoManoDeObra} gastoReposicion={gastoReposicion}
+                        porcentajeReposicion={porcentajeReposicion} gastoAlimentacion={gastoAlimentacion} gastoSuministro={gastoSuministro}
+                        gastosVeterinaria={gastosVeterinaria} gastosRodeo={gastosRodeo} alquilerVacas={alquilerVacas} gastosTambo={gastosTambo}
+                        gastoPorOperario={gastoPorOperario} gastosMantenimiento={gastosMantenimiento} gastoArrendamiento={gastoArrendamiento}
+                        impuestos={impuestos} gerencia={gerencia} gastosAdministracion={gastosAdministracion}
+                        precioLeche={precioLeche} costoLitroCP={costoLitroCP} resultadoOpLitro={resultadoOpLitro}
+                        gastosDirectos={gastosDirectos} gastosEstructura={gastosEstructura} resultadoOperativo={resultadoOperativo}
+                        resultadoOpHa={resultadoOpHa} resultadoOpLeche={resultadoOpLeche}
+                    />} fileName="reporte.pdf">
+                        {({ blob, url, loading, error }) => (loading ? 'Cargando documento...' : 'Descargar reporte PDF')}
+                    </PDFDownloadLink>
                 </div>
-                
+
                 <hr></hr>
                 <BotonReset />
             </div>)}

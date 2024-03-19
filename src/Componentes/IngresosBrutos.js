@@ -5,6 +5,7 @@ function IngresosBrutos(props) {
 
     let ingresoLecheMes = (parseFloat(props.ingresoLeche)/12).toFixed(0);
     let ingresoCarneMes = (parseFloat(props.ingresoCarne)/12).toFixed(0);
+    let ingresoVqMes = (parseFloat(props.ingresoVq)/12).toFixed(0);
     let ingresoBrutoMes = (parseFloat(props.ingresoBruto)/12).toFixed(0);
 
     return (
@@ -36,6 +37,12 @@ function IngresosBrutos(props) {
                                 <td>{new Intl.NumberFormat().format(props.ingresoCarne)} {props.codigoMoneda}/año</td>
                                 <td>{new Intl.NumberFormat().format(ingresoCarneMes)} {props.codigoMoneda}/mes</td>
                                 <td>{new Intl.NumberFormat().format(props.ingresoCarneP)}%</td>
+                            </tr>
+                            <tr>
+                                <td>INGRESOS POR VENTA DE VAQUILLONAS</td>
+                                <td>{new Intl.NumberFormat().format(props.ingresoVq)} {props.codigoMoneda}/año</td>
+                                <td>{new Intl.NumberFormat().format(ingresoVqMes)} {props.codigoMoneda}/mes</td>
+                                <td>{new Intl.NumberFormat().format(props.ingresoVqP)}%</td>
                             </tr>
                             <tr>
                                 <td><b>INGRESOS BRUTOS</b></td>

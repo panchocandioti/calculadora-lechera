@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     tableLogos: {
         width: '39%',
         height: '6%',
-        marginTop: '2%',
+        marginTop: '1%',
         marginLeft: '30.5%',
         border: 'none',
     },
@@ -48,14 +48,14 @@ const styles = StyleSheet.create({
     },
     title3: {
         textAlign: 'left',
-        marginTop: '10px',
+        marginTop: '8px',
         fontSize: '10',
         marginLeft: '5%',
     },
     footer: {
         textAlign: 'center',
         fontSize: '10',
-        marginTop: '10px',
+        marginTop: '8px',
     },
     plaintext: {
         textAlign: 'left',
@@ -76,6 +76,7 @@ function ReportePDF(props) {
     const [codigoMoneda, setCodigoMoneda] = useState(props.codigoMoneda);
     const [ingresoLeche, setIngresoLeche] = useState(props.ingresoLeche);
     const [ingresoCarne, setIngresoCarne] = useState(props.ingresoCarne);
+    const [ingresoVq, setIngresoVq] = useState(props.ingresoVq);
     const [ingresoBruto, setIngresoBruto] = useState(props.ingresoBruto);
     const [gastoManoDeObra, setGastoManoDeObra] = useState(props.gastoManoDeObra);
     const [gastoPorOperario, setGastoPorOperario] = useState(props.gastoPorOperario);
@@ -144,6 +145,10 @@ function ReportePDF(props) {
     useEffect(() => {
         setIngresoCarne((prevState) => props.ingresoCarne)
     }, [props.ingresoCarne]);
+
+    useEffect(() => {
+        setIngresoVq((prevState) => props.ingresoVq)
+    }, [props.ingresoVq]);
 
     useEffect(() => {
         setIngresoBruto((prevState) => props.ingresoBruto)
@@ -369,6 +374,20 @@ function ReportePDF(props) {
                             </View>
                             <View style={styles.tableCell}>
                                 <Text>{new Intl.NumberFormat().format((parseFloat(ingresoCarne) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Venta de vaquillonas</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(ingresoVq)} {codigoMoneda}/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(ingresoVq) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format((parseFloat(ingresoVq) / parseFloat(ingresoBruto) * 100).toFixed(1))}%</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
