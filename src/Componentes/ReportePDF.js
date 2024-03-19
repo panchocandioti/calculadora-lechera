@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         flex: 1,
         border: '1px solid #000',
         padding: 4,
-        textAlign: 'center',
+        textAlign: 'left',
     },
     tableCellLogos: {
         flex: 1,
