@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/calculadora-lechera/static/css/main.944201ee.css",
-    "main.js": "/calculadora-lechera/static/js/main.c1cb15fc.js",
+    "main.css": "/calculadora-lechera/static/css/main.95689423.css",
+    "main.js": "/calculadora-lechera/static/js/main.1bd52ce6.js",
     "static/js/453.e5b242e0.chunk.js": "/calculadora-lechera/static/js/453.e5b242e0.chunk.js",
     "static/media/vacas_cruza_pastoreando.jpeg": "/calculadora-lechera/static/media/vacas_cruza_pastoreando.3fbb5d927b62f0f474b9.jpeg",
     "static/media/kisspng-computer-icons-download-vector-changing.png": "/calculadora-lechera/static/media/kisspng-computer-icons-download-vector-changing.242e9239db38de48d972.png",
@@ -10,12 +10,12 @@
     "static/media/Imagotipo AZUL.png": "/calculadora-lechera/static/media/Imagotipo AZUL.ff8a3da6735079cf2c78.png",
     "static/media/Imagotipo BLANCO.png": "/calculadora-lechera/static/media/Imagotipo BLANCO.03a905ce6f8dfede116b.png",
     "index.html": "/calculadora-lechera/index.html",
-    "main.944201ee.css.map": "/calculadora-lechera/static/css/main.944201ee.css.map",
-    "main.c1cb15fc.js.map": "/calculadora-lechera/static/js/main.c1cb15fc.js.map",
+    "main.95689423.css.map": "/calculadora-lechera/static/css/main.95689423.css.map",
+    "main.1bd52ce6.js.map": "/calculadora-lechera/static/js/main.1bd52ce6.js.map",
     "453.e5b242e0.chunk.js.map": "/calculadora-lechera/static/js/453.e5b242e0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.944201ee.css",
-    "static/js/main.c1cb15fc.js"
+    "static/css/main.95689423.css",
+    "static/js/main.1bd52ce6.js"
   ]
 }
