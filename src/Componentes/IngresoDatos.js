@@ -657,75 +657,111 @@ function IngresoDatos() {
                 <h3>Otros gastos directos:</h3>
                 <p>(paso 5 de 6)</p>
                 <form>
-                    <div className='seccionFormulario'>
-                        <label id="gastoAlimentacion">Gasto de alimentación vacas (% IB leche):</label>
-                        <input type='number' step="0.1" value={gastoAlimentacionP} onChange={handleGastoAlimentacionChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastoAlimentacion" place="top" className='tooltip'>
-                            <p><b>Gasto de alimentación vacas:</b></p>
-                            <p>Considera vacas en ordeño, preparto y vacas secas no adelantadas</p>
-                            <p>No considera categorías jóvenes</p>
-                            <p>Incluye pasturas, verdeos, reservas y concentrados</p>
-                            <p>No incluye el suministro</p>
-                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
-                            <p>- Admite un decimal -</p>
-                        </Tooltip>
+                    <div className='seccionCompuesta'>
+                        <div className='seccionOGD'>
+                            <label id="gastoAlimentacion">Gasto de alimentación vacas (% IB leche):</label>
+                            <input type='number' step="0.1" value={gastoAlimentacionP} onChange={handleGastoAlimentacionChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                            <Tooltip anchorSelect="#gastoAlimentacion" place="top" className='tooltip'>
+                                <p><b>Gasto de alimentación vacas:</b></p>
+                                <p>Considera vacas en ordeño, preparto y vacas secas no adelantadas</p>
+                                <p>No considera categorías jóvenes</p>
+                                <p>Incluye pasturas, verdeos, reservas y concentrados</p>
+                                <p>No incluye el suministro</p>
+                                <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                                <p>- Admite un decimal -</p>
+                            </Tooltip>
+                        </div>
+                        <div className='seccionOGD'>
+                            {gastoAlimentacionP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
+                            {gastoAlimentacionP !== '' && (<h5 style={{ color: 'red' }}>{(parseFloat(gastoAlimentacion) / parseFloat(vacasTotales)).toFixed(0)} {codigoMoneda}/VT/año</h5>)}
+                        </div>
                     </div>
-                    <div className='seccionFormulario'>
-                        <label id="gastoSuministro">Gastos suministro de alimentos (% IB leche):</label>
-                        <input type='number' step="0.1" value={gastoSuministroP} onChange={handleGastoSuministroChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastoSuministro" place="top" className='tooltip'>
-                            <p><b>Gastos suministro de alimentos:</b></p>
-                            <p>Gastos en combustible y mantenimiento de la</p>
-                            <p>maquinaria relacionada con la alimentación</p>
-                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
-                            <p>- Admite un decimal -</p>
-                        </Tooltip>
+                    <div className='seccionCompuesta'>
+                        <div className='seccionOGD'>
+                            <label id="gastoSuministro">Gastos suministro de alimentos (% IB leche):</label>
+                            <input type='number' step="0.1" value={gastoSuministroP} onChange={handleGastoSuministroChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                            <Tooltip anchorSelect="#gastoSuministro" place="top" className='tooltip'>
+                                <p><b>Gastos suministro de alimentos:</b></p>
+                                <p>Gastos en combustible y mantenimiento de la</p>
+                                <p>maquinaria relacionada con la alimentación</p>
+                                <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                                <p>- Admite un decimal -</p>
+                            </Tooltip>
+                        </div>
+                        <div className='seccionOGD'>
+                            {gastoSuministroP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
+                            {gastoSuministroP !== '' && (<h5 style={{ color: 'red' }}>{(parseFloat(gastoSuministro) / parseFloat(vacasTotales)).toFixed(0)} {codigoMoneda}/VT/año</h5>)}
+                        </div>
                     </div>
-                    <div className='seccionFormulario'>
-                        <label id="gastosVeterinaria">Gastos sanidad animal (% IB leche):</label>
-                        <input type='number' step="0.1" value={gastosVeterinariaP} onChange={handleGastosVeterinariaChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastosVeterinaria" place="top" className='tooltip'>
-                            <p><b>Gastos sanidad animal:</b></p>
-                            <p>Veterinario, insumos veterinarios, sanidad oficial, etc.</p>
-                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
-                            <p>- Admite un decimal -</p>
-                        </Tooltip>
+                    <div className='seccionCompuesta'>
+                        <div className='seccionOGD'>
+                            <label id="gastosVeterinaria">Gastos sanidad animal (% IB leche):</label>
+                            <input type='number' step="0.1" value={gastosVeterinariaP} onChange={handleGastosVeterinariaChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                            <Tooltip anchorSelect="#gastosVeterinaria" place="top" className='tooltip'>
+                                <p><b>Gastos sanidad animal:</b></p>
+                                <p>Veterinario, insumos veterinarios, sanidad oficial, etc.</p>
+                                <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                                <p>- Admite un decimal -</p>
+                            </Tooltip>
+                        </div>
+                        <div className='seccionOGD'>
+                            {gastosVeterinariaP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
+                            {gastosVeterinariaP !== '' && (<h5 style={{ color: 'red' }}>{(parseFloat(gastosVeterinaria) / parseFloat(vacasTotales)).toFixed(0)} {codigoMoneda}/VT/año</h5>)}
+                        </div>
                     </div>
-                    <div className='seccionFormulario'>
-                        <label id="gastosRodeo">Gastos de rodeo (% IB leche):</label>
-                        <input type='number' step="0.1" value={gastosRodeoP} onChange={handleGastosRodeoChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastosRodeo" place="top" className='tooltip'>
-                            <p><b>Gastos de rodeo:</b></p>
-                            <p>Identificación animal, control lechero, semen,</p>
-                            <p>mantenimiento termo, insumos para reproducción</p>
-                            <p>y cualquier otro gasto del rodeo</p>
-                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
-                            <p>- Admite un decimal -</p>
-                        </Tooltip>
+                    <div className='seccionCompuesta'>
+                        <div className='seccionOGD'>
+                            <label id="gastosRodeo">Gastos de rodeo (% IB leche):</label>
+                            <input type='number' step="0.1" value={gastosRodeoP} onChange={handleGastosRodeoChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                            <Tooltip anchorSelect="#gastosRodeo" place="top" className='tooltip'>
+                                <p><b>Gastos de rodeo:</b></p>
+                                <p>Identificación animal, control lechero, semen,</p>
+                                <p>mantenimiento termo, insumos para reproducción</p>
+                                <p>y cualquier otro gasto del rodeo</p>
+                                <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                                <p>- Admite un decimal -</p>
+                            </Tooltip>
+                        </div>
+                        <div className='seccionOGD'>
+                            {gastosRodeoP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
+                            {gastosRodeoP !== '' && (<h5 style={{ color: 'red' }}>{(parseFloat(gastosRodeo) / parseFloat(vacasTotales)).toFixed(0)} {codigoMoneda}/VT/año</h5>)}
+                        </div>
                     </div>
-                    <div className='seccionFormulario'>
-                        <label id="alquilerVacas">Alquiler/leasing vacas (% IB leche):</label>
-                        <input type='number' step="0.1" value={alquilerVacasP} onChange={handleAlquilerVacasChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#alquilerVacas" place="top" className='tooltip'>
-                            <p><b>Alquiler/leasing vacas:</b></p>
-                            <p>En caso de corresponder, gastos originados</p>
-                            <p>por alquiler o leasing de vacas</p>
-                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
-                            <p>Si no corresponde, poner cero</p>
-                            <p>- Admite un decimal -</p>
-                        </Tooltip>
+                    <div className='seccionCompuesta'>
+                        <div className='seccionOGD'>
+                            <label id="alquilerVacas">Alquiler/leasing vacas (% IB leche):</label>
+                            <input type='number' step="0.1" value={alquilerVacasP} onChange={handleAlquilerVacasChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                            <Tooltip anchorSelect="#alquilerVacas" place="top" className='tooltip'>
+                                <p><b>Alquiler/leasing vacas:</b></p>
+                                <p>En caso de corresponder, gastos originados</p>
+                                <p>por alquiler o leasing de vacas</p>
+                                <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                                <p>Si no corresponde, poner cero</p>
+                                <p>- Admite un decimal -</p>
+                            </Tooltip>
+                        </div>
+                        <div className='seccionOGD'>
+                            {alquilerVacasP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
+                            {alquilerVacasP !== '' && (<h5 style={{ color: 'red' }}>{(parseFloat(alquilerVacas) / parseFloat(vacasTotales)).toFixed(0)} {codigoMoneda}/VT/año</h5>)}
+                        </div>
                     </div>
-                    <div className='seccionFormulario'>
-                        <label id="gastosTambo">Gastos de ordeño (% IB leche):</label>
-                        <input type='number' step="0.1" value={gastosTamboP} onChange={handleGastosTamboChange} placeholder='Ingresar un porcentaje (0 - 100)' />
-                        <Tooltip anchorSelect="#gastosTambo" place="top" className='tooltip'>
-                            <p><b>Gastos de ordeño:</b></p>
-                            <p>Productos de limpieza de equipos, reparaciones,</p>
-                            <p>repuestos, energía eléctrica y cualquier otro gasto</p>
-                            <p>relacionado con instalación y equipos de ordeño</p>
-                            <p>Expresado como porcentaje del ingreso por venta de leche</p>
-                            <p>- Admite un decimal -</p>
-                        </Tooltip>
+                    <div className='seccionCompuesta'>
+                        <div className='seccionOGD'>
+                            <label id="gastosTambo">Gastos de ordeño (% IB leche):</label>
+                            <input type='number' step="0.1" value={gastosTamboP} onChange={handleGastosTamboChange} placeholder='Ingresar un porcentaje (0 - 100)' />
+                            <Tooltip anchorSelect="#gastosTambo" place="top" className='tooltip'>
+                                <p><b>Gastos de ordeño:</b></p>
+                                <p>Productos de limpieza de equipos, reparaciones,</p>
+                                <p>repuestos, energía eléctrica y cualquier otro gasto</p>
+                                <p>relacionado con instalación y equipos de ordeño</p>
+                                <p>Expresado como porcentaje del ingreso por venta de leche</p>
+                                <p>- Admite un decimal -</p>
+                            </Tooltip>
+                        </div>
+                        <div className='seccionOGD'>
+                            {gastosTamboP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
+                            {gastosTamboP !== '' && (<h5 style={{ color: 'red' }}>{(parseFloat(gastosTambo) / parseFloat(vacasTotales)).toFixed(0)} {codigoMoneda}/VT/año</h5>)}
+                        </div>
                     </div>
                 </form>
                 {mostrarSeccion6 === false && (<div>
