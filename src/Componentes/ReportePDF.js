@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 import LogoMiLecheria from "../Media/Imagotipo AZUL.png";
 import LogoSaltoAgro from "../Media/LogoSaltoAgro.png";
-import LogoFCA from "../Media/FCA-UNL-Logo.jpg";
+import LogoUNLFCA from "../Media/logo-UNL-FCA.png";
 
 const styles = StyleSheet.create({
     table: {
@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
         fontSize: '8.5',
     },
     tableLogos: {
-        width: '39%',
-        height: '6%',
+        width: '36%',
+        height: '8%',
         marginTop: '1%',
-        marginLeft: '30.5%',
+        marginLeft: '32.5%',
         border: 'none',
     },
     tableRow: {
@@ -25,8 +25,16 @@ const styles = StyleSheet.create({
     tableCell: {
         flex: 1,
         border: '1px solid #000',
-        padding: 4,
+        padding: 3.5,
         textAlign: 'left',
+    },
+    tableCell2: {
+        flex: 1,
+        border: '1px solid #000',
+        padding: 3.5,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        backgroundColor: 'lightgray',
     },
     tableCellLogos: {
         flex: 1,
@@ -36,7 +44,6 @@ const styles = StyleSheet.create({
     },
     title1: {
         textAlign: 'center',
-        marginTop: '10px',
         fontWeight: 'bold',
         fontSize: '15',
     },
@@ -335,7 +342,7 @@ function ReportePDF(props) {
                     <Text style={styles.title3}>INDICADORES ECONÓMICOS</Text>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
-                            <View style={styles.tableCell}>
+                            <View style={styles.tableCell2}>
                                 <Text>INGRESOS BRUTOS</Text>
                             </View>
                             <View style={styles.tableCell}>
@@ -407,7 +414,7 @@ function ReportePDF(props) {
                     </View>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
-                            <View style={styles.tableCell}>
+                            <View style={styles.tableCell2}>
                                 <Text>GASTOS DIRECTOS</Text>
                             </View>
                             <View style={styles.tableCell}>
@@ -565,7 +572,7 @@ function ReportePDF(props) {
                 </View>
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
-                        <View style={styles.tableCell}>
+                        <View style={styles.tableCell2}>
                             <Text>GASTOS ESTRUCTURA</Text>
                         </View>
                         <View style={styles.tableCell}>
@@ -674,7 +681,7 @@ function ReportePDF(props) {
                             <Image src={LogoSaltoAgro}></Image>
                         </View>
                         <View style={styles.tableCellLogos}>
-                            <Image src={LogoFCA}></Image>
+                            <Image src={LogoUNLFCA}></Image>
                         </View>
                     </View>
                 </View>
@@ -692,7 +699,7 @@ function ReportePDF(props) {
                 <Text style={styles.title3}>INDICADORES ECONÓMICOS (Continuación)</Text>
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
-                        <View style={styles.tableCell}>
+                        <View style={styles.tableCell2}>
                             <Text>RESULTADO OPERATIVO (Análisis por litro)</Text>
                         </View>
                     </View>
@@ -723,7 +730,7 @@ function ReportePDF(props) {
                 </View>
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
-                        <View style={styles.tableCell}>
+                        <View style={styles.tableCell2}>
                             <Text>RESULTADO OPERATIVO</Text>
                         </View>
                         <View style={styles.tableCell}>
@@ -780,7 +787,7 @@ function ReportePDF(props) {
                 </View>
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
-                        <View style={styles.tableCell}>
+                        <View style={styles.tableCell2}>
                             <Text>RESULTADO OPERATIVO (Otras expresiones por hectárea VT)</Text>
                         </View>
                     </View>
@@ -804,7 +811,7 @@ function ReportePDF(props) {
                             <Image src={LogoSaltoAgro}></Image>
                         </View>
                         <View style={styles.tableCellLogos}>
-                            <Image src={LogoFCA}></Image>
+                            <Image src={LogoUNLFCA}></Image>
                         </View>
                     </View>
                 </View>

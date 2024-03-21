@@ -141,7 +141,8 @@ function IngresoDatos() {
 
     //Validación 2
 
-    if (!formatoFloatPositivo.test(precioLeche) || !formatoFloatPositivo.test(ingresoCarne) || codigoMoneda === '') {
+    if (!formatoFloatPositivo.test(precioLeche) || !formatoFloatPositivo.test(ingresoCarne) || !formatoFloatPositivo.test(ingresoVq)
+    || codigoMoneda === '') {
         validacion2 = false;
     }
 
@@ -552,6 +553,7 @@ function IngresoDatos() {
                             <p><b>Ingresos por venta de vaquillonas:</b></p>
                             <p>Estimación de los ingresos anuales</p>
                             <p>por venta de vaquillonas excedentes</p>
+                            <p>(si no se venden vaquillonas poner cero)</p>
                             <p>Moneda seleccionada: {currency}</p>
                             <p>- No ingresar decimales -</p>
                         </Tooltip>

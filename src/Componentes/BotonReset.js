@@ -8,7 +8,7 @@ function BotonReset() {
   };
 
   return (
-    <button className="button" onClick={recargaPagina}>RESET</button>
+    <button className="button" onClick={recargaPagina}>REINICIAR</button>
   );
 }
 
