@@ -152,8 +152,16 @@ input::placeholder {
   align-items:baseline;
 }
 
-.button {
+.button, .comenzar {
   margin: 10px;
+}
+
+.comenzar {
+  background-color: rgb(248, 178, 178);
+}
+
+.comenzar:hover {
+  background-color: rgb(249, 121, 121);
 }
 
 #instrucciones {
