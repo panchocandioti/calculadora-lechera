@@ -510,7 +510,7 @@ function IngresoDatos() {
                             <p>equivalen a una unidad de {currency2}?</p>
                             <p>- Admite hasta tres decimales -</p>
                         </Tooltip>
-                        <a href={`https://www.oanda.com/currency-converter/es/?from=${codigoMoneda2}&to=${codigoMoneda1}&amount=1`} target="_blank" rel="noreferrer">Consultar conversor de monedas</a>
+                        <a href={`https://www.xe.com/currencyconverter/convert/?Amount=1&From=${codigoMoneda2}&To=${codigoMoneda1}`} target="_blank" rel="noreferrer">Consultar conversor de monedas</a>
                     </div>
                     <div className='seccionFormulario'>
                         <label id="precioLeche">Precio de la leche ({codigoMoneda}/litro): </label>
