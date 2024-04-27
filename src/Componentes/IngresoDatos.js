@@ -34,10 +34,10 @@ function IngresoDatos() {
     const [graficosEnMoneda, setGraficosEnMoneda] = useState(true);
 
     const [currency1, setCurrency1] = useState("Peso argentino");
-    const [currency2, setCurrency2] = useState("Peso argentino");
+    const [currency2, setCurrency2] = useState("Dólar estadounidense");
     const [currency, setCurrency] = useState("Peso argentino");
     const [codigoMoneda1, setCodigoMoneda1] = useState("ARS");
-    const [codigoMoneda2, setCodigoMoneda2] = useState("ARS");
+    const [codigoMoneda2, setCodigoMoneda2] = useState("USD");
     const [codigoMoneda, setCodigoMoneda] = useState("ARS");
     const datosDropDown1 = divisas.map(item => item.currency);
     const [tipoCambio, setTipoCambio] = useState('');
@@ -120,6 +120,9 @@ function IngresoDatos() {
     const gastosDirectosP = (parseFloat(gastosDirectos) / parseFloat(ingresoBruto) * 100).toFixed(1);
     const gastosEstructuraP = (parseFloat(gastosEstructura) / parseFloat(ingresoBruto) * 100).toFixed(1);
     const resultadoOpLeche = (parseFloat(resultadoOperativo) / parseFloat(precioLeche) / parseFloat(superficieVT)).toFixed(0);
+    const resultadoOpVT = (parseFloat(resultadoOperativo) / parseFloat(vacasTotales)).toFixed(0);
+    const resultadoOpLecheVT = (parseFloat(resultadoOperativo) / parseFloat(precioLeche) / parseFloat(vacasTotales)).toFixed(0);
+
 
     //Datos para validaciones
     let formatoEnteroPositivo = /^[1-9]\d*$/;
@@ -142,7 +145,7 @@ function IngresoDatos() {
     //Validación 2
 
     if (!formatoFloatPositivo.test(precioLeche) || !formatoFloatPositivo.test(ingresoCarne) || !formatoFloatPositivo.test(ingresoVq)
-    || codigoMoneda === '') {
+        || codigoMoneda === '') {
         validacion2 = false;
     }
 
@@ -865,7 +868,7 @@ function IngresoDatos() {
             </div>
             )}
 
-            {mostrarSeccion7 && (<div className='seccion'>
+            {mostrarSeccion7 && (<div className='seccion2'>
                 <h3 id='resultadosEconomicos'>RESULTADOS ECONÓMICOS</h3>
                 <Tooltip anchorSelect="#resultadosEconomicos" place="top" className='tooltip'>
                     <p><b>Definiciones:</b></p>
@@ -884,8 +887,9 @@ function IngresoDatos() {
                 <ResultadosEconomicos validacion6={validacion6} codigoMoneda={codigoMoneda} gastosDirectos={gastosDirectos}
                     gastosEstructura={gastosEstructura} precioLeche={precioLeche} costoLitroCP={costoLitroCP}
                     resultadoOperativo={resultadoOperativo} resultadoOpHa={resultadoOpHa} resultadoOpLitro={resultadoOpLitro}
-                    resultadoOpP={resultadoOpP} resultadoOpLeche={resultadoOpLeche} ingresoBruto={ingresoBruto}
-                    gastosDirectosP={gastosDirectosP} gastosEstructuraP={gastosEstructuraP}
+                    resultadoOpP={resultadoOpP} resultadoOpLeche={resultadoOpLeche} resultadoOpVT={resultadoOpVT}
+                    resultadoOpLecheVT={resultadoOpLecheVT} ingresoBruto={ingresoBruto} gastosDirectosP={gastosDirectosP}
+                    gastosEstructuraP={gastosEstructuraP}
                 />
                 {validacion7 && (<div>
                     <GraficoIBGDGE resultadoOperativo={resultadoOperativo} gastosDirectos={gastosDirectos} gastosEstructura={gastosEstructura}
@@ -912,7 +916,8 @@ function IngresoDatos() {
                         impuestos={impuestos} gerencia={gerencia} gastosAdministracion={gastosAdministracion}
                         precioLeche={precioLeche} costoLitroCP={costoLitroCP} resultadoOpLitro={resultadoOpLitro}
                         gastosDirectos={gastosDirectos} gastosEstructura={gastosEstructura} resultadoOperativo={resultadoOperativo}
-                        resultadoOpHa={resultadoOpHa} resultadoOpLeche={resultadoOpLeche}
+                        resultadoOpHa={resultadoOpHa} resultadoOpLeche={resultadoOpLeche} resultadoOpVT={resultadoOpVT}
+                        resultadoOpLecheVT={resultadoOpLecheVT}
                     />} fileName="reporte.pdf">
                         {({ blob, url, loading, error }) => (loading ? 'Cargando documento...' : 'Descargar reporte PDF')}
                     </PDFDownloadLink>

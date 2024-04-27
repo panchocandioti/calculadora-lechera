@@ -16,7 +16,7 @@ const divisas = [
         "code": "CRC"
        },
        {
-        "currency": "Córdoba oro",
+        "currency": "Córdoba",
         "code": "NIO"
        },
        {

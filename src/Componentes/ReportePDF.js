@@ -108,6 +108,8 @@ function ReportePDF(props) {
     const [resultadoOperativo, setResultadoOperativo] = useState(props.resultadoOperativo);
     const [resultadoOpHa, setResultadoOpHa] = useState(props.resultadoOpHa);
     const [resultadoOpLeche, setResultadoOpLeche] = useState(props.resultadoOpLeche);
+    const [resultadoOpVT, setResultadoOpVT] = useState(props.resultadoOpVT);
+    const [resultadoOpLecheVT, setResultadoOpLecheVT] = useState(props.resultadoOpLecheVT);
 
     const fecha = new Date();
     const dia = fecha.getDate();
@@ -252,6 +254,14 @@ function ReportePDF(props) {
     useEffect(() => {
         setResultadoOpLeche((prevState) => props.resultadoOpLeche)
     }, [props.resultadoOpLeche]);
+
+    useEffect(() => {
+        setResultadoOpVT((prevState) => props.resultadoOpVT)
+    }, [props.resultadoOpVT]);
+
+    useEffect(() => {
+        setResultadoOpLecheVT((prevState) => props.resultadoOpLecheVT)
+    }, [props.resultadoOpLecheVT]);
 
     return (
         <Document>
@@ -788,7 +798,7 @@ function ReportePDF(props) {
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCell2}>
-                            <Text>RESULTADO OPERATIVO (Otras expresiones por hectárea VT)</Text>
+                            <Text>RESULTADO OPERATIVO (Otras expresiones: por hectárea VT y por vaca total)</Text>
                         </View>
                     </View>
                     <View style={styles.tableRow}>
@@ -797,6 +807,12 @@ function ReportePDF(props) {
                         </View>
                         <View style={styles.tableCell}>
                             <Text>{new Intl.NumberFormat().format(resultadoOpLeche)} litros leche/haVT/año</Text>
+                        </View>
+                        <View style={styles.tableCell}>
+                            <Text>{new Intl.NumberFormat().format(resultadoOpVT)} {codigoMoneda}/VT/año</Text>
+                        </View>
+                        <View style={styles.tableCell}>
+                            <Text>{new Intl.NumberFormat().format(resultadoOpLecheVT)} litros leche/VT/año</Text>
                         </View>
                     </View>
                 </View>

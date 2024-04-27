@@ -9,8 +9,8 @@ function ResultadosEconomicos(props) {
                 <h3 style={{ color: "darkred", backgroundColor: "lightpink" }}>Revisar los valores ingresados</h3>
             </div>)}
             {props.validacion6 && (<div className='resultados'>
-                <h4>Resultado operativo</h4>
-                <h6>(Análisis por litro)</h6>
+                <h4>RESULTADO OPERATIVO</h4>
+                <h6>Análisis por litro</h6>
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <tbody>
@@ -31,8 +31,7 @@ function ResultadosEconomicos(props) {
                         </tbody>
                     </table>
                 </div>
-                <h4>Resultado operativo</h4>
-                <h6>(Montos anuales y porcentuales del IB)</h6>
+                <h6>Montos anuales y porcentuales del IB</h6>
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <tbody>
@@ -64,8 +63,7 @@ function ResultadosEconomicos(props) {
                         </tbody>
                     </table>
                 </div>
-                <h4>Resultado Operativo</h4>
-                <h6>(Otras unidades por hectárea VT)</h6>
+                <h6>RESULTADO OPERATIVO: expresiones por hectárea VT</h6>
                 <div className='table-responsive'>
                     <table className="table table-hover">
                         <thead>
@@ -78,6 +76,23 @@ function ResultadosEconomicos(props) {
                             <tr>
                                 <td>{new Intl.NumberFormat().format(props.resultadoOpHa)} {props.codigoMoneda}/haVT/año</td>
                                 <td>{new Intl.NumberFormat().format(props.resultadoOpLeche)} litros leche/haVT/año</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h6>RESULTADO OPERATIVO: expresiones por vaca total</h6>
+                <div className='table-responsive'>
+                    <table className="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">{props.codigoMoneda}/VT/año</th>
+                                <th scope="col">litros leche/VT/año</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{new Intl.NumberFormat().format(props.resultadoOpVT)} {props.codigoMoneda}/VT/año</td>
+                                <td>{new Intl.NumberFormat().format(props.resultadoOpLecheVT)} litros leche/VT/año</td>
                             </tr>
                         </tbody>
                     </table>
