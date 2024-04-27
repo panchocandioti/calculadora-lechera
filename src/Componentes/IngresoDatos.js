@@ -25,6 +25,15 @@ function IngresoDatos() {
     const [superficieVT, setSuperficieVT] = useState('');
     const [lecheVendida, setLecheVendida] = useState('');
 
+    const [ventaVacas, setVentaVacas] = useState(false);
+    const [ventaToros, setVentaToros] = useState(false);
+    const [ventaToritos, setVentaToritos] = useState(false);
+    const [ventaTerneros, setVentaTerneros] = useState(false);
+    const [ventaTerneras, setVentaTerneras] = useState(false);
+    const [ventaVaquillonas, setVentaVaquillonas] = useState(false);
+
+
+
     const [mostrarSeccion2, setMostrarSeccion2] = useState(false);
     const [mostrarSeccion3, setMostrarSeccion3] = useState(false);
     const [mostrarSeccion4, setMostrarSeccion4] = useState(false);
@@ -200,6 +209,30 @@ function IngresoDatos() {
 
     const handleLecheVendidaChange = (e) => {
         setLecheVendida(e.target.value);
+    };
+
+    const handleVentaVacasChange = () => {
+        setVentaVacas(prevstate => !prevstate);
+    };
+
+    const handleVentaTorosChange = () => {
+        setVentaToros(prevstate => !prevstate);
+    };
+
+    const handleVentaToritosChange = () => {
+        setVentaToritos(prevstate => !prevstate);
+    };
+
+    const handleVentaTernerosChange = () => {
+        setVentaTerneros(prevstate => !prevstate);
+    };
+
+    const handleVentaTernerasChange = () => {
+        setVentaTerneras(prevstate => !prevstate);
+    };
+
+    const handleVentaVaquillonasChange = () => {
+        setVentaVaquillonas(prevstate => !prevstate);
     };
 
     const handleClick1 = () => {
@@ -378,6 +411,8 @@ function IngresoDatos() {
         setGraficosEnMoneda(prevstate => !prevstate);
     }
 
+
+
     return (
         <div>
             <div className='seccion'>
@@ -439,6 +474,67 @@ function IngresoDatos() {
                             <p>- No ingresar decimales -</p>
                         </Tooltip>
                     </div>
+                    <label id="categoriasVendidas">Venta de carne - Seleccionar categorías </label>
+                    <div className='checklist'>
+
+                        <div className='check'>
+                            <label>Vacas</label>
+                            <input
+                                type="checkbox"
+                                checked={ventaVacas}
+                                onChange={handleVentaVacasChange}
+                            />
+                        </div>
+                        <div className='check'>
+                            <label>Toros</label>
+                            <input
+                                type="checkbox"
+                                checked={ventaToros}
+                                onChange={handleVentaTorosChange}
+                            />
+                        </div>
+                        <div className='check'>
+                            <label>Toritos</label>
+                            <input
+                                type="checkbox"
+                                checked={ventaToritos}
+                                onChange={handleVentaToritosChange}
+                            />
+                        </div>
+                        <div className='check'>
+                            <label>Terneros</label>
+                            <input
+                                type="checkbox"
+                                checked={ventaTerneros}
+                                onChange={handleVentaTernerosChange}
+                            />
+                        </div>
+                        <div className='check'>
+                            <label>Terneras</label>
+                            <input
+                                type="checkbox"
+                                checked={ventaTerneras}
+                                onChange={handleVentaTernerasChange}
+                            />
+                        </div>
+                        <div className='check'>
+                            <label>Vaquillonas</label>
+                            <input
+                                type="checkbox"
+                                checked={ventaVaquillonas}
+                                onChange={handleVentaVaquillonasChange}
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        {ventaVacas && ("VENTA DE VACAS")}
+                        {ventaToros && ("VENTA DE TOROS")}
+                        {ventaToritos && ("VENTA DE TORITOS")}
+                        {ventaTerneros && ("VENTA DE TERNEROS")}
+                        {ventaTerneras && ("VENTA DE TERNERAS")}
+                        {ventaVaquillonas && ("VENTA DE VAQUILLONAS")}
+                    </div>
+
                     {validacion3 && (<div>
                         <h3 style={{ color: "darkred", backgroundColor: "lightpink" }} id='advertencia'>ADVERTENCIA: Si cambia los litros, revise los porcentajes de los rubros de gastos</h3>
                         <Tooltip anchorSelect="#advertencia" place="top" className='tooltip'>
