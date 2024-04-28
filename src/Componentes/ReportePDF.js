@@ -798,7 +798,10 @@ function ReportePDF(props) {
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCell2}>
-                            <Text>RESULTADO OPERATIVO (Otras expresiones: por hectárea VT y por vaca total)</Text>
+                            <Text>RESULTADO OPERATIVO (Otras expresiones: por hectárea VT)</Text>
+                        </View>
+                        <View style={styles.tableCell2}>
+                            <Text>RESULTADO OPERATIVO (Otras expresiones: por vaca total)</Text>
                         </View>
                     </View>
                     <View style={styles.tableRow}>

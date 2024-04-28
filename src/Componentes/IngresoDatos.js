@@ -474,9 +474,14 @@ function IngresoDatos() {
                             <p>- No ingresar decimales -</p>
                         </Tooltip>
                     </div>
-                    <label id="categoriasVendidas">Venta de carne - Seleccionar categorías </label>
+                    <label id="categoriasVenta">Venta de carne (categorías de venta) </label>
+                    <Tooltip anchorSelect="#categoriasVenta" place="top" className='tooltip'>
+                        <p><b>Categorías de venta:</b></p>
+                        <p>Seleccione las categorías animales</p>
+                        <p>que exporta el establecimiento</p>
+                        <p>(venta, cesión, etc.)</p>
+                    </Tooltip>
                     <div className='checklist'>
-
                         <div className='check'>
                             <label>Vacas</label>
                             <input
@@ -526,13 +531,32 @@ function IngresoDatos() {
                             />
                         </div>
                     </div>
-                    <div>
-                        {ventaVacas && ("VENTA DE VACAS")}
-                        {ventaToros && ("VENTA DE TOROS")}
-                        {ventaToritos && ("VENTA DE TORITOS")}
-                        {ventaTerneros && ("VENTA DE TERNEROS")}
-                        {ventaTerneras && ("VENTA DE TERNERAS")}
-                        {ventaVaquillonas && ("VENTA DE VAQUILLONAS")}
+                    <div className='seccionFormulario'>
+                        <div>{(ventaVacas || ventaToros || ventaToritos || ventaTerneros || ventaTerneras
+                            || ventaVaquillonas) && (<div>
+                                <label id="datosVentaCarne">Cabezas y peso promedio por categoría</label>
+                                <Tooltip anchorSelect="#datosVentaCarne" place="top" className='tooltip'>
+                                    <p><b>Cabezas y peso promedio:</b></p>
+                                    <p>Para cada categoría consignar</p>
+                                    <p>cantidad de animales exportados</p>
+                                    <p>y peso promedio en kilogramos</p>
+                                    <p>- Admite un decimal -</p>
+                                </Tooltip>
+                                <div>
+                                    "DATOS DE LAS VENTAS DE CARNE"
+                                </div>
+                            </div>)}
+                        </div>
+                        <div>{ventaVacas && (
+                            <div>
+                                "VENTA DE VACAS"
+                            </div>)}
+                        </div>
+                        <div>{ventaToros && ("VENTA DE TOROS")}</div>
+                        <div>{ventaToritos && ("VENTA DE TORITOS")}</div>
+                        <div>{ventaTerneros && ("VENTA DE TERNEROS")}</div>
+                        <div>{ventaTerneras && ("VENTA DE TERNERAS")}</div>
+                        <div>{ventaVaquillonas && ("VENTA DE VAQUILLONAS")}</div>
                     </div>
 
                     {validacion3 && (<div>

@@ -80,7 +80,7 @@ form, .monedas, .check {
 }
 
 .check {
-  width: 200px;
+  width: 180px;
   border: solid 1px gray;
   border-radius: 10px;
   padding: 2px;
