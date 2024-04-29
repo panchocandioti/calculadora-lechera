@@ -86,6 +86,17 @@ form, .monedas, .check {
   padding: 2px;
 }
 
+.seccionVentaAnimales {
+  width: 95px;
+  background-color: rgba(255,255,255,0.3);
+  padding: 2px;
+}
+
+.datosInputVenta {
+  width: 85px;
+  height: 22.5px;
+}
+
 #monedas-container {
   display: flex;
   flex-direction: row;
@@ -123,6 +134,17 @@ form, .monedas, .check {
   border-radius: 10px;
   padding: 5px;
   margin-bottom: 2px;
+}
+
+.ventasAnimales {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-width: 320px;
+  border-radius: 10px;
+  padding: 2px;
 }
 
 input {

@@ -34,9 +34,19 @@ function IndicadoresFisicos(props) {
                             <td>%</td>
                         </tr>
                         <tr>
-                            <td>PRODUCTIVIDAD</td>
+                            <td>PRODUCTIVIDAD LECHE</td>
                             <td>{new Intl.NumberFormat().format(props.productividad)}</td>
                             <td>litros/haVT/año</td>
+                        </tr>
+                        <tr>
+                            <td>CARNE VENDIDA</td>
+                            <td>{new Intl.NumberFormat().format(props.kilosCarne)}</td>
+                            <td>kilos/año</td>
+                        </tr>
+                        <tr>
+                            <td>PRODUCTIVIDAD CARNE</td>
+                            <td>{new Intl.NumberFormat().format(props.productividadCarne)}</td>
+                            <td>kilos/haVT/año</td>
                         </tr>
                     </tbody>
                 </table>

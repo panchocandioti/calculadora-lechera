@@ -32,7 +32,18 @@ function IngresoDatos() {
     const [ventaTerneras, setVentaTerneras] = useState(false);
     const [ventaVaquillonas, setVentaVaquillonas] = useState(false);
 
-
+    const [vacasCab, setVacasCab] = useState(0);
+    const [torosCab, setTorosCab] = useState(0);
+    const [toritosCab, setToritosCab] = useState(0);
+    const [ternerosCab, setTernerosCab] = useState(0);
+    const [ternerasCab, setTernerasCab] = useState(0);
+    const [vaquillonasCab, setVaquillonasCab] = useState(0);
+    const [vacasPeso, setVacasPeso] = useState(0);
+    const [torosPeso, setTorosPeso] = useState(0);
+    const [toritosPeso, setToritosPeso] = useState(0);
+    const [ternerosPeso, setTernerosPeso] = useState(0);
+    const [ternerasPeso, setTernerasPeso] = useState(0);
+    const [vaquillonasPeso, setVaquillonasPeso] = useState(0);
 
     const [mostrarSeccion2, setMostrarSeccion2] = useState(false);
     const [mostrarSeccion3, setMostrarSeccion3] = useState(false);
@@ -53,13 +64,18 @@ function IngresoDatos() {
     const [cambiarMoneda, setCambiarMoneda] = useState(true);
 
     const [precioLeche, setPrecioLeche] = useState('');
-    const [ingresoCarne, setIngresoCarne] = useState('');
-    const [ingresoVq, setIngresoVq] = useState('');
+    const [precioVacas, setPrecioVacas] = useState('');
+    const [precioToros, setPrecioToros] = useState('');
+    const [precioToritos, setPrecioToritos] = useState('');
+    const [precioTerneros, setPrecioTerneros] = useState('');
+    const [precioTerneras, setPrecioTerneras] = useState('');
+    const [precioVqLitros, setPrecioVqLitros] = useState('')
+    const [precioVaquillonas, setPrecioVaquillonas] = useState('');
 
     const [gastoManoDeObraP, setGastoManoDeObraP] = useState('');
     const [cantidadOperarios, setCantidadOperarios] = useState('');
 
-    const [precioVaquillona, setPrecioVaquillona] = useState('');
+    const [costoVaquillona, setCostoVaquillona] = useState('');
     const [cantidadVaquillonas, setCantidadVaquillonas] = useState('');
 
     const [gastoAlimentacionP, setGastoAlimentacionP] = useState('');
@@ -81,14 +97,28 @@ function IngresoDatos() {
     const produccionIndividual = ((parseFloat(lecheVendida) / 365) / parseFloat(vacasOrdeno)).toFixed(1);
     const relacionVOVT = ((parseFloat(vacasOrdeno) / (parseFloat(vacasOrdeno) + parseFloat(vacasSecas)) * 100)).toFixed(1);
     const productividad = (parseFloat(lecheVendida) / parseFloat(superficieVT)).toFixed(0);
+    const kilosVacas = ((parseFloat(vacasCab) * parseFloat(vacasPeso)).toFixed(0));
+    const kilosToros = ((parseFloat(torosCab) * parseFloat(torosPeso)).toFixed(0));
+    const kilosToritos = ((parseFloat(toritosCab) * parseFloat(toritosPeso)).toFixed(0));
+    const kilosTerneros = ((parseFloat(ternerosCab) * parseFloat(ternerosPeso)).toFixed(0));
+    const kilosTerneras = ((parseFloat(ternerasCab) * parseFloat(ternerasPeso)).toFixed(0));
+    const kilosVaquillonas = ((parseFloat(vaquillonasCab) * parseFloat(vaquillonasPeso)).toFixed(0));
+    const kilosCarne = (parseFloat(kilosVacas) + parseFloat(kilosToros) + parseFloat(kilosToritos) + parseFloat(kilosTerneros)
+        + parseFloat(kilosTerneras) + parseFloat(kilosVaquillonas)).toFixed(0);
+    const productividadCarne = ((parseFloat(kilosCarne) / parseFloat(superficieVT)).toFixed(0));
 
     //Cálculos sección 2
     const ingresoLeche = (parseFloat(lecheVendida) * parseFloat(precioLeche)).toFixed(0);
+    const ingresoVq = (parseFloat(vaquillonasCab) * parseFloat(precioVqLitros) * parseFloat(precioLeche)).toFixed(0);
+    const ingresoCarne = (parseFloat(kilosVacas) * parseFloat(precioVacas) + parseFloat(kilosToros) * parseFloat(precioToros) +
+        parseFloat(kilosToritos) * parseFloat(precioToritos) + parseFloat(kilosTerneros) * parseFloat(precioTerneros) +
+        parseFloat(kilosTerneras) * parseFloat(precioTerneras)).toFixed(0);
     const ingresoBruto = (parseFloat(ingresoLeche) + parseFloat(ingresoCarne) + parseFloat(ingresoVq)).toFixed(0);
     const ingresoLecheP = (parseFloat(ingresoLeche) / parseFloat(ingresoBruto) * 100).toFixed(1);
     const ingresoCarneP = (parseFloat(ingresoCarne) / parseFloat(ingresoBruto) * 100).toFixed(1);
     const ingresoVqP = (parseFloat(ingresoVq) / parseFloat(ingresoBruto) * 100).toFixed(1);
     const ingresoBrutoP = (100).toFixed(1);
+    const precioVqCabeza = (parseFloat(precioVqLitros) * parseFloat(precioLeche)).toFixed(0);
 
     //Cálculos sección 3
     const gastoManoDeObra = (parseFloat(gastoManoDeObraP) / 100 * parseFloat(ingresoLeche)).toFixed(0);
@@ -98,7 +128,7 @@ function IngresoDatos() {
     //Cálculos sección 4
     const vacasTotales = (parseFloat(vacasOrdeno) + parseFloat(vacasSecas)).toFixed(0);
     const porcentajeReposicion = (parseFloat(cantidadVaquillonas) / parseFloat(vacasTotales) * 100).toFixed(1);
-    const gastoReposicion = (parseFloat(precioVaquillona) * parseFloat(cantidadVaquillonas) * parseFloat(precioLeche)).toFixed(0);
+    const gastoReposicion = (parseFloat(costoVaquillona) * parseFloat(cantidadVaquillonas) * parseFloat(precioLeche)).toFixed(0);
     const gastoReposicionP = (parseFloat(gastoReposicion) / parseFloat(ingresoLeche) * 100).toFixed(1);
 
     //Cálculos sección 5
@@ -135,6 +165,7 @@ function IngresoDatos() {
 
     //Datos para validaciones
     let formatoEnteroPositivo = /^[1-9]\d*$/;
+    let formatoEntero = /^[0-9]\d*$/
     let formatoPorcentaje = /^(100(\.0{1,2})?|[1-9]\d?(\.\d{1,2})?|0(\.[1-9]\d?)?|0)$/;
     let formatoFloatPositivo = /^\d+(?:.\d+)?$/
     let validacion1 = true;
@@ -147,13 +178,14 @@ function IngresoDatos() {
 
     //Validación 1
     if (!formatoEnteroPositivo.test(vacasOrdeno) || !formatoEnteroPositivo.test(vacasSecas) ||
-        !formatoFloatPositivo.test(superficieVT) || !formatoEnteroPositivo.test(lecheVendida)) {
+        !formatoFloatPositivo.test(superficieVT) || !formatoEnteroPositivo.test(lecheVendida) ||
+        !formatoEntero.test(kilosCarne)) {
         validacion1 = false;
     }
 
     //Validación 2
 
-    if (!formatoFloatPositivo.test(precioLeche) || !formatoFloatPositivo.test(ingresoCarne) || !formatoFloatPositivo.test(ingresoVq)
+    if (!formatoFloatPositivo.test(precioLeche) || !formatoEntero.test(ingresoCarne) || !formatoEntero.test(ingresoVq)
         || codigoMoneda === '') {
         validacion2 = false;
     }
@@ -165,7 +197,7 @@ function IngresoDatos() {
     }
 
     //Validación 4
-    if (!formatoEnteroPositivo.test(cantidadVaquillonas) || !formatoEnteroPositivo.test(precioVaquillona)) {
+    if (!formatoEnteroPositivo.test(cantidadVaquillonas) || !formatoEnteroPositivo.test(costoVaquillona)) {
         validacion4 = false;
     }
 
@@ -211,6 +243,7 @@ function IngresoDatos() {
         setLecheVendida(e.target.value);
     };
 
+    //selección de categorías de venta
     const handleVentaVacasChange = () => {
         setVentaVacas(prevstate => !prevstate);
     };
@@ -235,7 +268,90 @@ function IngresoDatos() {
         setVentaVaquillonas(prevstate => !prevstate);
     };
 
+    //datos de animales de venta
+    const handleVacasCabChange = (e) => {
+        setVacasCab(e.target.value);
+    };
+
+    const handleVacasPesoChange = (e) => {
+        setVacasPeso(e.target.value);
+    };
+
+    const handleTorosCabChange = (e) => {
+        setTorosCab(e.target.value);
+    };
+
+    const handleTorosPesoChange = (e) => {
+        setTorosPeso(e.target.value);
+    };
+
+    const handleToritosCabChange = (e) => {
+        setToritosCab(e.target.value);
+    };
+
+    const handleToritosPesoChange = (e) => {
+        setToritosPeso(e.target.value);
+    };
+
+    const handleTernerosCabChange = (e) => {
+        setTernerosCab(e.target.value);
+    };
+
+    const handleTernerosPesoChange = (e) => {
+        setTernerosPeso(e.target.value);
+    };
+
+    const handleTernerasCabChange = (e) => {
+        setTernerasCab(e.target.value);
+    };
+
+    const handleTernerasPesoChange = (e) => {
+        setTernerasPeso(e.target.value);
+    };
+
+    const handleVaquillonasCabChange = (e) => {
+        setVaquillonasCab(e.target.value);
+    };
+
+    const handleVaquillonasPesoChange = (e) => {
+        setVaquillonasPeso(e.target.value);
+    };
+
+    useEffect(() => {
+        if (ventaVacas === false) {
+            setVacasCab(0);
+            setVacasPeso(0);
+            setPrecioVacas(0);
+        }
+        if (ventaToros === false) {
+            setTorosCab(0);
+            setTorosPeso(0);
+            setPrecioToros(0);
+        }
+        if (ventaToritos === false) {
+            setToritosCab(0);
+            setToritosPeso(0);
+            setPrecioToritos(0);
+        }
+        if (ventaTerneros === false) {
+            setTernerosCab(0);
+            setTernerosPeso(0);
+            setPrecioTerneros(0);
+        }
+        if (ventaTerneras === false) {
+            setTernerasCab(0);
+            setTernerasPeso(0);
+            setPrecioTerneras(0);
+        }
+        if (ventaVaquillonas === false) {
+            setVaquillonasCab(0);
+            setVaquillonasPeso(0);
+            setPrecioVqLitros(0);
+        }
+    }, [ventaVacas, ventaToros, ventaToritos, ventaTerneros, ventaTerneras, ventaVaquillonas]);
+
     const handleClick1 = () => {
+        if (productividadCarne == 0) { alert("Advertencia: la venta de carne calculada es nula. Esto no le impedirá seguir trabajando pero puede resultar en una subestimación de los Ingresos Brutos del establecimiento. Revise las categorías de venta seleccionadas y los respectivos número de cabezas y pesos medios ingresados.") };
         if (validacion1) {
             setMostrarSeccion2(true);
         }
@@ -287,13 +403,21 @@ function IngresoDatos() {
     useEffect(() => {
         if (cambiarMoneda === true) {
             setPrecioLeche((parseFloat(precioLeche) * parseFloat(tipoCambio)).toFixed(3));
-            setIngresoCarne((parseFloat(ingresoCarne) * parseFloat(tipoCambio)).toFixed(0));
-            setIngresoVq((parseFloat(ingresoVq) * parseFloat(tipoCambio)).toFixed(0));
+            setPrecioVacas((parseFloat(precioVacas) * parseFloat(tipoCambio)).toFixed(3));
+            setPrecioToros((parseFloat(precioToros) * parseFloat(tipoCambio)).toFixed(3));
+            setPrecioToritos((parseFloat(precioToritos) * parseFloat(tipoCambio)).toFixed(3));
+            setPrecioTerneros((parseFloat(precioTerneros) * parseFloat(tipoCambio)).toFixed(3));
+            setPrecioTerneras((parseFloat(precioTerneras) * parseFloat(tipoCambio)).toFixed(3));
+            setPrecioVaquillonas((parseFloat(precioVaquillonas) * parseFloat(tipoCambio)).toFixed(3));
         }
         if (cambiarMoneda === false) {
             setPrecioLeche((parseFloat(precioLeche) / parseFloat(tipoCambio)).toFixed(3));
-            setIngresoCarne((parseFloat(ingresoCarne) / parseFloat(tipoCambio)).toFixed(0));
-            setIngresoVq((parseFloat(ingresoVq) / parseFloat(tipoCambio)).toFixed(0));
+            setPrecioVacas((parseFloat(precioVacas) / parseFloat(tipoCambio)).toFixed(3));
+            setPrecioToros((parseFloat(precioToros) / parseFloat(tipoCambio)).toFixed(3));
+            setPrecioToritos((parseFloat(precioToritos) / parseFloat(tipoCambio)).toFixed(3));
+            setPrecioTerneros((parseFloat(precioTerneros) / parseFloat(tipoCambio)).toFixed(3));
+            setPrecioTerneras((parseFloat(precioTerneras) / parseFloat(tipoCambio)).toFixed(3));
+            setPrecioVaquillonas((parseFloat(precioVaquillonas) / parseFloat(tipoCambio)).toFixed(3));
         }
     }, [currency, codigoMoneda]);
 
@@ -301,13 +425,33 @@ function IngresoDatos() {
         setPrecioLeche(e.target.value);
     };
 
-    const handleIngresoCarneChange = (e) => {
-        setIngresoCarne(e.target.value);
+    const handlePrecioVacasChange = (e) => {
+        setPrecioVacas(e.target.value);
     };
 
-    const handleIngresoVqChange = (e) => {
-        setIngresoVq(e.target.value);
-    }
+    const handlePrecioTorosChange = (e) => {
+        setPrecioToros(e.target.value);
+    };
+
+    const handlePrecioToritosChange = (e) => {
+        setPrecioToritos(e.target.value);
+    };
+
+    const handlePrecioTernerosChange = (e) => {
+        setPrecioTerneros(e.target.value);
+    };
+
+    const handlePrecioTernerasChange = (e) => {
+        setPrecioTerneras(e.target.value);
+    };
+
+    const handlePrecioVqLitrosChange = (e) => {
+        setPrecioVqLitros(e.target.value);
+    };
+
+    useEffect(() => {
+        setPrecioVaquillonas((parseFloat(precioVqCabeza) / parseFloat(vaquillonasPeso)).toFixed(2));
+    }, [precioVqCabeza, precioVqLitros]);
 
     //Sección 3 - Gasto en mano de obra
 
@@ -321,8 +465,8 @@ function IngresoDatos() {
 
     //Sección 4 - Gasto de reposición
 
-    const handlePrecioVaquillonaChange = (e) => {
-        setPrecioVaquillona(e.target.value);
+    const handleCostoVaquillonaChange = (e) => {
+        setCostoVaquillona(e.target.value);
     };
 
     const handleCantidadVaquillonasChange = (e) => {
@@ -542,21 +686,79 @@ function IngresoDatos() {
                                     <p>y peso promedio en kilogramos</p>
                                     <p>- Admite un decimal -</p>
                                 </Tooltip>
-                                <div>
-                                    "DATOS DE LAS VENTAS DE CARNE"
+                                <div className='ventasAnimales'>
+                                    <div className='seccionVentaAnimales'>Categoría</div>
+                                    <div className='seccionVentaAnimales'>Cabezas</div>
+                                    <div className='seccionVentaAnimales'>Kg/Cabeza</div>
                                 </div>
                             </div>)}
                         </div>
                         <div>{ventaVacas && (
-                            <div>
-                                "VENTA DE VACAS"
+                            <div className='ventasAnimales'>
+                                <div className='seccionVentaAnimales'>Vacas</div>
+                                <div className='seccionVentaAnimales'>
+                                    <input className='datosInputVenta' type='number' value={vacasCab} onChange={handleVacasCabChange} />
+                                </div>
+                                <div className='seccionVentaAnimales'>
+                                    <input className='datosInputVenta' type='number' value={vacasPeso} onChange={handleVacasPesoChange} />
+                                </div>
                             </div>)}
                         </div>
-                        <div>{ventaToros && ("VENTA DE TOROS")}</div>
-                        <div>{ventaToritos && ("VENTA DE TORITOS")}</div>
-                        <div>{ventaTerneros && ("VENTA DE TERNEROS")}</div>
-                        <div>{ventaTerneras && ("VENTA DE TERNERAS")}</div>
-                        <div>{ventaVaquillonas && ("VENTA DE VAQUILLONAS")}</div>
+                        <div>{ventaToros && (
+                            <div className='ventasAnimales'>
+                                <div className='seccionVentaAnimales'>Toros</div>
+                                <div className='seccionVentaAnimales'>
+                                    <input className='datosInputVenta' type='number' value={torosCab} onChange={handleTorosCabChange} />
+                                </div>
+                                <div className='seccionVentaAnimales'>
+                                    <input className='datosInputVenta' type='number' value={torosPeso} onChange={handleTorosPesoChange} />
+                                </div>
+                            </div>)}
+                        </div>
+                        <div>{ventaToritos && (
+                            <div className='ventasAnimales'>
+                                <div className='seccionVentaAnimales'>Toritos</div>
+                                <div className='seccionVentaAnimales'>
+                                    <input className='datosInputVenta' type='number' value={toritosCab} onChange={handleToritosCabChange} />
+                                </div>
+                                <div className='seccionVentaAnimales'>
+                                    <input className='datosInputVenta' type='number' value={toritosPeso} onChange={handleToritosPesoChange} />
+                                </div>
+                            </div>)}
+                        </div>
+                        <div>{ventaTerneros && (
+                            <div className='ventasAnimales'>
+                                <div className='seccionVentaAnimales'>Terneros</div>
+                                <div className='seccionVentaAnimales'>
+                                    <input className='datosInputVenta' type='number' value={ternerosCab} onChange={handleTernerosCabChange} />
+                                </div>
+                                <div className='seccionVentaAnimales'>
+                                    <input className='datosInputVenta' type='number' value={ternerosPeso} onChange={handleTernerosPesoChange} />
+                                </div>
+                            </div>)}
+                        </div>
+                        <div>{ventaTerneras && (
+                            <div className='ventasAnimales'>
+                                <div className='seccionVentaAnimales'>Terneras</div>
+                                <div className='seccionVentaAnimales'>
+                                    <input className='datosInputVenta' type='number' value={ternerasCab} onChange={handleTernerasCabChange} />
+                                </div>
+                                <div className='seccionVentaAnimales'>
+                                    <input className='datosInputVenta' type='number' value={ternerasPeso} onChange={handleTernerasPesoChange} />
+                                </div>
+                            </div>)}
+                        </div>
+                        <div>{ventaVaquillonas && (
+                            <div className='ventasAnimales'>
+                                <div className='seccionVentaAnimales'>Vaquillonas</div>
+                                <div className='seccionVentaAnimales'>
+                                    <input className='datosInputVenta' type='number' value={vaquillonasCab} onChange={handleVaquillonasCabChange} />
+                                </div>
+                                <div className='seccionVentaAnimales'>
+                                    <input className='datosInputVenta' type='number' value={vaquillonasPeso} onChange={handleVaquillonasPesoChange} />
+                                </div>
+                            </div>)}
+                        </div>
                     </div>
 
                     {validacion3 && (<div>
@@ -580,7 +782,8 @@ function IngresoDatos() {
                 {mostrarSeccion2 && (<div>
                     <IndicadoresFisicos validacion1={validacion1} cargaAnimal={cargaAnimal}
                         produccionIndividual={produccionIndividual} relacionVOVT={relacionVOVT}
-                        productividad={productividad} lecheVendidaDia={lecheVendidaDia} />
+                        productividad={productividad} lecheVendidaDia={lecheVendidaDia}
+                        kilosCarne={kilosCarne} productividadCarne={productividadCarne} />
                 </div>)}
             </div>
 
@@ -657,30 +860,76 @@ function IngresoDatos() {
                             <p>Revise todos los gastos si decide cambiar el precio.</p>
                         </Tooltip>
                     </div>)}
-                    <div className='seccionFormulario'>
-                        <label id="ingresoCarne">Ingresos por venta de carne ({codigoMoneda}/año): </label>
-                        <input type='number' value={ingresoCarne} onChange={handleIngresoCarneChange} placeholder='Ingresar un monto anual' />
-                        <Tooltip anchorSelect="#ingresoCarne" place="top" className='tooltip'>
-                            <p><b>Ingresos por venta de carne:</b></p>
-                            <p>Estimación de los ingresos anuales</p>
-                            <p>por venta de carne derivada del rodeo lechero</p>
-                            <p>(vacas y toros de descarte más terneros machos)</p>
+                    {ventaVacas && (<div className='seccionFormulario'>
+                        <label id="precioVacas">Precio de venta vacas ({codigoMoneda}/kg): </label>
+                        <input type='number' step="0.001" value={precioVacas} onChange={handlePrecioVacasChange} placeholder='Ingresar un precio por kilo' />
+                        <Tooltip anchorSelect="#precioVacas" place="top" className='tooltip'>
+                            <p><b>Precio de venta vacas:</b></p>
+                            <p>Precio promedio por kilo</p>
+                            <p>de las vacas vendidas en el año</p>
                             <p>Moneda seleccionada: {currency}</p>
-                            <p>- No ingresar decimales -</p>
+                            <p>- Admite decimales -</p>
                         </Tooltip>
-                    </div>
-                    <div className='seccionFormulario'>
-                        <label id="ingresoVq">Ingresos por venta de vaquillonas ({codigoMoneda}/año): </label>
-                        <input type='number' value={ingresoVq} onChange={handleIngresoVqChange} placeholder='Ingresar un monto anual' />
-                        <Tooltip anchorSelect="#ingresoVq" place="top" className='tooltip'>
-                            <p><b>Ingresos por venta de vaquillonas:</b></p>
-                            <p>Estimación de los ingresos anuales</p>
-                            <p>por venta de vaquillonas excedentes</p>
-                            <p>(si no se venden vaquillonas poner cero)</p>
+                    </div>)}
+                    {ventaToros && (<div className='seccionFormulario'>
+                        <label id="precioToros">Precio de venta toros ({codigoMoneda}/kg): </label>
+                        <input type='number' step="0.001" value={precioToros} onChange={handlePrecioTorosChange} placeholder='Ingresar un precio por kilo' />
+                        <Tooltip anchorSelect="#precioToros" place="top" className='tooltip'>
+                            <p><b>Precio de venta toros:</b></p>
+                            <p>Precio promedio por kilo</p>
+                            <p>de los toros vendidos en el año</p>
                             <p>Moneda seleccionada: {currency}</p>
-                            <p>- No ingresar decimales -</p>
+                            <p>- Admite decimales -</p>
                         </Tooltip>
-                    </div>
+                    </div>)}
+                    {ventaToritos && (<div className='seccionFormulario'>
+                        <label id="precioToritos">Precio de venta toritos ({codigoMoneda}/kg): </label>
+                        <input type='number' step="0.001" value={precioToritos} onChange={handlePrecioToritosChange} placeholder='Ingresar un precio por kilo' />
+                        <Tooltip anchorSelect="#precioToritos" place="top" className='tooltip'>
+                            <p><b>Precio de venta toritos:</b></p>
+                            <p>Precio promedio por kilo</p>
+                            <p>de los toritos vendidos en el año</p>
+                            <p>Moneda seleccionada: {currency}</p>
+                            <p>- Admite decimales -</p>
+                        </Tooltip>
+                    </div>)}
+                    {ventaTerneros && (<div className='seccionFormulario'>
+                        <label id="precioTerneros">Precio de venta terneros ({codigoMoneda}/kg): </label>
+                        <input type='number' step="0.001" value={precioTerneros} onChange={handlePrecioTernerosChange} placeholder='Ingresar un precio por kilo' />
+                        <Tooltip anchorSelect="#precioTerneros" place="top" className='tooltip'>
+                            <p><b>Precio de venta terneros:</b></p>
+                            <p>Precio promedio por kilo</p>
+                            <p>de los terneros vendidos en el año</p>
+                            <p>Moneda seleccionada: {currency}</p>
+                            <p>- Admite decimales -</p>
+                        </Tooltip>
+                    </div>)}
+                    {ventaTerneras && (<div className='seccionFormulario'>
+                        <label id="precioTerneras">Precio de venta terneras ({codigoMoneda}/kg): </label>
+                        <input type='number' step="0.001" value={precioTerneras} onChange={handlePrecioTernerasChange} placeholder='Ingresar un precio por kilo' />
+                        <Tooltip anchorSelect="#precioTerneras" place="top" className='tooltip'>
+                            <p><b>Precio de venta terneras:</b></p>
+                            <p>Precio promedio por kilo</p>
+                            <p>de las terneras vendidas en el año</p>
+                            <p>Moneda seleccionada: {currency}</p>
+                            <p>- Admite decimales -</p>
+                        </Tooltip>
+                    </div>)}
+                    {ventaVaquillonas && (<div className='seccionFormulario'>
+                        <label id="precioVaquillonas">Precio de vaquillonas (litros leche/cabeza): </label>
+                        <input type='number' value={precioVqLitros} onChange={handlePrecioVqLitrosChange} placeholder='Ingresar un precio por kilo' />
+                        <Tooltip anchorSelect="#precioVaquillonas" place="top" className='tooltip'>
+                            <p><b>Precio de venta vaquillonas:</b></p>
+                            <p>Precio promedio por cabeza expresado</p>
+                            <p>expresado en litros de leche</p>
+                            <p>de las vaquillonas vendidas en el año</p>
+                            <p>- No admite decimales -</p>
+                        </Tooltip>
+                        {(precioVqLitros > 0 && kilosVaquillonas > 0) && (<div className='checklist'>
+                        <div className='opciones'><p>{new Intl.NumberFormat().format(precioVaquillonas)} {codigoMoneda}/kg</p></div>
+                        <div className='opciones'><p>{new Intl.NumberFormat().format(precioVqCabeza)} {codigoMoneda}/cabeza</p></div>
+                        </div>)}
+                    </div>)}
                 </form>
                 {mostrarSeccion3 && (<button onClick={handleClickMonedaCambio} className='cambioMoneda'>
                     <img src={ChangeCurrency} className='cambioMoneda' alt="Cambiar moneda resultados" title="Cambiar moneda resultados"></img>
@@ -743,7 +992,7 @@ function IngresoDatos() {
                 <form>
                     <div className='seccionFormulario'>
                         <label id="precioVaquillona">Valor de vaquillona al parir (litros leche):</label>
-                        <input type='number' value={precioVaquillona} onChange={handlePrecioVaquillonaChange} placeholder='Ingresar precio en litros de leche' />
+                        <input type='number' value={costoVaquillona} onChange={handleCostoVaquillonaChange} placeholder='Ingresar precio en litros de leche' />
                         <Tooltip anchorSelect="#precioVaquillona" place="top" className='tooltip'>
                             <p><b>Valor de vaquillona al parir:</b></p>
                             <p>Costo de una vaquillona adelantada</p>
