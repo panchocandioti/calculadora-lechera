@@ -171,7 +171,7 @@ function IngresoDatos() {
     let formatoEnteroPositivo = /^[1-9]\d*$/;
     let formatoEntero = /^[0-9]\d*$/
     let formatoPorcentaje = /^(100(\.0{1,2})?|[1-9]\d?(\.\d{1,2})?|0(\.[1-9]\d?)?|0)$/;
-    let formatoFloatPositivo = /^(0|[1-9]\d*)(\.\d+)?$/
+    let formatoFloatPositivo = /^(0*[1-9]\d*\.?\d*|0\.\d*[1-9]\d*)$/
     let validacion1 = true;
     let validacion2 = true;
     let validacion3 = true;
@@ -179,7 +179,6 @@ function IngresoDatos() {
     let validacion5 = true;
     let validacion6 = true;
     let validacion7 = true;
-    let alerta2 = false;
 
     //Validación 1
     if (!formatoEnteroPositivo.test(vacasOrdeno) || !formatoEnteroPositivo.test(vacasSecas) ||
