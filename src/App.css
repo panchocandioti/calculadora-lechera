@@ -154,6 +154,10 @@ input {
   font-size: medium;
 }
 
+.checkbox {
+  width: 15px;
+}
+
 select {
   text-align: center;
   width: 230px;

@@ -69,7 +69,7 @@ function IngresoDatos() {
     const [precioToritos, setPrecioToritos] = useState('');
     const [precioTerneros, setPrecioTerneros] = useState('');
     const [precioTerneras, setPrecioTerneras] = useState('');
-    const [precioVqLitros, setPrecioVqLitros] = useState('')
+    const [precioVqLitros, setPrecioVqLitros] = useState('');
     const [precioVaquillonas, setPrecioVaquillonas] = useState('');
 
     const [gastoManoDeObraP, setGastoManoDeObraP] = useState('');
@@ -90,6 +90,8 @@ function IngresoDatos() {
     const [impuestosP, setImpuestosP] = useState('');
     const [gerenciaP, setGerenciaP] = useState('');
     const [gastosAdministracionP, setGastosAdministracionP] = useState('');
+
+    const [forzador, setForzador] = useState(false);
 
     //Cálculos sección 1
     const lecheVendidaDia = (parseFloat(lecheVendida) / 365).toFixed(0);
@@ -161,13 +163,15 @@ function IngresoDatos() {
     const resultadoOpLeche = (parseFloat(resultadoOperativo) / parseFloat(precioLeche) / parseFloat(superficieVT)).toFixed(0);
     const resultadoOpVT = (parseFloat(resultadoOperativo) / parseFloat(vacasTotales)).toFixed(0);
     const resultadoOpLecheVT = (parseFloat(resultadoOperativo) / parseFloat(precioLeche) / parseFloat(vacasTotales)).toFixed(0);
-
+    const gastosDirectosLitro = (parseFloat(gastosDirectos) / parseFloat(lecheVendida)).toFixed(3);
+    const gastosEstructuraLitro = (parseFloat(gastosEstructura) / parseFloat(lecheVendida)).toFixed(3);
+    const recuperoCarneLitro = ((parseFloat(ingresoCarne) + parseFloat(ingresoVq)) / parseFloat(lecheVendida)).toFixed(3);
 
     //Datos para validaciones
     let formatoEnteroPositivo = /^[1-9]\d*$/;
     let formatoEntero = /^[0-9]\d*$/
     let formatoPorcentaje = /^(100(\.0{1,2})?|[1-9]\d?(\.\d{1,2})?|0(\.[1-9]\d?)?|0)$/;
-    let formatoFloatPositivo = /^\d+(?:.\d+)?$/
+    let formatoFloatPositivo = /^(0|[1-9]\d*)(\.\d+)?$/
     let validacion1 = true;
     let validacion2 = true;
     let validacion3 = true;
@@ -175,6 +179,7 @@ function IngresoDatos() {
     let validacion5 = true;
     let validacion6 = true;
     let validacion7 = true;
+    let alerta2 = false;
 
     //Validación 1
     if (!formatoEnteroPositivo.test(vacasOrdeno) || !formatoEnteroPositivo.test(vacasSecas) ||
@@ -183,12 +188,25 @@ function IngresoDatos() {
         validacion1 = false;
     }
 
+    if ((ventaVacas === true && kilosVacas == 0) || (ventaToros === true && kilosToros == 0) ||
+        (ventaToritos === true && kilosToritos == 0) || (ventaTerneros === true && kilosTerneros == 0) ||
+        (ventaTerneras === true && kilosTerneras == 0) || (ventaVaquillonas === true && kilosVaquillonas == 0) ||
+        productividadCarne == 0) {
+            validacion1 = false;
+        }
+
     //Validación 2
 
     if (!formatoFloatPositivo.test(precioLeche) || !formatoEntero.test(ingresoCarne) || !formatoEntero.test(ingresoVq)
         || codigoMoneda === '') {
         validacion2 = false;
     }
+
+    if ((ventaVacas === true && !formatoFloatPositivo.test(precioVacas)) || (ventaToros === true && !formatoFloatPositivo.test(precioToros)) ||
+        (ventaToritos === true && !formatoFloatPositivo.test(precioToritos)) || (ventaTerneros === true && !formatoFloatPositivo.test(precioTerneros)) ||
+        (ventaTerneras === true && !formatoFloatPositivo.test(precioTerneras)) || (ventaVaquillonas === true && !formatoFloatPositivo.test(precioVqLitros))) {
+            validacion2 = false;
+        }
 
     //Validación 3
 
@@ -323,36 +341,55 @@ function IngresoDatos() {
             setVacasPeso(0);
             setPrecioVacas(0);
         }
+    }, [ventaVacas, forzador]);
+
+
+    useEffect(() => {
         if (ventaToros === false) {
             setTorosCab(0);
             setTorosPeso(0);
             setPrecioToros(0);
         }
+    }, [ventaToros, forzador]);
+
+    useEffect(() => {
         if (ventaToritos === false) {
             setToritosCab(0);
             setToritosPeso(0);
             setPrecioToritos(0);
         }
+    }, [ventaToritos, forzador]);
+
+    useEffect(() => {
         if (ventaTerneros === false) {
             setTernerosCab(0);
             setTernerosPeso(0);
             setPrecioTerneros(0);
         }
+    }, [ventaTerneros, forzador]);
+
+    useEffect(() => {
         if (ventaTerneras === false) {
             setTernerasCab(0);
             setTernerasPeso(0);
             setPrecioTerneras(0);
         }
+    }, [ventaTerneras, forzador]);
+
+    useEffect(() => {
         if (ventaVaquillonas === false) {
             setVaquillonasCab(0);
             setVaquillonasPeso(0);
-            setPrecioVqLitros(0);
+            setPrecioVaquillonas(0);
+            if (validacion1 === true) {
+                setPrecioVqLitros(0);
+            }
         }
-    }, [ventaVacas, ventaToros, ventaToritos, ventaTerneros, ventaTerneras, ventaVaquillonas]);
+    }, [ventaVaquillonas, forzador]);
 
     const handleClick1 = () => {
-        if (productividadCarne == 0) { alert("Advertencia: la venta de carne calculada es nula. Esto no le impedirá seguir trabajando pero puede resultar en una subestimación de los Ingresos Brutos del establecimiento. Revise las categorías de venta seleccionadas y los respectivos número de cabezas y pesos medios ingresados.") };
         if (validacion1) {
+            setForzador(prevstate => !prevstate);
             setMostrarSeccion2(true);
         }
     };
@@ -597,7 +634,7 @@ function IngresoDatos() {
                         </Tooltip>
                     </div>
                     <div className='seccionFormulario'>
-                        <label id="superficieVT">Superficie vaca total (hectáreas): </label>
+                        <label id="superficieVT">Superficie vaca total (hectáreas VT): </label>
                         <input type='number' step="0.01" value={superficieVT} onChange={handleSuperficieVTChange} placeholder='Ingresar cantidad de hectáreas' />
                         <Tooltip anchorSelect="#superficieVT" place="top" className='tooltip'>
                             <p><b>Superficie vaca total (hectáreas VT):</b></p>
@@ -629,6 +666,7 @@ function IngresoDatos() {
                         <div className='check'>
                             <label>Vacas</label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 checked={ventaVacas}
                                 onChange={handleVentaVacasChange}
@@ -637,6 +675,7 @@ function IngresoDatos() {
                         <div className='check'>
                             <label>Toros</label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 checked={ventaToros}
                                 onChange={handleVentaTorosChange}
@@ -645,6 +684,7 @@ function IngresoDatos() {
                         <div className='check'>
                             <label>Toritos</label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 checked={ventaToritos}
                                 onChange={handleVentaToritosChange}
@@ -653,6 +693,7 @@ function IngresoDatos() {
                         <div className='check'>
                             <label>Terneros</label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 checked={ventaTerneros}
                                 onChange={handleVentaTernerosChange}
@@ -661,6 +702,7 @@ function IngresoDatos() {
                         <div className='check'>
                             <label>Terneras</label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 checked={ventaTerneras}
                                 onChange={handleVentaTernerasChange}
@@ -669,6 +711,7 @@ function IngresoDatos() {
                         <div className='check'>
                             <label>Vaquillonas</label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 checked={ventaVaquillonas}
                                 onChange={handleVentaVaquillonasChange}
@@ -762,7 +805,7 @@ function IngresoDatos() {
                     </div>
 
                     {validacion3 && (<div>
-                        <h3 style={{ color: "darkred", backgroundColor: "lightpink" }} id='advertencia'>ADVERTENCIA: Si cambia los litros, revise los porcentajes de los rubros de gastos</h3>
+                        <h3 style={{ color: "darkorange", backgroundColor: "lightyellow" }} id='advertencia'>ADVERTENCIA: Si cambia los litros, revise los porcentajes de los rubros de gastos</h3>
                         <Tooltip anchorSelect="#advertencia" place="top" className='tooltip'>
                             <p><b>ADVERTENCIA:</b></p>
                             <p>Todos los rubros de gastos se ingresaron como</p>
@@ -849,7 +892,7 @@ function IngresoDatos() {
                         </Tooltip>
                     </div>
                     {validacion3 && (<div>
-                        <h3 style={{ color: "darkred", backgroundColor: "lightpink" }} id="advertencia2">ADVERTENCIA: Si cambia el precio, revise los porcentajes de los rubros de gastos</h3>
+                        <h3 style={{ color: "darkorange", backgroundColor: "lightyellow" }} id="advertencia2">ADVERTENCIA: Si cambia el precio, revise los porcentajes de los rubros de gastos</h3>
                         <Tooltip anchorSelect="#advertencia2" place="top" className='tooltip'>
                             <p><b>ADVERTENCIA:</b></p>
                             <p>Todos los rubros de gastos se ingresaron como</p>
@@ -1258,7 +1301,8 @@ function IngresoDatos() {
                     resultadoOperativo={resultadoOperativo} resultadoOpHa={resultadoOpHa} resultadoOpLitro={resultadoOpLitro}
                     resultadoOpP={resultadoOpP} resultadoOpLeche={resultadoOpLeche} resultadoOpVT={resultadoOpVT}
                     resultadoOpLecheVT={resultadoOpLecheVT} ingresoBruto={ingresoBruto} gastosDirectosP={gastosDirectosP}
-                    gastosEstructuraP={gastosEstructuraP}
+                    gastosEstructuraP={gastosEstructuraP} gastosDirectosLitro={gastosDirectosLitro} gastosEstructuraLitro={gastosEstructuraLitro}
+                    recuperoCarneLitro={recuperoCarneLitro}
                 />
                 {validacion7 && (<div>
                     <GraficoIBGDGE resultadoOperativo={resultadoOperativo} gastosDirectos={gastosDirectos} gastosEstructura={gastosEstructura}

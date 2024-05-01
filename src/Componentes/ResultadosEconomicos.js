@@ -9,6 +9,35 @@ function ResultadosEconomicos(props) {
                 <h3 style={{ color: "darkred", backgroundColor: "lightpink" }}>Revisar los valores ingresados</h3>
             </div>)}
             {props.validacion6 && (<div className='resultados'>
+                <h4>COSTO DE PRODUCCIÓN (corto plazo)</h4>
+                <h6>Análisis por litro</h6>
+                <div className='table-responsive'>
+                    <table className="table table-hover">
+                        <tbody>
+                            <tr>
+                                <td>GASTOS DIRECTOS</td>
+                                <td>{new Intl.NumberFormat().format(props.gastosDirectosLitro)} {props.codigoMoneda}/litro</td>
+                            </tr>
+                            <tr>
+                                <td>GASTOS DE ESTRUCTURA</td>
+                                <td>{new Intl.NumberFormat().format(props.gastosEstructuraLitro)} {props.codigoMoneda}/litro</td>
+                            </tr>
+                            <tr>
+                                <td><b>SUBTOTAL GASTOS POR LITRO</b></td>
+                                <td><b>{new Intl.NumberFormat().format(parseFloat(props.gastosEstructuraLitro) + parseFloat(props.gastosDirectosLitro))} {props.codigoMoneda}/litro</b></td>
+                            </tr>
+                            <br></br>
+                            <tr>
+                                <td>RECUPERO POR VENTA DE CARNE</td>
+                                <td>{new Intl.NumberFormat().format(props.recuperoCarneLitro)} {props.codigoMoneda}/litro</td>
+                            </tr>
+                            <tr>
+                                <td><b>COSTO DE CORTO PLAZO</b></td>
+                                <td><b>{new Intl.NumberFormat().format(props.costoLitroCP)} {props.codigoMoneda}/litro</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <h4>RESULTADO OPERATIVO</h4>
                 <h6>Análisis por litro</h6>
                 <div className='table-responsive'>
@@ -22,12 +51,10 @@ function ResultadosEconomicos(props) {
                                 <td>COSTO DE CORTO PLAZO</td>
                                 <td>{new Intl.NumberFormat().format(props.costoLitroCP)} {props.codigoMoneda}/litro</td>
                             </tr>
-
                             <tr>
                                 <td><b>RESULTADO OPERATIVO</b></td>
                                 <td><b>{new Intl.NumberFormat().format(props.resultadoOpLitro)} {props.codigoMoneda}/litro</b></td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
