@@ -48,6 +48,11 @@ function IndicadoresFisicos(props) {
                             <td>{new Intl.NumberFormat().format(props.productividadCarne)}</td>
                             <td>kilos/haVT/año</td>
                         </tr>
+                        <tr>
+                            <td>RECHAZO VACAS</td>
+                            <td>{new Intl.NumberFormat().format(props.rechazoVacas)}</td>
+                            <td>%</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

@@ -108,7 +108,9 @@ function IngresoDatos() {
     const kilosCarne = (parseFloat(kilosVacas) + parseFloat(kilosToros) + parseFloat(kilosToritos) + parseFloat(kilosTerneros)
         + parseFloat(kilosTerneras) + parseFloat(kilosVaquillonas)).toFixed(0);
     const productividadCarne = ((parseFloat(kilosCarne) / parseFloat(superficieVT)).toFixed(0));
-
+    const vacasTotales = (parseFloat(vacasOrdeno) + parseFloat(vacasSecas)).toFixed(0);
+    const rechazoVacas = (parseFloat(vacasCab) / parseFloat(vacasTotales) * 100).toFixed(1);
+    
     //Cálculos sección 2
     const ingresoLeche = (parseFloat(lecheVendida) * parseFloat(precioLeche)).toFixed(0);
     const ingresoVq = (parseFloat(vaquillonasCab) * parseFloat(precioVqLitros) * parseFloat(precioLeche)).toFixed(0);
@@ -128,7 +130,7 @@ function IngresoDatos() {
     const gastoPorOperarioP = (parseFloat(gastoManoDeObraP) / parseFloat(cantidadOperarios)).toFixed(1);
 
     //Cálculos sección 4
-    const vacasTotales = (parseFloat(vacasOrdeno) + parseFloat(vacasSecas)).toFixed(0);
+
     const porcentajeReposicion = (parseFloat(cantidadVaquillonas) / parseFloat(vacasTotales) * 100).toFixed(1);
     const gastoReposicion = (parseFloat(costoVaquillona) * parseFloat(cantidadVaquillonas) * parseFloat(precioLeche)).toFixed(0);
     const gastoReposicionP = (parseFloat(gastoReposicion) / parseFloat(ingresoLeche) * 100).toFixed(1);
@@ -191,8 +193,8 @@ function IngresoDatos() {
         (ventaToritos === true && kilosToritos == 0) || (ventaTerneros === true && kilosTerneros == 0) ||
         (ventaTerneras === true && kilosTerneras == 0) || (ventaVaquillonas === true && kilosVaquillonas == 0) ||
         productividadCarne == 0) {
-            validacion1 = false;
-        }
+        validacion1 = false;
+    }
 
     //Validación 2
 
@@ -204,8 +206,8 @@ function IngresoDatos() {
     if ((ventaVacas === true && !formatoFloatPositivo.test(precioVacas)) || (ventaToros === true && !formatoFloatPositivo.test(precioToros)) ||
         (ventaToritos === true && !formatoFloatPositivo.test(precioToritos)) || (ventaTerneros === true && !formatoFloatPositivo.test(precioTerneros)) ||
         (ventaTerneras === true && !formatoFloatPositivo.test(precioTerneras)) || (ventaVaquillonas === true && !formatoFloatPositivo.test(precioVqLitros))) {
-            validacion2 = false;
-        }
+        validacion2 = false;
+    }
 
     //Validación 3
 
@@ -825,7 +827,7 @@ function IngresoDatos() {
                     <IndicadoresFisicos validacion1={validacion1} cargaAnimal={cargaAnimal}
                         produccionIndividual={produccionIndividual} relacionVOVT={relacionVOVT}
                         productividad={productividad} lecheVendidaDia={lecheVendidaDia}
-                        kilosCarne={kilosCarne} productividadCarne={productividadCarne} />
+                        kilosCarne={kilosCarne} productividadCarne={productividadCarne} rechazoVacas={rechazoVacas} />
                 </div>)}
             </div>
 
@@ -968,8 +970,8 @@ function IngresoDatos() {
                             <p>- No admite decimales -</p>
                         </Tooltip>
                         {(precioVqLitros > 0 && kilosVaquillonas > 0) && (<div className='checklist'>
-                        <div className='opciones'><p>{new Intl.NumberFormat().format(precioVaquillonas)} {codigoMoneda}/kg</p></div>
-                        <div className='opciones'><p>{new Intl.NumberFormat().format(precioVqCabeza)} {codigoMoneda}/cabeza</p></div>
+                            <div className='opciones'><p>{new Intl.NumberFormat().format(precioVaquillonas)} {codigoMoneda}/kg</p></div>
+                            <div className='opciones'><p>{new Intl.NumberFormat().format(precioVqCabeza)} {codigoMoneda}/cabeza</p></div>
                         </div>)}
                     </div>)}
                 </form>

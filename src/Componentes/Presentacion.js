@@ -103,6 +103,7 @@ function Presentacion() {
                         </ul>
                         <p>Finales:</p>
                         <ul>
+                            <li>Costo de producción – Análisis por litro</li>
                             <li>Resultado operativo – Análisis por litro</li>
                             <li>Resultado operativo – Montos anuales y porcentuales del Ingreso Bruto</li>
                             <li>Otras expresiones de resultado operativo</li>
