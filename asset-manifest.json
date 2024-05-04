@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/calculadora-lechera/static/css/main.3b3f4740.css",
-    "main.js": "/calculadora-lechera/static/js/main.40fdb4ad.js",
+    "main.css": "/calculadora-lechera/static/css/main.904ede75.css",
+    "main.js": "/calculadora-lechera/static/js/main.0a920144.js",
     "static/js/453.e5b242e0.chunk.js": "/calculadora-lechera/static/js/453.e5b242e0.chunk.js",
     "static/media/vacas_cruza_pastoreando.jpeg": "/calculadora-lechera/static/media/vacas_cruza_pastoreando.3fbb5d927b62f0f474b9.jpeg",
     "static/media/logo-UNL-FCA.png": "/calculadora-lechera/static/media/logo-UNL-FCA.8fbdb0aeddaa2e4015ca.png",
@@ -10,12 +10,12 @@
     "static/media/Imagotipo AZUL.png": "/calculadora-lechera/static/media/Imagotipo AZUL.ff8a3da6735079cf2c78.png",
     "static/media/Imagotipo BLANCO.png": "/calculadora-lechera/static/media/Imagotipo BLANCO.03a905ce6f8dfede116b.png",
     "index.html": "/calculadora-lechera/index.html",
-    "main.3b3f4740.css.map": "/calculadora-lechera/static/css/main.3b3f4740.css.map",
-    "main.40fdb4ad.js.map": "/calculadora-lechera/static/js/main.40fdb4ad.js.map",
+    "main.904ede75.css.map": "/calculadora-lechera/static/css/main.904ede75.css.map",
+    "main.0a920144.js.map": "/calculadora-lechera/static/js/main.0a920144.js.map",
     "453.e5b242e0.chunk.js.map": "/calculadora-lechera/static/js/453.e5b242e0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3b3f4740.css",
-    "static/js/main.40fdb4ad.js"
+    "static/css/main.904ede75.css",
+    "static/js/main.0a920144.js"
   ]
 }
