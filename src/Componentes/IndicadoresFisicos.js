@@ -49,9 +49,14 @@ function IndicadoresFisicos(props) {
                             <td>kilos/haVT/año</td>
                         </tr>
                         <tr>
+                            <td>CABEZAS VENDIDAS</td>
+                            <td>{new Intl.NumberFormat().format(props.cabezasVendidas)}</td>
+                            <td>cabezas/año</td>
+                        </tr>
+                        <tr>
                             <td>RECHAZO VACAS</td>
                             <td>{new Intl.NumberFormat().format(props.rechazoVacas)}</td>
-                            <td>%</td>
+                            <td>% anual</td>
                         </tr>
                     </tbody>
                 </table>

@@ -80,20 +80,22 @@ form, .monedas, .check {
 }
 
 .check {
-  width: 180px;
+  width: 100px;
   border: solid 1px gray;
   border-radius: 10px;
   padding: 2px;
 }
 
 .seccionVentaAnimales {
-  width: 95px;
+  width: 70px;
   background-color: rgba(255,255,255,0.3);
-  padding: 2px;
+  padding: 1px;
+  font-size: smaller;
+  text-align: center;
 }
 
 .datosInputVenta {
-  width: 85px;
+  width: 70px;
   height: 22.5px;
 }
 

@@ -110,7 +110,9 @@ function IngresoDatos() {
     const productividadCarne = ((parseFloat(kilosCarne) / parseFloat(superficieVT)).toFixed(0));
     const vacasTotales = (parseFloat(vacasOrdeno) + parseFloat(vacasSecas)).toFixed(0);
     const rechazoVacas = (parseFloat(vacasCab) / parseFloat(vacasTotales) * 100).toFixed(1);
-    
+    const cabezasVendidas = (parseFloat(vacasCab) + parseFloat(torosCab) + parseFloat(toritosCab) +
+    parseFloat(ternerosCab) + parseFloat(ternerasCab) + parseFloat(vaquillonasCab)).toFixed(0);
+
     //Cálculos sección 2
     const ingresoLeche = (parseFloat(lecheVendida) * parseFloat(precioLeche)).toFixed(0);
     const ingresoVq = (parseFloat(vaquillonasCab) * parseFloat(precioVqLitros) * parseFloat(precioLeche)).toFixed(0);
@@ -734,6 +736,7 @@ function IngresoDatos() {
                                     <div className='seccionVentaAnimales'>Categoría</div>
                                     <div className='seccionVentaAnimales'>Cabezas</div>
                                     <div className='seccionVentaAnimales'>Kg/Cabeza</div>
+                                    <div className='seccionVentaAnimales'>Kg/Categ.</div>
                                 </div>
                             </div>)}
                         </div>
@@ -746,6 +749,7 @@ function IngresoDatos() {
                                 <div className='seccionVentaAnimales'>
                                     <input className='datosInputVenta' type='number' value={vacasPeso} onChange={handleVacasPesoChange} />
                                 </div>
+                                <div className='seccionVentaAnimales'>{kilosVacas}</div>
                             </div>)}
                         </div>
                         <div>{ventaToros && (
@@ -757,6 +761,7 @@ function IngresoDatos() {
                                 <div className='seccionVentaAnimales'>
                                     <input className='datosInputVenta' type='number' value={torosPeso} onChange={handleTorosPesoChange} />
                                 </div>
+                                <div className='seccionVentaAnimales'>{kilosToros}</div>
                             </div>)}
                         </div>
                         <div>{ventaToritos && (
@@ -768,6 +773,7 @@ function IngresoDatos() {
                                 <div className='seccionVentaAnimales'>
                                     <input className='datosInputVenta' type='number' value={toritosPeso} onChange={handleToritosPesoChange} />
                                 </div>
+                                <div className='seccionVentaAnimales'>{kilosToritos}</div>
                             </div>)}
                         </div>
                         <div>{ventaTerneros && (
@@ -779,6 +785,7 @@ function IngresoDatos() {
                                 <div className='seccionVentaAnimales'>
                                     <input className='datosInputVenta' type='number' value={ternerosPeso} onChange={handleTernerosPesoChange} />
                                 </div>
+                                <div className='seccionVentaAnimales'>{kilosTerneros}</div>
                             </div>)}
                         </div>
                         <div>{ventaTerneras && (
@@ -790,6 +797,7 @@ function IngresoDatos() {
                                 <div className='seccionVentaAnimales'>
                                     <input className='datosInputVenta' type='number' value={ternerasPeso} onChange={handleTernerasPesoChange} />
                                 </div>
+                                <div className='seccionVentaAnimales'>{kilosTerneras}</div>
                             </div>)}
                         </div>
                         <div>{ventaVaquillonas && (
@@ -801,6 +809,7 @@ function IngresoDatos() {
                                 <div className='seccionVentaAnimales'>
                                     <input className='datosInputVenta' type='number' value={vaquillonasPeso} onChange={handleVaquillonasPesoChange} />
                                 </div>
+                                <div className='seccionVentaAnimales'>{kilosVaquillonas}</div>
                             </div>)}
                         </div>
                     </div>
@@ -827,7 +836,8 @@ function IngresoDatos() {
                     <IndicadoresFisicos validacion1={validacion1} cargaAnimal={cargaAnimal}
                         produccionIndividual={produccionIndividual} relacionVOVT={relacionVOVT}
                         productividad={productividad} lecheVendidaDia={lecheVendidaDia}
-                        kilosCarne={kilosCarne} productividadCarne={productividadCarne} rechazoVacas={rechazoVacas} />
+                        kilosCarne={kilosCarne} productividadCarne={productividadCarne} rechazoVacas={rechazoVacas}
+                        cabezasVendidas={cabezasVendidas} />
                 </div>)}
             </div>
 
@@ -1331,7 +1341,13 @@ function IngresoDatos() {
                         precioLeche={precioLeche} costoLitroCP={costoLitroCP} resultadoOpLitro={resultadoOpLitro}
                         gastosDirectos={gastosDirectos} gastosEstructura={gastosEstructura} resultadoOperativo={resultadoOperativo}
                         resultadoOpHa={resultadoOpHa} resultadoOpLeche={resultadoOpLeche} resultadoOpVT={resultadoOpVT}
-                        resultadoOpLecheVT={resultadoOpLecheVT}
+                        resultadoOpLecheVT={resultadoOpLecheVT} vacasCab={vacasCab} vacasPeso={vacasPeso} torosCab={torosCab} torosPeso={torosPeso}
+                        toritosCab={toritosCab} toritosPeso={toritosPeso} ternerosCab={ternerosCab} ternerosPeso={ternerosPeso} ternerasCab={ternerasCab}
+                        ternerasPeso={ternerasPeso} vaquillonasCab={vaquillonasCab} vaquillonasPeso={vaquillonasPeso} rechazoVacas={rechazoVacas}
+                        kilosCarne={kilosCarne} productividadCarne={productividadCarne} gastosDirectosLitro={gastosDirectosLitro}
+                        gastosEstructuraLitro={gastosEstructuraLitro} recuperoCarneLitro={recuperoCarneLitro} kilosVacas={kilosVacas}
+                        kilosToros={kilosToros} kilosToritos={kilosToritos} kilosTerneros={kilosTerneros} kilosTerneras={kilosTerneras}
+                        kilosVaquillonas={kilosVaquillonas} cabezasVendidas={cabezasVendidas}
                     />} fileName="reporte.pdf">
                         {({ blob, url, loading, error }) => (loading ? 'Cargando documento...' : 'Descargar reporte PDF')}
                     </PDFDownloadLink>

@@ -110,6 +110,31 @@ function ReportePDF(props) {
     const [resultadoOpLeche, setResultadoOpLeche] = useState(props.resultadoOpLeche);
     const [resultadoOpVT, setResultadoOpVT] = useState(props.resultadoOpVT);
     const [resultadoOpLecheVT, setResultadoOpLecheVT] = useState(props.resultadoOpLecheVT);
+    const [vacasCab, setVacasCab] = useState(props.vacasCab);
+    const [vacasPeso, setVacasPeso] = useState(props.vacasPeso);
+    const [torosCab, setTorosCab] = useState(props.torosCab);
+    const [torosPeso, setTorosPeso] = useState(props.torosPeso);
+    const [toritosCab, setToritosCab] = useState(props.toritosCab);
+    const [toritosPeso, setToritosPeso] = useState(props.toritosPeso);
+    const [ternerosCab, setTernerosCab] = useState(props.ternerosCab);
+    const [ternerosPeso, setTernerosPeso] = useState(props.ternerosPeso);
+    const [ternerasCab, setTernerasCab] = useState(props.ternerasCab);
+    const [ternerasPeso, setTernerasPeso] = useState(props.ternerasPeso);
+    const [vaquillonasCab, setVaquillonasCab] = useState(props.vaquillonasCab);
+    const [vaquillonasPeso, setVaquillonasPeso] = useState(props.vaquillonasPeso);
+    const [rechazoVacas, setRechazoVacas] = useState(props.rechazoVacas);
+    const [kilosCarne, setKilosCarne] = useState(props.kilosCarne);
+    const [productividadCarne, setProductividadCarne] = useState(props.productividadCarne);
+    const [gastosDirectosLitro, setGastosDirectosLitro] = useState(props.gastosDirectosLitro);
+    const [gastosEstructuraLitro, setGastosEstructuraLitro] = useState(props.gastosEstructuraLitro);
+    const [recuperoCarneLitro, setRecuperoCarneLitro] = useState(props.recuperoCarneLitro);
+    const [kilosVacas, setKilosVacas] = useState(props.kilosVacas);
+    const [kilosToros, setKilosToros] = useState(props.kilosToros);
+    const [kilosToritos, setKilosToritos] = useState(props.kilosToritos);
+    const [kilosTerneros, setKilosTerneros] = useState(props.kilosTerneros);
+    const [kilosTerneras, setKilosTerneras] = useState(props.kilosTerneras);
+    const [kilosVaquillonas, setKilosVaquillonas] = useState(props.kilosVaquillonas);
+    const [cabezasVendidas, setCabezasVendidas] = useState(props.cabezasVendidas);
 
     const fecha = new Date();
     const dia = fecha.getDate();
@@ -122,6 +147,7 @@ function ReportePDF(props) {
     let produccionIndividual = ((parseFloat(lecheVendida) / 365) / parseFloat(vacasOrdeno)).toFixed(1);
     let relacionVOVT = ((parseFloat(vacasOrdeno) / (parseFloat(vacasOrdeno) + parseFloat(vacasSecas)) * 100)).toFixed(1);
     let productividad = (parseFloat(lecheVendida) / parseFloat(superficieVT)).toFixed(0);
+    let gastosLitro = (parseFloat(gastosDirectosLitro) + parseFloat(gastosEstructuraLitro)).toFixed(3);
 
     useEffect(() => {
         setNombreCaso((prevState) => props.nombreCaso)
@@ -263,6 +289,106 @@ function ReportePDF(props) {
         setResultadoOpLecheVT((prevState) => props.resultadoOpLecheVT)
     }, [props.resultadoOpLecheVT]);
 
+    useEffect(() => {
+        setVacasCab((prevState) => props.vacasCab)
+    }, [props.vacasCab]);
+
+    useEffect(() => {
+        setVacasPeso((prevState) => props.vacasPeso)
+    }, [props.vacasPeso]);
+
+    useEffect(() => {
+        setTorosCab((prevState) => props.torosCab)
+    }, [props.torosCab]);
+
+    useEffect(() => {
+        setTorosPeso((prevState) => props.torosPeso)
+    }, [props.torosPeso]);
+
+    useEffect(() => {
+        setToritosCab((prevState) => props.toritosCab)
+    }, [props.toritosCab]);
+
+    useEffect(() => {
+        setToritosPeso((prevState) => props.toritosPeso)
+    }, [props.toritosPeso]);
+
+    useEffect(() => {
+        setTernerosCab((prevState) => props.ternerosCab)
+    }, [props.ternerosCab]);
+
+    useEffect(() => {
+        setTernerosPeso((prevState) => props.ternerosPeso)
+    }, [props.ternerosPeso]);
+
+    useEffect(() => {
+        setTernerasCab((prevState) => props.ternerasCab)
+    }, [props.ternerasCab]);
+
+    useEffect(() => {
+        setTernerasPeso((prevState) => props.ternerasPeso)
+    }, [props.ternerasPeso]);
+
+    useEffect(() => {
+        setVaquillonasCab((prevState) => props.vaquillonasCab)
+    }, [props.vaquillonasCab]);
+
+    useEffect(() => {
+        setVaquillonasPeso((prevState) => props.vaquillonasPeso)
+    }, [props.vaquillonasPeso]);
+
+    useEffect(() => {
+        setRechazoVacas((prevState) => props.rechazoVacas)
+    }, [props.rechazoVacas]);
+
+    useEffect(() => {
+        setKilosCarne((prevState) => props.kilosCarne)
+    }, [props.kilosCarne]);
+
+    useEffect(() => {
+        setProductividadCarne((prevState) => props.productividadCarne)
+    }, [props.productividadCarne]);
+
+    useEffect(() => {
+        setGastosDirectosLitro((prevState) => props.gastosDirectosLitro)
+    }, [props.gastosDirectosLitro]);
+
+    useEffect(() => {
+        setGastosEstructuraLitro((prevState) => props.gastosEstructuraLitro)
+    }, [props.gastosEstructuraLitro]);
+
+    useEffect(() => {
+        setRecuperoCarneLitro((prevState) => props.recuperoCarneLitro)
+    }, [props.recuperoCarneLitro]);
+
+    useEffect(() => {
+        setKilosVacas((prevState) => props.kilosVacas)
+    }, [props.kilosVacas]);
+
+    useEffect(() => {
+        setKilosToros((prevState) => props.kilosToros)
+    }, [props.kilosToros]);
+
+    useEffect(() => {
+        setKilosToritos((prevState) => props.kilosToritos)
+    }, [props.kilosToritos]);
+
+    useEffect(() => {
+        setKilosTerneros((prevState) => props.kilosTerneros)
+    }, [props.kilosTerneros]);
+
+    useEffect(() => {
+        setKilosTerneras((prevState) => props.kilosTerneras)
+    }, [props.kilosTerneras]);
+
+    useEffect(() => {
+        setKilosVaquillonas((prevState) => props.kilosVaquillonas)
+    }, [props.kilosVaquillonas]);
+
+    useEffect(() => {
+        setCabezasVendidas((prevState) => props.cabezasVendidas)
+    }, [props.setCabezasVendidas]);
+
     return (
         <Document>
             <Page size="A4">
@@ -288,9 +414,6 @@ function ReportePDF(props) {
                             <View style={styles.tableCell}>
                                 <Text>Superficie VT</Text>
                             </View>
-                            <View style={styles.tableCell}>
-                                <Text>Leche vendida anual</Text>
-                            </View>
                         </View>
                         <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
@@ -302,12 +425,117 @@ function ReportePDF(props) {
                             <View style={styles.tableCell}>
                                 <Text>{new Intl.NumberFormat().format(superficieVT)} has VT</Text>
                             </View>
+                        </View>
+                    </View>
+                    <View style={styles.table}>
+                        <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
-                                <Text>{new Intl.NumberFormat().format(lecheVendida)} litros/año</Text>
+                                <Text>Categoría venta</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>Vacas</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>Toros</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>Toritos</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>Terneros</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>Terneras</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>Vaquillonas</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Cabezas venta</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(vacasCab)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(torosCab)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(toritosCab)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(ternerosCab)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(ternerasCab)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(vaquillonasCab)}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Kg/Cabeza</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(vacasPeso)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(torosPeso)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(toritosPeso)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(ternerosPeso)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(ternerasPeso)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(vaquillonasPeso)}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Kg/Categoría</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(kilosVacas)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(kilosToros)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(kilosToritos)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(kilosTerneros)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(kilosTerneras)}</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(kilosVaquillonas)}</Text>
                             </View>
                         </View>
                     </View>
                     <View style={styles.table}>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCell}>
+                                <Text>Leche vendida anual</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(lecheVendida)} litros/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>Carne vendida anual</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(kilosCarne)} kg/año</Text>
+                            </View>
+                        </View>
                         <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
                                 <Text>Entrega diaria de leche</Text>
@@ -315,13 +543,11 @@ function ReportePDF(props) {
                             <View style={styles.tableCell}>
                                 <Text>{new Intl.NumberFormat().format(lecheVendidaDia)} litros/día</Text>
                             </View>
-                        </View>
-                        <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
-                                <Text>Carga animal</Text>
+                                <Text>Cabezas vendidas/año</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>{new Intl.NumberFormat().format(cargaAnimal)} VT/haVT</Text>
+                                <Text>{new Intl.NumberFormat().format(cabezasVendidas)} cabezas/año</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -331,6 +557,12 @@ function ReportePDF(props) {
                             <View style={styles.tableCell}>
                                 <Text>{new Intl.NumberFormat().format(produccionIndividual)} litros/VO/día</Text>
                             </View>
+                            <View style={styles.tableCell}>
+                                <Text>Rechazo de vacas</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(rechazoVacas)} % anual</Text>
+                            </View>
                         </View>
                         <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
@@ -339,13 +571,25 @@ function ReportePDF(props) {
                             <View style={styles.tableCell}>
                                 <Text>{new Intl.NumberFormat().format(relacionVOVT)} %</Text>
                             </View>
+                            <View style={styles.tableCell}>
+                                <Text>Carga animal</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(cargaAnimal)} VT/haVT</Text>
+                            </View>
                         </View>
                         <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
-                                <Text>Productividad</Text>
+                                <Text>Productividad leche</Text>
                             </View>
                             <View style={styles.tableCell}>
                                 <Text>{new Intl.NumberFormat().format(productividad)} litros/haVT/año</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>Productividad carne</Text>
+                            </View>
+                            <View style={styles.tableCell}>
+                                <Text>{new Intl.NumberFormat().format(productividadCarne)} kg/haVT/año</Text>
                             </View>
                         </View>
                     </View>
@@ -580,6 +824,30 @@ function ReportePDF(props) {
                     <Text style={styles.plaintext}>(1) Gasto medio por operario: {new Intl.NumberFormat().format((parseFloat(gastoPorOperario) / 12).toFixed(0))} {codigoMoneda}/mes</Text>
                     <Text style={styles.plaintext}>(2) Porcentaje de reemplazo: {new Intl.NumberFormat().format(porcentajeReposicion)}%</Text>
                 </View>
+                
+                <Text style={styles.footer}>Mi Calculadora Lechera - Desarrolladores: Ing. Agr. EPL Francisco Candioti / Dr. Javier Baudracco</Text>
+                <View style={styles.tableLogos}>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCellLogos}>
+                            <Image src={LogoSaltoAgro}></Image>
+                        </View>
+                        <View style={styles.tableCellLogos}>
+                            <Image src={LogoUNLFCA}></Image>
+                        </View>
+                    </View>
+                </View>
+            </Page>
+            <Page size="A4">
+                <View style={styles.tableLogos}>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCellLogos}>
+                            <Image src={LogoMiLecheria}></Image>
+                        </View>
+                    </View>
+                </View>
+                <Text style={styles.title1}>{nombreCaso}</Text>
+                <Text style={styles.title2}>REPORTE - Mi Calculadora Lechera - {fechaString}</Text>
+                <Text style={styles.title3}>INDICADORES ECONÓMICOS (Continuación)</Text>
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCell2}>
@@ -684,60 +952,6 @@ function ReportePDF(props) {
                         </View>
                     </View>
                 </View>
-                <Text style={styles.footer}>Mi Calculadora Lechera - Desarrolladores: Ing. Agr. EPL Francisco Candioti / Dr. Javier Baudracco</Text>
-                <View style={styles.tableLogos}>
-                    <View style={styles.tableRow}>
-                        <View style={styles.tableCellLogos}>
-                            <Image src={LogoSaltoAgro}></Image>
-                        </View>
-                        <View style={styles.tableCellLogos}>
-                            <Image src={LogoUNLFCA}></Image>
-                        </View>
-                    </View>
-                </View>
-            </Page>
-            <Page size="A4">
-                <View style={styles.tableLogos}>
-                    <View style={styles.tableRow}>
-                        <View style={styles.tableCellLogos}>
-                            <Image src={LogoMiLecheria}></Image>
-                        </View>
-                    </View>
-                </View>
-                <Text style={styles.title1}>{nombreCaso}</Text>
-                <Text style={styles.title2}>REPORTE - Mi Calculadora Lechera - {fechaString}</Text>
-                <Text style={styles.title3}>INDICADORES ECONÓMICOS (Continuación)</Text>
-                <View style={styles.table}>
-                    <View style={styles.tableRow}>
-                        <View style={styles.tableCell2}>
-                            <Text>RESULTADO OPERATIVO (Análisis por litro)</Text>
-                        </View>
-                    </View>
-                    <View style={styles.tableRow}>
-                        <View style={styles.tableCell}>
-                            <Text>Precio de la leche</Text>
-                        </View>
-                        <View style={styles.tableCell}>
-                            <Text>{new Intl.NumberFormat().format(precioLeche)} {codigoMoneda}/litro</Text>
-                        </View>
-                    </View>
-                    <View style={styles.tableRow}>
-                        <View style={styles.tableCell}>
-                            <Text>Costo de corto plazo</Text>
-                        </View>
-                        <View style={styles.tableCell}>
-                            <Text>{new Intl.NumberFormat().format(costoLitroCP)} {codigoMoneda}/litro</Text>
-                        </View>
-                    </View>
-                    <View style={styles.tableRow}>
-                        <View style={styles.tableCell}>
-                            <Text>Resultado operativo</Text>
-                        </View>
-                        <View style={styles.tableCell}>
-                            <Text>{new Intl.NumberFormat().format(resultadoOpLitro)} {codigoMoneda}/litro</Text>
-                        </View>
-                    </View>
-                </View>
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCell2}>
@@ -798,6 +1012,101 @@ function ReportePDF(props) {
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCell2}>
+                            <Text>GASTOS (Análisis por litro)</Text>
+                        </View>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCell}>
+                            <Text>Gastos Directos</Text>
+                        </View>
+                        <View style={styles.tableCell}>
+                            <Text>{new Intl.NumberFormat().format(gastosDirectosLitro)} {codigoMoneda}/litro</Text>
+                        </View>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCell}>
+                            <Text>Gastos de Estructura</Text>
+                        </View>
+                        <View style={styles.tableCell}>
+                            <Text>{new Intl.NumberFormat().format(gastosEstructuraLitro)} {codigoMoneda}/litro</Text>
+                        </View>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCell}>
+                            <Text>Total Gastos</Text>
+                        </View>
+                        <View style={styles.tableCell}>
+                            <Text>{new Intl.NumberFormat().format(gastosLitro)} {codigoMoneda}/litro</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.table}>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCell2}>
+                            <Text>COSTO DE PRODUCCIÓN DE CORTO PLAZO (Análisis por litro)</Text>
+                        </View>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCell}>
+                            <Text>Total gastos</Text>
+                        </View>
+                        <View style={styles.tableCell}>
+                            <Text>{new Intl.NumberFormat().format(gastosLitro)} {codigoMoneda}/litro</Text>
+                        </View>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCell}>
+                            <Text>Recupero por venta de carne</Text>
+                        </View>
+                        <View style={styles.tableCell}>
+                            <Text>{new Intl.NumberFormat().format(recuperoCarneLitro)} {codigoMoneda}/litro</Text>
+                        </View>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCell}>
+                            <Text>Costo de corto plazo</Text>
+                        </View>
+                        <View style={styles.tableCell}>
+                            <Text>{new Intl.NumberFormat().format(costoLitroCP)} {codigoMoneda}/litro</Text>
+                        </View>
+                    </View>
+                </View>
+
+                <View style={styles.table}>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCell2}>
+                            <Text>RESULTADO OPERATIVO (Análisis por litro)</Text>
+                        </View>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCell}>
+                            <Text>Precio de la leche</Text>
+                        </View>
+                        <View style={styles.tableCell}>
+                            <Text>{new Intl.NumberFormat().format(precioLeche)} {codigoMoneda}/litro</Text>
+                        </View>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCell}>
+                            <Text>Costo de corto plazo</Text>
+                        </View>
+                        <View style={styles.tableCell}>
+                            <Text>{new Intl.NumberFormat().format(costoLitroCP)} {codigoMoneda}/litro</Text>
+                        </View>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCell}>
+                            <Text>Resultado operativo</Text>
+                        </View>
+                        <View style={styles.tableCell}>
+                            <Text>{new Intl.NumberFormat().format(resultadoOpLitro)} {codigoMoneda}/litro</Text>
+                        </View>
+                    </View>
+                </View>
+                
+                <View style={styles.table}>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCell2}>
                             <Text>RESULTADO OPERATIVO (Otras expresiones: por hectárea VT)</Text>
                         </View>
                         <View style={styles.tableCell2}>
@@ -819,8 +1128,6 @@ function ReportePDF(props) {
                         </View>
                     </View>
                 </View>
-                <Text>  </Text>
-                <Text>  </Text>
                 <Text>  </Text>
                 <Text>  </Text>
                 <Text style={styles.footer}>Mi Calculadora Lechera - Desarrolladores: Ing. Agr. EPL Francisco Candioti / Dr. Javier Baudracco</Text>
