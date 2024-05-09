@@ -1103,7 +1103,7 @@ function IngresoDatos() {
                             </Tooltip>
                         </div>
                         <div className='seccionOGD'>
-                            {gastoAlimentacionP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
+                            {gastoAlimentacionP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/vaca/año</h5>)}
                             {gastoAlimentacionP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastoAlimentacion) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/vaca/año</h5>)}
                         </div>
                     </div>
@@ -1120,7 +1120,7 @@ function IngresoDatos() {
                             </Tooltip>
                         </div>
                         <div className='seccionOGD'>
-                            {gastoSuministroP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
+                            {gastoSuministroP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/vaca/año</h5>)}
                             {gastoSuministroP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastoSuministro) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/vaca/año</h5>)}
                         </div>
                     </div>
@@ -1136,7 +1136,7 @@ function IngresoDatos() {
                             </Tooltip>
                         </div>
                         <div className='seccionOGD'>
-                            {gastosVeterinariaP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
+                            {gastosVeterinariaP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/vaca/año</h5>)}
                             {gastosVeterinariaP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastosVeterinaria) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/vaca/año</h5>)}
                         </div>
                     </div>
@@ -1154,7 +1154,7 @@ function IngresoDatos() {
                             </Tooltip>
                         </div>
                         <div className='seccionOGD'>
-                            {gastosRodeoP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
+                            {gastosRodeoP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/vaca/año</h5>)}
                             {gastosRodeoP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastosRodeo) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/vaca/año</h5>)}
                         </div>
                     </div>
@@ -1172,7 +1172,7 @@ function IngresoDatos() {
                             </Tooltip>
                         </div>
                         <div className='seccionOGD'>
-                            {alquilerVacasP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
+                            {alquilerVacasP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/vaca/año</h5>)}
                             {alquilerVacasP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(alquilerVacas) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/vaca/año</h5>)}
                         </div>
                     </div>
@@ -1190,7 +1190,7 @@ function IngresoDatos() {
                             </Tooltip>
                         </div>
                         <div className='seccionOGD'>
-                            {gastosTamboP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
+                            {gastosTamboP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/vaca/año</h5>)}
                             {gastosTamboP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastosTambo) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/vaca/año</h5>)}
                         </div>
                     </div>
