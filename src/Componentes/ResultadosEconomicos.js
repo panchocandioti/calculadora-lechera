@@ -32,7 +32,7 @@ function ResultadosEconomicos(props) {
                                 <td>{new Intl.NumberFormat().format(props.recuperoCarneLitro)} {props.codigoMoneda}/litro</td>
                             </tr>
                             <tr>
-                                <td><b>COSTO DE CORTO PLAZO</b></td>
+                                <td><b>COSTO DE CORTO PLAZO</b> (ajustado por recupero carne)</td>
                                 <td><b>{new Intl.NumberFormat().format(props.costoLitroCP)} {props.codigoMoneda}/litro</b></td>
                             </tr>
                         </tbody>
@@ -112,14 +112,14 @@ function ResultadosEconomicos(props) {
                     <table className="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">{props.codigoMoneda}/VT/año</th>
-                                <th scope="col">litros leche/VT/año</th>
+                                <th scope="col">{props.codigoMoneda}/vaca/año</th>
+                                <th scope="col">litros leche/vaca/año</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{new Intl.NumberFormat().format(props.resultadoOpVT)} {props.codigoMoneda}/VT/año</td>
-                                <td>{new Intl.NumberFormat().format(props.resultadoOpLecheVT)} litros leche/VT/año</td>
+                                <td>{new Intl.NumberFormat().format(props.resultadoOpVT)} {props.codigoMoneda}/vaca/año</td>
+                                <td>{new Intl.NumberFormat().format(props.resultadoOpLecheVT)} litros leche/vaca/año</td>
                             </tr>
                         </tbody>
                     </table>

@@ -111,7 +111,7 @@ function IngresoDatos() {
     const vacasTotales = (parseFloat(vacasOrdeno) + parseFloat(vacasSecas)).toFixed(0);
     const rechazoVacas = (parseFloat(vacasCab) / parseFloat(vacasTotales) * 100).toFixed(1);
     const cabezasVendidas = (parseFloat(vacasCab) + parseFloat(torosCab) + parseFloat(toritosCab) +
-    parseFloat(ternerosCab) + parseFloat(ternerasCab) + parseFloat(vaquillonasCab)).toFixed(0);
+        parseFloat(ternerosCab) + parseFloat(ternerasCab) + parseFloat(vaquillonasCab)).toFixed(0);
 
     //Cálculos sección 2
     const ingresoLeche = (parseFloat(lecheVendida) * parseFloat(precioLeche)).toFixed(0);
@@ -657,8 +657,11 @@ function IngresoDatos() {
                             <p>No incluye leche para crianza de terneros</p>
                             <p>- No ingresar decimales -</p>
                         </Tooltip>
+                        {lecheVendida > 0 &&(<div>
+                            <div className='opciones'><p>{new Intl.NumberFormat().format(lecheVendidaDia)} litros diarios</p></div>
+                        </div>)}
                     </div>
-                    <label id="categoriasVenta">Venta de carne (categorías de venta) </label>
+                    <label id="categoriasVenta">Venta de carne (seleccione categorías) </label>
                     <Tooltip anchorSelect="#categoriasVenta" place="top" className='tooltip'>
                         <p><b>Categorías de venta:</b></p>
                         <p>Seleccione las categorías animales</p>
@@ -1101,7 +1104,7 @@ function IngresoDatos() {
                         </div>
                         <div className='seccionOGD'>
                             {gastoAlimentacionP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
-                            {gastoAlimentacionP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastoAlimentacion) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/VT/año</h5>)}
+                            {gastoAlimentacionP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastoAlimentacion) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/vaca/año</h5>)}
                         </div>
                     </div>
                     <div className='seccionCompuesta'>
@@ -1118,7 +1121,7 @@ function IngresoDatos() {
                         </div>
                         <div className='seccionOGD'>
                             {gastoSuministroP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
-                            {gastoSuministroP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastoSuministro) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/VT/año</h5>)}
+                            {gastoSuministroP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastoSuministro) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/vaca/año</h5>)}
                         </div>
                     </div>
                     <div className='seccionCompuesta'>
@@ -1134,7 +1137,7 @@ function IngresoDatos() {
                         </div>
                         <div className='seccionOGD'>
                             {gastosVeterinariaP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
-                            {gastosVeterinariaP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastosVeterinaria) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/VT/año</h5>)}
+                            {gastosVeterinariaP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastosVeterinaria) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/vaca/año</h5>)}
                         </div>
                     </div>
                     <div className='seccionCompuesta'>
@@ -1152,7 +1155,7 @@ function IngresoDatos() {
                         </div>
                         <div className='seccionOGD'>
                             {gastosRodeoP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
-                            {gastosRodeoP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastosRodeo) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/VT/año</h5>)}
+                            {gastosRodeoP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastosRodeo) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/vaca/año</h5>)}
                         </div>
                     </div>
                     <div className='seccionCompuesta'>
@@ -1170,7 +1173,7 @@ function IngresoDatos() {
                         </div>
                         <div className='seccionOGD'>
                             {alquilerVacasP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
-                            {alquilerVacasP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(alquilerVacas) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/VT/año</h5>)}
+                            {alquilerVacasP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(alquilerVacas) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/vaca/año</h5>)}
                         </div>
                     </div>
                     <div className='seccionCompuesta'>
@@ -1188,7 +1191,7 @@ function IngresoDatos() {
                         </div>
                         <div className='seccionOGD'>
                             {gastosTamboP === '' && (<h5 style={{ color: 'red' }}>0 {codigoMoneda}/VT/año</h5>)}
-                            {gastosTamboP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastosTambo) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/VT/año</h5>)}
+                            {gastosTamboP !== '' && (<h5 style={{ color: 'red' }}>{new Intl.NumberFormat().format((parseFloat(gastosTambo) / parseFloat(vacasTotales)).toFixed(0))} {codigoMoneda}/vaca/año</h5>)}
                         </div>
                     </div>
                 </form>
